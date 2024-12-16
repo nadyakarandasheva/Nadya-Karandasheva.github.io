@@ -1,14 +1,15 @@
 /**
- * Здесь код с ошибками типов. Нужно их устранить
- * */
-
-// Мы это не проходили, но по тексту ошибки можно понять, как это починить
+ * Возвращает фейковый API.
+ * @returns {Promise<void>}
+ */
 export const getFakeApi = async (): Promise<void> => {
   const result = await fetch('https://jsonplaceholder.typicode.com/todos/1').then((response) => response.json());
   console.log(result);
 };
 
-// Мы это не проходили, но по тексту ошибки можно понять, как это починить
+/**
+ * Какой-то класс.
+ */
 export class SomeClass {
   set: Set<number>;
   channel: BroadcastChannel;
@@ -19,23 +20,39 @@ export class SomeClass {
   }
 }
 
+/**
+ * Дата.
+ */
 export type Data = {
   type: 'Money' | 'Percent';
   value: DataValue;
 };
 
+/**
+ * Значение даты.
+ */
 export type DataValue = Money | Percent;
 
+/**
+ * Тип "Money" .
+ */
 export type Money = {
   currency: string;
   amount: number;
 };
 
+/**
+ * Тип "Percent" .
+ */
 export type Percent = {
   percent: number;
 };
 
-// Здесь, возможно, нужно использовать as, возможно в switch передавать немного по-другому
+/**
+ * Получает количество из объекта даты.
+ * @param {Data} data - Дата.
+ * @returns {number} - Количество.
+ */
 const getDataAmount = (data: Data): number => {
   switch (data.type) {
     case 'Money':
@@ -46,7 +63,7 @@ const getDataAmount = (data: Data): number => {
 
     default: {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const unhandled: never = data as never; // здесь, возможно, нужно использовать нечто другое. :never должен остаться
+      const unhandled: never = data as never;
       throw new Error(`unknown type: ${data.type}`);
     }
   }
