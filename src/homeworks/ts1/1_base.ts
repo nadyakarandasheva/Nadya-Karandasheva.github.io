@@ -1,4 +1,14 @@
 /**
+ * Интерфейс координат.
+ * @prop {number} x - Значение x.
+ * @prop {number} y - Значение y.
+ */
+interface ICoordinate {
+  x: number,
+  y: number
+}
+
+/**
  * Удаляет знак плюса.
  * @param {string} value - Текст, где необходимо удалить знак плюса. 
  * @returns {string} - Текст без знака плюс. 
@@ -21,11 +31,11 @@ export const removeFirstZeros = (value: string): string => value.replace(/^(-)?[
 
 /**
  * Форматирует строку числа, добавляя разделитель.
- * @param {string} value - Строка, представляющая число, которое нужно отформатировать. 
+ * @param {string | number} value - Значение, которое нужно отформатировать. 
  * @param {string | undefined} separator - Разделитель.
  * @returns {string} - Строчка с разделителем.
  */
-export const getBeautifulNumber = (value: string, separator: string = ' '): string =>
+export const getBeautifulNumber = (value: string | number, separator: string = ' '): string =>
   value?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, separator);
 
 /**
@@ -46,9 +56,9 @@ const transformRegexp =
 /**
  * Извлекает координаты x и y из CSS-строки, описывающей преобразование transform.
  * @param {string} transformCssString - CSS-строка, описывающая преобразование transform.
- * @returns {x: number, y: number} - Координаты.
+ * @returns {ICoordinate} - Координаты.
  */
-export const getTransformFromCss = (transformCssString: string): { x: number, y: number } => {
+export const getTransformFromCss = (transformCssString: string): ICoordinate => {
   const data = transformCssString.match(transformRegexp);
   if (!data) return { x: 0, y: 0 };
   return {
@@ -59,19 +69,24 @@ export const getTransformFromCss = (transformCssString: string): { x: number, y:
 
 /**
  * Получает значение контраста.
- * @param {number[]} [red, green, blue] - Кодировка цвета.
+ * @param {[number, number, number]} [red, green, blue] - Кодировка цвета.
  * @returns {number} - Контраст.
  */
-export const getColorContrastValue = ([red, green, blue]: number[]): number =>
+export const getColorContrastValue = ([red, green, blue]: [number, number, number]): number =>
   // http://www.w3.org/TR/AERT#color-contrast
   Math.round((red * 299 + green * 587 + blue * 114) / 1000);
+
+/**
+ * Тип контраста.
+ */
+type ContrastType = "black" | "white"
 
 /**
  * Получает тип контраста.
  * @param {number} contrastValue - Значение контраста.
  * @returns {string} - Тип контраста.
  */
-export const getContrastType = (contrastValue: number): string => (contrastValue > 125 ? 'black' : 'white');
+export const getContrastType = (contrastValue: number): ContrastType => (contrastValue > 125 ? 'black' : 'white');
 
 /** Короткая версия кодировки цвета. */
 export const shortColorRegExp = /^#[0-9a-f]{3}$/i;
@@ -82,18 +97,18 @@ export const longColorRegExp = /^#[0-9a-f]{6}$/i;
 /**
  * Проверяет цвет.
  * @param {string} color - цвет.
- * @returns void.
+ * @returns {void | never}.
  */
-export const checkColor = (color: string): void => {
+export const checkColor = (color: string): void | never => {
   if (!longColorRegExp.test(color) && !shortColorRegExp.test(color)) throw new Error(`invalid hex color: ${color}`);
 };
 
 /**
  * Конвертирует цвет из HEX в RGB.
  * @param {string} color - цвет в кодировке HEX.
- * @returns {number[]} - Цвет в кодировке RGB.
+ * @returns {[number, number, number]} - Цвет в кодировке RGB.
  */
-export const hex2rgb = (color: string): number[] => {
+export const hex2rgb = (color: string): [number, number, number] => {
   checkColor(color);
   if (shortColorRegExp.test(color)) {
     const red = parseInt(color.substring(1, 2), 16);
@@ -108,18 +123,34 @@ export const hex2rgb = (color: string): number[] => {
 };
 
 /**
+ * Интерфейс объекта пронумерованного массива.
+ * @prop {number} value - Значение.
+ * @prop {number} number - Число.
+ */
+interface INumberedArrayObject {
+  value: number,
+  number: number
+}
+
+/**
  * Возвращает пронумерованный массив.
  * @param {number[]} arr - Массив.
- * @returns {{ value: number, number: number }[]} - Пронумерованный массив.
+ * @returns {INumberedArrayObject[]} - Пронумерованный массив.
  */
-export const getNumberedArray = (arr: number[]): { value: number, number: number }[] => arr.map((value, number) => ({ value, number }));
+export const getNumberedArray = (arr: number[]): INumberedArrayObject[] => arr.map((value, number) => ({ value, number }));
 
 /**
  * Возвращает массив значений приведенных к строчке.
- * @param {{ value: number, number: number }[]} arr - Массив.
+ * @param arr - Массив объектов.
+ * @param key1 - Первый ключ для формирования строки.
+ * @param key2 - Второй ключ для формирования строки.
  * @returns {string[]} - Массив значений приведенных к строчке.
  */
-export const toStringArray = (arr: { value: number, number: number }[]): string[] => arr.map(({ value, number }) => `${value}_${number}`);
+export const toStringArray = <T extends Record<string, any>>(
+  arr: T[],
+  key1: keyof T,
+  key2: keyof T
+) => arr.map((item) => `${item[key1]}_${item[key2]}`);
 
 /**
  * Интерфейс клиента.
