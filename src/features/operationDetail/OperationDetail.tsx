@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 
 import styles from './operationDetail.css';
+import { Button } from 'src/shared/button/Button';
 
 /**
  * Компонент краткого отображения операции.
@@ -25,9 +26,9 @@ interface IOperationDetailProps {
 /**
  * Компонент полного отображения операции.
  * @params {IOperationDetailProps} params - Входные параметры компонента.
- * @returns 
+ * @returns {JSX.Element}
  */
-export const OperationDetail: FC<IOperationDetailProps> = ({ amount, category, title, description, date, onEdit, isDisabled = true }) => {
+export const OperationDetail: FC<IOperationDetailProps> = ({ amount, category, title, description, date, onEdit, isDisabled = true }): JSX.Element => {
   return (
     <div className={styles.container}>
       <div className={styles.amount}>{amount} ₽</div>
@@ -37,9 +38,7 @@ export const OperationDetail: FC<IOperationDetailProps> = ({ amount, category, t
         <div className={description}>{description}</div>
         <div className={styles.date}>{date}</div>
       </div>
-      <button className={styles.editButton} onClick={onEdit} disabled={isDisabled}>
-        Edit
-      </button>
+      <Button label='edit' onClick={onEdit} isDisabled={isDisabled} />
     </div>
   );
 };

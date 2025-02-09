@@ -4,12 +4,10 @@ import styles from './modal.css';
 
 /**
  * Интерфесй компонента модального окна.
- * @prop {boolean} isVisible - Видно ли модальное окно.
  * @prop {React.ReactNode} children - Дочерние элементы.
  * @prop {() => void} onClose - Функция закрфтия модального окна.
  */
 interface IModalProps {
-  isVisible: boolean;
   children: React.ReactNode;
   onClose: () => void;
 }
@@ -17,11 +15,9 @@ interface IModalProps {
 /**
  * Компонент модального окна.
  * @param {IModalProps} param - Входные параметры компонента. 
- * @returns 
+ * @returns {JSX.Element} 
  */
-export const Modal: FC<IModalProps> = ({ isVisible, children, onClose }) => {
-  if (!isVisible) return null;
-
+export const Modal: FC<IModalProps> = ({ children, onClose }): JSX.Element => {
   return (
     <div className={styles.modal}>
       <div className={styles.content}>

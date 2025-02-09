@@ -16,9 +16,9 @@ interface LayoutProps {
 /**
  * Компонент разметки страницы.
  * @params {LayoutProps} params - Входные параметры компонента.
- * @returns 
+ * @returns {JSX.Element} 
  */
-export const Layout: FC<LayoutProps> = ({ children }) => (
+export const Layout: FC<LayoutProps> = ({ children }): JSX.Element => (
   <div className={styles.container}>
     <Header />
     <main>{children}</main>

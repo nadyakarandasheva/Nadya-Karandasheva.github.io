@@ -4,9 +4,9 @@ import styles from './logo.css';
 
 /**
  * Компонент логотипа.
- * @returns 
+ * @returns {JSX.Element} 
  */
-export const Logo = () => (
+export const Logo = (): JSX.Element => (
   <div className={styles.logo}>
     Logo
   </div>
