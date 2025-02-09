@@ -19,9 +19,9 @@ interface IOperationSummaryProps {
 /**
  * Компонент краткого отображения операции.
  * @params {IOperationSummaryProps} params - Входные параметры компонента.
- * @returns 
+ * @returns {JSX.Element}
  */
-export const OperationSummary: FC<IOperationSummaryProps> = ({ amount, category, title, description }) => {
+export const OperationSummary: FC<IOperationSummaryProps> = ({ amount, category, title, description }): JSX.Element => {
   return (
     <div className={styles.container}>
       <div className={styles.amount}>{amount} ₽</div>
