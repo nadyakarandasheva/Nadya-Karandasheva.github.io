@@ -6,9 +6,9 @@ import styles from './header.css';
 
 /**
  * Компонент шапки страницы.
- * @returns 
+ * @returns {JSX.Element} 
  */
-export const Header = () => (
+export const Header = (): JSX.Element => (
   <header className={styles.header}>
     <Logo />
   </header>
