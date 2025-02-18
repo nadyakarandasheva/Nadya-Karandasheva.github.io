@@ -1,26 +1,42 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
+
+import { ThemeProvider } from '../context/ThemeProvider';
+import { Header } from '../shared/header/Header';
+import { LanguageProvider } from 'src/context/LanguageProvider';
 import logo from './logo.svg';
+
 import './App.css';
 
 function App() {
+
+  const { t } = useTranslation();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Каких целей хотите достичь: повысить квалификацию.
-        </p>
-        <p>
-          Какими технологиями хотите овладеть: работа с изображениями (зум, рисование на изображении и тд), использование популярных паттернов в работе.
-        </p>
-        <p>
-          Какими технологиями уже владеете: HTML, CSS, JS, TS, React.
-        </p>
-        <p>
-          Расскажите о себе и своем опыте: студентка магистратуры направления веб-технологии, 2 года работаю FE разработчиком.
-        </p>
-      </header>
-    </div>
+    <LanguageProvider>
+      <ThemeProvider>
+        <Header />
+        <div className="App">
+          <img src={logo} className="App-logo" alt="logo" />
+          <p>
+            {t('objectives')}:{' '}
+            {t('goal.improve_skills')}
+          </p>
+          <p>
+            {t('technologies.learning')}:{' '}
+            {t('technologies.zoom_drawing_patterns')}{' '}
+          </p>
+          <p>
+            {t('technologies.known')}:{' '}
+            HTML, CSS, JS, TS, React.
+          </p>
+          <p>
+            {t('about_me')}:{' '}
+            {t('experience')}
+          </p>
+        </div>
+      </ThemeProvider>
+    </LanguageProvider>
   );
 }
 

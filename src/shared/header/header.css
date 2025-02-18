@@ -1,10 +1,20 @@
 .header {
   position: sticky;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   top: 0;
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 10px 20px;
   z-index: 100;
   display: flex;
+  align-items: center;
+}
+
+.switchersContainer {
+  display: flex;
+  flex-direction: row;
+  column-gap: 16px;
   align-items: center;
 }

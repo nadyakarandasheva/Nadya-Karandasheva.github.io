@@ -1,0 +1,16 @@
+{
+  "languageSwitch": "EN",
+  "switshThemeToDark": "Switch to dark mode",
+  "switshThemeToLight": "Switch to light mode",
+  "objectives": "Objectives",
+  "goal": {
+    "improve_skills": "Improve qualification"
+  },
+  "technologies": {
+    "learning": "Technologies you want to learn",
+    "zoom_drawing_patterns": "Working with images (zoom, drawing on images, etc.), using popular patterns in work.",
+    "known": "Technologies you already know"
+  },
+  "about_me": "About yourself and experience",
+  "experience": "Master's student in web technologies, working as a FE developer for 2 years."
+}
