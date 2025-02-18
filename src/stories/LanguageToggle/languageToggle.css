@@ -1,0 +1,13 @@
+.languageToggle {
+  display: flex;
+  flex-direction: row;
+  column-gap: 8px;
+  align-items: center;
+}
+
+.switchLanguagebutton {
+  padding: 2px 4px;
+  background-color: lightskyblue;
+  border: 1px solid rgb(127, 202, 248);
+  border-radius: 2px;
+}
