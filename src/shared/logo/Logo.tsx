@@ -1,13 +1,13 @@
 import React from 'react';
 
-import styles from './logo.css';
+import './logo.css';
 
 /**
  * Компонент логотипа.
  * @returns {JSX.Element} 
  */
 export const Logo = (): JSX.Element => (
-  <div className={styles.logo}>
+  <div className={"logo"}>
     Logo
   </div>
 );
