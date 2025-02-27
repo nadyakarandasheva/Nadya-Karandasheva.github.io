@@ -12,10 +12,10 @@ export const ModalExample = () => {
   const [inputValue, setInputValue] = useState('');
 
   return (
-    <div>
+    <>
       <input type="text" value={inputValue} onChange={(e) => setInputValue(e.target.value)} />
       <Button label={'Open Modal'} onClick={() => setIsOpen(true)} />
       {isOpen && <Modal isVisible={isOpen} onClose={() => setIsOpen(false)}>{inputValue}</Modal>}
-    </div>
+    </>
   );
 };
