@@ -1,7 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { OperationsList } from 'src/features/OperationsList/OperationsList';
 import { Header } from '../shared/header/Header';
 import logo from './logo.svg';
 
@@ -33,7 +32,6 @@ function App() {
           {t('experience')}
         </p>
       </div>
-      <OperationsList />
     </>
   );
 }
