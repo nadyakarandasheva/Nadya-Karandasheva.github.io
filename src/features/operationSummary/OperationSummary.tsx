@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import styles from './operationSummary.css';
+import './operationSummary.css';
 
 /**
  * Компонент краткого отображения операции.
@@ -9,7 +9,7 @@ import styles from './operationSummary.css';
  * @prop {string} title - Название.
  * @prop {string} description - Описание.
  */
-interface IOperationSummaryProps {
+export interface IOperationSummaryProps {
   amount: number;
   category: string;
   title: string;
@@ -23,12 +23,12 @@ interface IOperationSummaryProps {
  */
 export const OperationSummary: FC<IOperationSummaryProps> = ({ amount, category, title, description }): JSX.Element => {
   return (
-    <div className={styles.container}>
-      <div className={styles.amount}>{amount} ₽</div>
-      <div className={styles.details}>
-        <div className={styles.category}>{category}</div>
-        <div className={styles.title}>{title}</div>
-        <div className={styles.description}>
+    <div className={'container'}>
+      <div className={'amount'}>{amount} ₽</div>
+      <div className={'details'}>
+        <div className={'category'}>{category}</div>
+        <div className={'title'}>{title}</div>
+        <div className={'description'}>
           {description.length > 50 ? `${description.substring(0, 50)}...` : description}
         </div>
       </div>
