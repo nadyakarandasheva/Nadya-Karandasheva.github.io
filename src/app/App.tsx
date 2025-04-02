@@ -2,6 +2,8 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Header } from '../shared/header/Header';
+import { Resizer } from 'src/shared/resizer/Resizer';
+import { Tip } from 'src/shared/tip/Tip';
 import logo from './logo.svg';
 
 import './App.css';
@@ -31,6 +33,16 @@ function App() {
           {t('about_me')}:{' '}
           {t('experience')}
         </p>
+        <Tip title={'This is tip'}>
+          <div>Some text</div>
+        </Tip>
+        <Resizer initialHeight={100} initialWidth={200}>
+          {() => (
+            <div>
+              This is resizer content
+            </div>
+          )}
+        </Resizer>
       </div>
     </>
   );
