@@ -72,11 +72,11 @@ export const RangeSlider: FC<IRangeSliderProps> = ({ className, value, onChange,
   };
 
   return (
-    <div className={cn('root', className)}>
+    <div className={cn('rangeSlider', className)}>
       <div onMouseDown={onStart} onTouchStart={onStart} className={'field'} onClick={onClick}>
         <div className={'runner'} style={{ left: ((VALUE_IN_RANGE - min) / range) * 100 + '%' }}></div>
       </div>
-      <input type="number" min={min} max={max} className={cn('root', className)} value={value} onChange={handleChange} />
+      <input type="number" min={min} max={max} className={cn('rangeSliderInput', className)} value={value} onChange={handleChange} />
     </div>
   );
 }

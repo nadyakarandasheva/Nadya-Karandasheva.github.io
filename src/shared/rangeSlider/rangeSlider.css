@@ -1,10 +1,11 @@
-.root {
-  text-align: center;
+.rangeSlider {
+  height: fit-content;
+  padding: 12px 16px;
 }
 
 .field {
   position: relative;
-  height: 20px;
+  height: 10px;
   background-color: #fefefe;
   border: 1px solid #cecece;
   border-radius: 10px;
@@ -15,9 +16,14 @@
 .runner {
   position: absolute;
   top: 50%;
-  width: 40px;
-  height: 40px;
+  width: 20px;
+  height: 20px;
   border-radius: 100%;
   background-color: #99f;
   transform: translate(-50%, -50%);
+}
+
+.rangeSliderInput {
+  height: 20px;
+  text-align: center;
 }
