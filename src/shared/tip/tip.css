@@ -1,0 +1,21 @@
+.tip {
+  position: absolute;
+  z-index: 3;
+  padding: 8px;
+  border-radius: 8px;
+  background-color: rgb(238, 235, 235);
+  transition: opacity .2s ease-in;
+  opacity: 0;
+}
+
+.visible {
+  opacity: 1
+}
+
+.top {
+  transform: translate(50%, -100%);
+}
+
+.bottom {
+  transform: translate(-150%, 50%);
+}

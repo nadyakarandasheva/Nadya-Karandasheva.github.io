@@ -4,7 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { Header } from '../shared/header/Header';
 import { RangeSlider } from 'src/shared/rangeSlider/RangeSlider';
 import { Collapse } from 'src/shared/Collapse/Collapse';
-
+import { Resizer } from 'src/shared/resizer/Resizer';
+import { Tip } from 'src/shared/tip/Tip';
 import logo from './logo.svg';
 
 import './App.css';
@@ -40,8 +41,17 @@ function App() {
             {t('experience')}
           </p>
         </Collapse>
-
         <RangeSlider value={rangeValue} onChange={(value) => { setRangeValue(value) }} min={0} max={100} />
+        <Tip title={'This is tip'}>
+          <div>Some text</div>
+        </Tip>
+        <Resizer initialHeight={100} initialWidth={200}>
+          {() => (
+            <div>
+              This is resizer content
+            </div>
+          )}
+        </Resizer>
       </div>
     </>
   );
