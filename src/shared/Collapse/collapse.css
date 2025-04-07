@@ -1,0 +1,13 @@
+.root {
+  overflow: hidden;
+  margin: 10px;
+}
+
+.wrapper {
+  transform: translateY(-150%);
+  transition: 0.3s;
+}
+
+.opened {
+  transform: translateY(0);
+}
