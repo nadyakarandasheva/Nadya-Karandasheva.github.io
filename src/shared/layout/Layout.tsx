@@ -1,7 +1,7 @@
 import React from 'react';
 import { FC, ReactNode } from 'react';
 
-import { Header } from '../Header/Header';
+import { Header } from '../header/Header';
 
 import styles from './layout.css';
 
