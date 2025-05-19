@@ -29,9 +29,8 @@ export const SingUpBlock = memo<SingUpBlockProps>(({ className }) => {
 
   const { onSubmit, validate } = useMemo<Pick<FormikConfig<AuthFormValues>, 'onSubmit' | 'validate'>>(() => {
     return {
-      onSubmit: (values, { resetForm }) => {
-        console.log('Регистрация', values);
-        resetForm();
+      onSubmit: (values) => {
+        console.log('Регистрация', values)
       },
       validate: (values) => {
         const errors = {} as AuthFormErrors;
