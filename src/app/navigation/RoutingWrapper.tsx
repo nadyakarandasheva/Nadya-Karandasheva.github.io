@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import { ProtectedRoute } from './ProtectedRoute';
 import { HomeWorksPage } from 'src/pages/HomeWorksPage/HomeWorksPage';
 import { ProfileCompletedForm } from 'src/pages/ProfileForm/ProfileForm';
 import { AuthScreen } from 'src/pages/AuthScreen/AuthScreen';
@@ -16,11 +15,11 @@ export const RoutingWrapper: FC = () => {
   return (
     <Routes>
       <Route path='/' element={<HomeWorksPage />} />
-      <Route path="profile" element={<ProtectedRoute><ProfileCompletedForm /></ProtectedRoute>} />
+      <Route path="profile" element={<ProfileCompletedForm />} />
       <Route path="auth/*" element={<AuthScreen />}>
         <Route path=":mode" element={<AuthScreen />} />
       </Route>
-      <Route path="operations" element={<ProtectedRoute><OperationsPage /></ProtectedRoute>} />
+      <Route path="operations" element={<OperationsPage />} />
     </Routes>
   );
 };
