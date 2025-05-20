@@ -1,5 +1,4 @@
 import React, { memo } from 'react';
-import cn from 'clsx';
 import Input from 'antd/lib/input';
 import { FormikHandlers } from 'formik/dist/types';
 
@@ -7,8 +6,6 @@ import { FormItem } from '../../../../shared/FormItem/FormItem';
 
 import { getValidates } from 'src/utils/validation';
 import { ProfileFormProps } from '../types';
-
-import style from './AboutField.module.css';
 
 export type AboutFieldProps = Pick<ProfileFormProps, 'className' | 'disabled'> & {
   submitCount: number;
@@ -26,7 +23,7 @@ export const AboutField = memo<AboutFieldProps>(
 
     return (
       <FormItem
-        className={cn(style.root, className)}
+        className={className}
         title={'О себе'}
         validateStatus={validateStatus}
         help={help}

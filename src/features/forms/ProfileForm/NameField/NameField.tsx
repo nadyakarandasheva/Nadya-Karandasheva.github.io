@@ -1,5 +1,4 @@
 import React, { memo } from 'react';
-import cn from 'clsx';
 import { Input } from 'antd';
 import { FormikHandlers } from 'formik/dist/types';
 import { UserOutlined } from '@ant-design/icons';
@@ -8,8 +7,6 @@ import { FormItem } from '../../../../shared/FormItem/FormItem';
 
 import { getValidates } from 'src/utils/validation';
 import { ProfileFormProps } from '../types';
-
-import style from './NameField.module.css';
 
 export type NameFieldProps = Pick<ProfileFormProps, 'className' | 'disabled' | 'autoFocusElement'> & {
   submitCount: number;
@@ -27,7 +24,7 @@ export const NameField = memo<NameFieldProps>(
 
     return (
       <FormItem
-        className={cn(style.root, className)}
+        className={className}
         title={'Псевдоним'}
         required
         validateStatus={validateStatus}

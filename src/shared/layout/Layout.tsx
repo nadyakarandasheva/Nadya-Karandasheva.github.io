@@ -1,9 +1,9 @@
 import React from 'react';
 import { FC, ReactNode } from 'react';
 
-import { Header } from '../header/Header';
+import { Header } from '../Header/Header';
 
-import styles from './layout.css';
+import styles from './layout.module.css';
 
 /**
  * Интерфесй компонента разметки страницы.
