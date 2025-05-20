@@ -9,7 +9,7 @@ import { OperationsPage } from 'src/pages/OperationsPage/OperationsPage';
 
 import { useLoginNavigate } from './useLoginNavigate';
 
-export const Navigation: FC = () => {
+export const RoutingWrapper: FC = () => {
 
   useLoginNavigate();
 
