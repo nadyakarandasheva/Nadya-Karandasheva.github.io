@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Header } from '../shared/header/Header';
+import { Header } from '../shared/Header/Header';
 import { RangeSlider } from 'src/shared/rangeSlider/RangeSlider';
 import { Collapse } from 'src/shared/Collapse/Collapse';
 import { Resizer } from 'src/shared/resizer/Resizer';
