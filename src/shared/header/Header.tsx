@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { ThemeToggle } from '../themeToggle/ThemeToggle';
-import { Logo } from '../logo/Logo';
 import { Login } from 'src/features/Login/Login';
+import { Logo } from '../logo/Logo';
 
 import { useTheme } from 'src/context/ThemeProvider';
 import { LanguageToggle } from '../LanguageToggle/LanguageToggle';

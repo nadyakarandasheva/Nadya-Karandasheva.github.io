@@ -7,6 +7,7 @@ import App from './app/App';
 import { LanguageProvider } from './context/LanguageProvider';
 import { ThemeProvider } from './context/ThemeProvider';
 import { ClientProvider } from './app/client/ClientProvider';
+
 import { store } from './app/store';
 
 import './app/index.css';
