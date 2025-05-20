@@ -24,5 +24,5 @@ export function* getToken() {
 
 export function* tokenSaga() {
   yield takeEvery(tokenActions.logout().type, clearToken);
-  yield takeLatest(tokenActions.set().type, setToken); // setToken отправляет запрос, потому лучше использовать takeLatest
+  yield takeLatest(tokenActions.set().type, setToken);
 }

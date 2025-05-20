@@ -2,13 +2,17 @@ import React, { memo, useMemo } from 'react';
 import cn from 'clsx';
 import { useMutation } from '@apollo/client';
 import { FormikConfig, useFormik } from 'formik';
-import { Button } from 'antd';
+import { Button, message } from 'antd';
 import { useDispatch } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
 
+import { tokenActions } from 'src/app/store/token';
+import { profileActions } from 'src/app/store/profile';
+import { NavigationState } from 'src/app/navigation/types';
 import { AuthForm, AuthFormErrors, AuthFormValues } from 'src/features/forms/AuthForm';
 import { isLongEnough, isNotDefinedString } from 'src/utils/validation';
-import { SIGN_UP, SignUpResponse, SignUpVars } from '../connections';
+import { createErrorHandlers } from 'src/utils/createErrorHandlers';
+import { extractSignUp, SIGN_UP, SignUpResponse, SignUpVars } from '../connections';
 
 import style from './SingUpBlock.module.css';
 
@@ -28,10 +32,29 @@ export const SingUpBlock = memo<SingUpBlockProps>(({ className }) => {
   const location = useLocation();
 
   const { onSubmit, validate } = useMemo<Pick<FormikConfig<AuthFormValues>, 'onSubmit' | 'validate'>>(() => {
+    const { catcher } = createErrorHandlers((code, _, error) => {
+      if (code === null) {
+        message.error(`errors.${error.message}`);
+      } else {
+        message.error(`errors.${code}`);
+      }
+    });
     return {
       onSubmit: (values, { resetForm }) => {
-        console.log('Регистрация', values);
-        resetForm();
+        signUp({ variables: { email: values.email, password: values.password } })
+          .then((res) => {
+            /** Извлечение данных авторизации. */
+            const result = extractSignUp(res.data);
+            if (result) {
+              /** Сохранение токена. */
+              dispatch(tokenActions.set(result.token));
+              /** Сохранение данных. */
+              dispatch(profileActions.set(result.profile));
+            }
+            resetForm();
+            navigate((location.state as NavigationState)?.from || '/');
+          })
+          .catch(catcher);
       },
       validate: (values) => {
         const errors = {} as AuthFormErrors;

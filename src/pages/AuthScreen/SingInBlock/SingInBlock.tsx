@@ -2,13 +2,16 @@ import React, { memo, useMemo } from 'react';
 import cn from 'clsx';
 import { useMutation } from '@apollo/client';
 import { FormikConfig, useFormik } from 'formik';
-import { Button } from 'antd';
+import { Button, message } from 'antd';
 import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 
+import { tokenActions } from 'src/app/store/token';
+import { NavigationState } from 'src/app/navigation/types';
 import { AuthForm, AuthFormErrors, AuthFormValues } from 'src/features/forms/AuthForm';
 import { isLongEnough, isNotDefinedString } from 'src/utils/validation';
-import { SIGN_IN, SignInResponse, SignInVars } from '../connections';
+import { extractSignIn, SIGN_IN, SignInResponse, SignInVars } from '../connections';
+import { createErrorHandlers } from 'src/utils/createErrorHandlers';
 
 import styles from './SingInBlock.module.css';
 
@@ -28,10 +31,29 @@ export const SingInBlock = memo<SingInBlockProps>(({ className }) => {
   const location = useLocation();
 
   const { onSubmit, validate } = useMemo<Pick<FormikConfig<AuthFormValues>, 'onSubmit' | 'validate'>>(() => {
+    const { catcher } = createErrorHandlers((code, _, error) => {
+      if (code === null) {
+        message.error(`errors.${error.message}`);
+      } else {
+        message.error(`errors.${code}`);
+      }
+    });
+
     return {
       onSubmit: (values, { resetForm }) => {
-        console.log('Вход', values)
-        resetForm();
+        signIn({ variables: { email: values.email, password: values.password } })
+          .then((res) => {
+            /** Извлечение данных. */
+            const result = extractSignIn(res.data);
+            if (result) {
+              /** Сохранение токена. */
+              dispatch(tokenActions.set(result.token));
+              /** Сохранение данных. */
+            }
+            resetForm();
+            navigate((location.state as NavigationState)?.from || '/');
+          })
+          .catch(catcher);
       },
       validate: (values) => {
         const errors = {} as AuthFormErrors;
