@@ -1,9 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import { ThemeToggle } from '../themeToggle/ThemeToggle';
 import { Logo } from '../logo/Logo';
-import { Login } from 'src/features/Login/Login';
 
 import { useTheme } from 'src/context/ThemeProvider';
 import { LanguageToggle } from '../LanguageToggle/LanguageToggle';
@@ -21,12 +20,9 @@ export const Header = (): JSX.Element => {
   return (
     <header className={"header"}>
       <Logo />
-      <Link to="/profile">Профиль пользователя</Link>
-      <Link to="/operations">Операции</Link>
       <div className={"switchersContainer"}>
         <ThemeToggle theme={theme} onClick={toggleTheme} />
         <LanguageToggle />
-        <Login />
       </div>
     </header>
   )
