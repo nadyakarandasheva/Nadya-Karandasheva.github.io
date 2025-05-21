@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import './logo.css';
 
@@ -7,7 +8,7 @@ import './logo.css';
  * @returns {JSX.Element} 
  */
 export const Logo = (): JSX.Element => (
-  <div className={"logo"}>
+  <Link to='/' className={"logo"}>
     Logo
-  </div>
+  </Link>
 );
