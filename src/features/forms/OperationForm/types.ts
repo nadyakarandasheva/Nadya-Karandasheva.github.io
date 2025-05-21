@@ -1,6 +1,7 @@
 import { FormProps } from 'src/features/forms/types';
 
 export type CreateOperationFormValues = {
+  id: number;
   amount: number;
   category: string;
   title: string;

@@ -17,6 +17,7 @@ export const CreateOrEditOperationForm: FC<CreateOrEditOperationFormProps> = ({
   onSubmit,
 }) => {
   const formInitialValues: CreateOperationFormValues = {
+    id: initialValues.id ?? 0,
     amount: initialValues.amount ?? 0,
     category: initialValues.category ?? '',
     title: initialValues.title ?? '',

@@ -1,11 +1,11 @@
 import React, { useEffect, useMemo } from "react";
 import { FC } from "react";
 import { Button } from "antd";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useMutation } from "@apollo/client";
 import { FormikConfig, useFormik } from "formik";
 
-import { profileSelectors } from "src/app/store/profile";
+import { profileActions, profileSelectors } from "src/app/store/profile";
 import { ProfileForm } from "src/features/forms/ProfileForm/ProfileForm";
 import { Title } from "src/shared/Title/Title";
 import { UPDATE_PROFILE, UpdateProfileResponse, UpdateProfileVars } from "./connection";
@@ -13,12 +13,32 @@ import { ProfileFormErrors, ProfileFormValues } from "src/features/forms/Profile
 import { isNotDefinedString } from "src/utils/validation";
 
 import styles from './ChangeProfileForm.module.css';
+import { tokenSelectors } from "src/app/store/token";
 
 /**
  * Компонент формы изменения провиля.
  * @returns 
  */
 export const ChangeProfileForm: FC = () => {
+  const token = useSelector(tokenSelectors.get);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (token) {
+      /** моковые данные профиля */
+      dispatch(profileActions.set({
+        name: 'Надежда',
+        about: 'Что-то о себе',
+        id: "1",
+        signUpDate: "",
+        email: "test_nadya@mail.ru",
+        role: 'user'
+      }));
+    } else {
+      dispatch(profileActions.clear());
+    }
+  }, [token, dispatch]);
+
   const profile = useSelector(profileSelectors.get);
 
   const [update, { loading }] = useMutation<UpdateProfileResponse, UpdateProfileVars>(UPDATE_PROFILE);

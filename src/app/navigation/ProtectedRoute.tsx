@@ -15,8 +15,6 @@ export const ProtectedRoute: FC<{ children: React.ReactNode }> = ({ children }) 
 
   const location = useLocation();
 
-  console.log('token', token)
-
   if (token) return <>{children}</>;
 
   return <Navigate to="/auth" state={{ from: location } as NavigationState} replace />;

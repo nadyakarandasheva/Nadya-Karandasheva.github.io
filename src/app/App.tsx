@@ -1,20 +1,20 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
 
 import { Layout } from 'src/shared/layout/Layout';
 import { RoutingWrapper } from './navigation/RoutingWrapper';
 
+import { useTokenSync } from './store/useTokenSync';
+
 import './App.css';
 
-
 function App() {
+  useTokenSync();
 
   return (
-    <BrowserRouter>
-      <Layout>
-        <RoutingWrapper />
-      </Layout>
-    </BrowserRouter>
+    <Layout>
+      <RoutingWrapper />
+    </Layout>
+
   )
 }
 

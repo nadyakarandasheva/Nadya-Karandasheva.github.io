@@ -4,6 +4,7 @@ import { token } from './token';
 import { initialized } from './initialized';
 import { profile } from './profile';
 import rootSaga from './sagas';
+import { operationsReducer } from './sagas/operations/operations';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -12,6 +13,7 @@ export const store = configureStore({
     initialized,
     token,
     profile,
+    operations: operationsReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(sagaMiddleware),
 });

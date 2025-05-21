@@ -16,10 +16,10 @@ export const RoutingWrapper: FC = () => {
   return (
     <Routes>
       <Route path='/' element={<HomeWorksPage />} />
-      <Route path="profile" element={<ProtectedRoute><ProfileCompletedForm /></ProtectedRoute>} />
-      <Route path="auth/*" element={<AuthScreen />}>
+      <Route path="auth" element={<AuthScreen />}>
         <Route path=":mode" element={<AuthScreen />} />
       </Route>
+      <Route path="profile" element={<ProtectedRoute><ProfileCompletedForm /></ProtectedRoute>} />
       <Route path="operations" element={<ProtectedRoute><OperationsPage /></ProtectedRoute>} />
     </Routes>
   );

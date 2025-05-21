@@ -1,42 +1,44 @@
 import React, { FC, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Button } from 'antd';
 
 import { Modal } from 'src/shared/modal/Modal';
 import { CreateOrEditOperationForm } from 'src/pages/OperationsPage/CreateOrEditOperationForm/CreateOrEditOperationForm';
 
+import { IOperationSummary } from 'src/interfaces/operation-summary.interafce';
+import { operationsActions } from 'src/app/store/sagas/operations/operations';
+import { CreateOperationFormValues } from '../forms/OperationForm/types';
+import { profileSelectors } from 'src/app/store/profile';
+
 import './operationSummary.css';
 
 /**
  * Компонент краткого отображения операции.
- * @prop {number} id - Идентификатор.
- * @prop {number} amount - Сумма операции.
- * @prop {string} category - Категория.
- * @prop {string} title - Название.
- * @prop {string} description - Описание.
- */
-export interface IOperationSummaryProps {
-  id: number;
-  amount: number;
-  category: string;
-  title: string;
-  description: string;
-  date: string;
-}
-
-/**
- * Компонент краткого отображения операции.
- * @params {IOperationSummaryProps} params - Входные параметры компонента.
+ * @params {IOperationSummary} params - Входные параметры компонента.
  * @returns {JSX.Element}
  */
-export const OperationSummary: FC<IOperationSummaryProps> = ({ id, amount, category, title, description, date }): JSX.Element => {
+export const OperationSummary: FC<IOperationSummary> = ({ id, amount, category, title, description, date }): JSX.Element => {
+  const dispatch = useDispatch();
+
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+
+  const isAdmin = useSelector(profileSelectors.isAdmin);
+
+  const handleSubmit = (values: CreateOperationFormValues) => {
+    dispatch(operationsActions.saveOperation({
+      ...values,
+      id: id
+    }));
+
+    setTimeout(() => setIsModalOpen(false), 2000);
+  }
 
   return (
     <>
       <div className={'container'}>
         <div className='summaryHeader'>
           <div className={'amount'}>{amount} ₽</div>
-          <Button onClick={() => setIsModalOpen(true)}> {'Редактировать'}</Button>
+          {isAdmin && <Button onClick={() => setIsModalOpen(true)}> {'Редактировать'}</Button>}
         </div>
         <div className={'details'}>
           <div className={'category'}>{category}</div>
@@ -46,7 +48,7 @@ export const OperationSummary: FC<IOperationSummaryProps> = ({ id, amount, categ
           </div>
         </div>
       </div>
-      {isModalOpen && <Modal onClose={() => setIsModalOpen(false)}>
+      {isModalOpen && isAdmin && <Modal onClose={() => setIsModalOpen(false)}>
         <CreateOrEditOperationForm initialValues={{
           amount: amount,
           category: category,
@@ -54,7 +56,7 @@ export const OperationSummary: FC<IOperationSummaryProps> = ({ id, amount, categ
           description: description,
           date: date,
         }}
-          onSubmit={(values) => console.log('Редактирование', values)} />
+          onSubmit={handleSubmit} />
       </Modal>}
     </>
   );

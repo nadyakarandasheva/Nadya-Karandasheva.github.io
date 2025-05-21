@@ -42,7 +42,7 @@ export const AuthScreen: FC = () => {
     <div className={styles.root}>
       <div className={styles.frame}>
         <Routes>
-          <Route index element={<Navigate to={AuthMode.signIn} state={location.state} replace />} />
+          <Route index element={<Navigate to={AuthMode.signIn} replace />} />
           <Route path={AuthMode.signIn} element={signinElement} />
           <Route path={AuthMode.signUp} element={signupElement} />
         </Routes>

@@ -1,8 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import { OperationSummary } from "../operationSummary/OperationSummary";
-
-import { generateRandomOperationArray } from "src/utils/generate-random-operation-array";
+import { operationsActions, operationsSelectors } from "src/app/store/sagas/operations/operations";
 
 import './operationsList.css';
 
@@ -11,24 +11,25 @@ import './operationsList.css';
  * @returns 
  */
 export const OperationsList = () => {
-  const [operations, setOperations] = useState(generateRandomOperationArray(10));
+  const dispatch = useDispatch();
+  const operations = useSelector(operationsSelectors.all);
 
   const observerRef = useRef(null);
 
   useEffect(() => {
+    dispatch(operationsActions.fetchOperations());
+  }, [dispatch]);
+
+  useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
-
-        const data = generateRandomOperationArray(10);
-
-        setOperations((prev) => [...prev, ...data]);
+        dispatch(operationsActions.fetchOperations());
       }
     });
 
     if (observerRef.current) observer.observe(observerRef.current);
-
     return () => observer.disconnect();
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="operationsListContainer">

@@ -1,9 +1,9 @@
 import dayjs from 'dayjs';
-import { IOperationSummaryProps } from "src/features/operationSummary/OperationSummary";
+import { IOperationSummary } from 'src/interfaces/operation-summary.interafce';
 
-export const generateRandomOperationArray = (count: number): IOperationSummaryProps[] => {
+export const generateRandomOperationArray = (count: number): IOperationSummary[] => {
 
-  const data: IOperationSummaryProps[] = [];
+  const data: IOperationSummary[] = [];
 
   for (let i = 0; i < count; i++) {
     const randomDays = Math.floor(Math.random() * i);
