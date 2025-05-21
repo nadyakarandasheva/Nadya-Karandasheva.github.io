@@ -1,21 +1,35 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import { createRoot } from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
 import './i18n';
 
-import { LanguageProvider } from './context/LanguageProvider';
-import { ThemeProvider } from './context/ThemeProvider';
 import App from './app/App';
+import { ClientProvider } from './app/client/ClientProvider';
+import { Initializer } from './app/store/Initializer';
+import { LanguageProvider } from 'src/context/LanguageProvider';
+import { ThemeProvider } from 'src/context/ThemeProvider';
+import { store } from './app/store';
 
 import './app/index.css';
 
-const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+const container = document.getElementById('root') as HTMLElement;
+const root = createRoot(container);
+
 root.render(
-  <React.StrictMode>
-    <LanguageProvider>
-      <ThemeProvider>
-        <App />
-      </ThemeProvider>
-    </LanguageProvider>
-  </React.StrictMode>
+  <BrowserRouter>
+    <ClientProvider>
+      <Provider store={store} >
+        <Initializer />
+        <LanguageProvider>
+          <ThemeProvider>
+            <App />
+          </ThemeProvider>
+        </LanguageProvider>
+      </Provider>
+    </ClientProvider>
+  </BrowserRouter>
+
 );
+
 
