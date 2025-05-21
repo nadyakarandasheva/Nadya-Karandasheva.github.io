@@ -32,7 +32,7 @@ export const ChangeProfileForm: FC = () => {
         id: "1",
         signUpDate: "",
         email: "test_nadya@mail.ru",
-        role: 'user'
+        role: 'admin'
       }));
     } else {
       dispatch(profileActions.clear());
