@@ -11,7 +11,7 @@ export const useTokenSync = () => {
         if (event.newValue) {
           dispatch(tokenActions.set(event.newValue));
         } else {
-          dispatch(tokenActions.logout());
+          dispatch(tokenActions.clear());
         }
       }
     };

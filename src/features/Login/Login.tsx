@@ -27,7 +27,7 @@ export const Login: FC<LoginProps> = ({ className }) => {
   return (
     <div className={cn(s.root, className)}>
       {token ? (
-        <button className={s.btn} type="button" onClick={() => dispatch(tokenActions.logout())}>
+        <button className={s.btn} type="button" onClick={() => dispatch(tokenActions.clear())}>
           <LogoutIcon />
         </button>
       ) : (

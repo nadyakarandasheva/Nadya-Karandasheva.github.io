@@ -1,18 +1,13 @@
 import React, { memo, useMemo } from 'react';
 import cn from 'clsx';
-import { useMutation } from '@apollo/client';
 import { FormikConfig, useFormik } from 'formik';
 import { Button, message } from 'antd';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
 
-import { tokenActions } from 'src/app/store/token';
-import { profileActions } from 'src/app/store/profile';
-import { NavigationState } from 'src/app/navigation/types';
 import { AuthForm, AuthFormErrors, AuthFormValues } from 'src/features/forms/AuthForm';
-import { isLongEnough, isNotDefinedString } from 'src/utils/validation';
-import { createErrorHandlers } from 'src/utils/createErrorHandlers';
-import { extractSignUp, SIGN_UP, SignUpResponse, SignUpVars } from '../connections';
+import { isLongEnough, isNotDefinedString, isValidEmail } from 'src/utils/validation';
+import { tokenSelectors } from 'src/app/store/token';
 
 import style from './SingUpBlock.module.css';
 
@@ -26,40 +21,42 @@ const initialValues: AuthFormValues = {
 };
 
 export const SingUpBlock = memo<SingUpBlockProps>(({ className }) => {
-  const [signUp, { loading }] = useMutation<SignUpResponse, SignUpVars>(SIGN_UP, { fetchPolicy: 'no-cache' });
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
 
-  const { onSubmit, validate } = useMemo<Pick<FormikConfig<AuthFormValues>, 'onSubmit' | 'validate'>>(() => {
-    const { catcher } = createErrorHandlers((code, _, error) => {
-      if (code === null) {
-        message.error(`errors.${error.message}`);
-      } else {
-        message.error(`errors.${code}`);
-      }
-    });
+  const token = useSelector(tokenSelectors.get);
+
+  const { onSubmit, validate } = useMemo<
+    Pick<FormikConfig<AuthFormValues>, 'onSubmit' | 'validate'>
+  >(() => {
     return {
-      onSubmit: (values, { resetForm }) => {
-        signUp({ variables: { email: values.email, password: values.password } })
-          .then((res) => {
-            /** Извлечение данных авторизации. */
-            const result = extractSignUp(res.data);
-            if (result) {
-              /** Сохранение токена. */
-              dispatch(tokenActions.set(result.token));
-              /** Сохранение данных. */
-              dispatch(profileActions.set(result.profile));
-            }
+      onSubmit: async (values, { resetForm }) => {
+        try {
+          dispatch({
+            type: 'auth/signUp',
+            payload: {
+              email: values.email,
+              password: values.password,
+              mode: 'signup',
+            },
+          });
+
+          if (token) {
             resetForm();
-            navigate((location.state as NavigationState)?.from || '/');
-          })
-          .catch(catcher);
+            navigate((location.state as any)?.from || '/');
+          }
+        } catch (error: any) {
+          message.error(error.message || 'Произошла ошибка');
+        }
       },
       validate: (values) => {
         const errors = {} as AuthFormErrors;
         if (isNotDefinedString(values.email)) {
           errors.email = 'Обязательное поле';
+        }
+        if (!isValidEmail(values.email)) {
+          errors.email = 'Некорректный email';
         }
         if (isNotDefinedString(values.password)) {
           errors.password = 'Обязательное поле';
@@ -69,7 +66,7 @@ export const SingUpBlock = memo<SingUpBlockProps>(({ className }) => {
         return errors;
       },
     };
-  }, [dispatch, location.state, navigate, signUp]);
+  }, [dispatch, location.state, navigate]);
 
   const formik = useFormik<AuthFormValues>({
     onSubmit,
@@ -83,7 +80,7 @@ export const SingUpBlock = memo<SingUpBlockProps>(({ className }) => {
     <div className={cn(style.root, className)}>
       <AuthForm formManager={formik} />
       <div className={style.bottom}>
-        <Button className={style.submit} loading={loading} type="primary" onClick={submitForm}>
+        <Button className={style.submit} type="primary" onClick={submitForm}>
           {'Зарегестрироваться'}
         </Button>
       </div>

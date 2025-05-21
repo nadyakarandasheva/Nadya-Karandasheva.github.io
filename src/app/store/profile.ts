@@ -3,16 +3,12 @@ import { CaseReducer } from '@reduxjs/toolkit/src/createReducer';
 import { Profile } from 'src/server.types';
 import { RootState } from './index';
 
-export type ProfileWithRole = Profile & {
-  role?: 'admin' | 'user';
-};
-
-export const profileSlice = createSlice<ProfileWithRole | null, {
-  set: CaseReducer<ProfileWithRole | null, PayloadAction<ProfileWithRole>>,
-  clear: CaseReducer<ProfileWithRole | null>
+export const profileSlice = createSlice<Profile | null, {
+  set: CaseReducer<Profile | null, PayloadAction<Profile>>,
+  clear: CaseReducer<Profile | null>
 }, 'profile'>({
   name: 'profile',
-  initialState: null,
+  initialState: null as Profile | null,
   reducers: {
     set: (_, action) => action.payload,
     clear: () => null,
@@ -20,10 +16,9 @@ export const profileSlice = createSlice<ProfileWithRole | null, {
 });
 
 export const profileActions = profileSlice.actions;
+export const profile = profileSlice.reducer;
 
 export const profileSelectors = {
   get: (state: RootState): RootState['profile'] => state.profile,
-  isAdmin: (state: RootState) => state.profile?.role === 'admin',
 };
 
-export const profile = profileSlice.reducer;

@@ -46,7 +46,7 @@ export class TokenChannel {
           if (token) {
             store.dispatch(tokenActions.set(token));
           } else {
-            store.dispatch(tokenActions.logout());
+            store.dispatch(tokenActions.clear());
           }
           break;
         }

@@ -1,17 +1,16 @@
 import React, { memo, useMemo } from 'react';
 import cn from 'clsx';
-import { useMutation } from '@apollo/client';
 import { FormikConfig, useFormik } from 'formik';
 import { Button, message } from 'antd';
 import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import { tokenActions } from 'src/app/store/token';
-import { NavigationState } from 'src/app/navigation/types';
 import { AuthForm, AuthFormErrors, AuthFormValues } from 'src/features/forms/AuthForm';
-import { isLongEnough, isNotDefinedString } from 'src/utils/validation';
-import { extractSignIn, SIGN_IN, SignInResponse, SignInVars } from '../connections';
+import { isLongEnough, isNotDefinedString, isValidEmail } from 'src/utils/validation';
 import { createErrorHandlers } from 'src/utils/createErrorHandlers';
+import { tokenActions } from 'src/app/store/token';
+import { profileActions } from 'src/app/store/profile';
+import { api } from 'src/app/client/auth-api';
 
 import styles from './SingInBlock.module.css';
 
@@ -25,7 +24,6 @@ const initialValues: AuthFormValues = {
 };
 
 export const SingInBlock = memo<SingInBlockProps>(({ className }) => {
-  const [signIn, { loading }] = useMutation<SignInResponse, SignInVars>(SIGN_IN, { fetchPolicy: 'no-cache' });
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
@@ -40,25 +38,29 @@ export const SingInBlock = memo<SingInBlockProps>(({ className }) => {
     });
 
     return {
-      onSubmit: (values, { resetForm }) => {
-        signIn({ variables: { email: values.email, password: values.password } })
-          .then((res) => {
-            /** Извлечение данных. */
-            const result = extractSignIn(res.data);
-            if (result) {
-              /** Сохранение токена. */
-              dispatch(tokenActions.set(result.token));
-              /** Сохранение данных. */
-            }
+      onSubmit: async (values, { resetForm }) => {
+        try {
+          const token = await api.signIn(values.email, values.password);
+          dispatch(tokenActions.set(token));
+
+          const profile = await api.getProfile(token);
+          dispatch(profileActions.set(profile));
+
+          if (token) {
             resetForm();
-            navigate((location.state as NavigationState)?.from || '/');
-          })
-          .catch(catcher);
+            navigate((location.state as any)?.from || '/');
+          }
+        } catch (error: any) {
+          message.error(error.message || 'Ошибка входа');
+        }
       },
       validate: (values) => {
         const errors = {} as AuthFormErrors;
         if (isNotDefinedString(values.email)) {
           errors.email = 'Обязательное поле';
+        }
+        if (!isValidEmail(values.email)) {
+          errors.email = 'Некорректный email';
         }
         if (isNotDefinedString(values.password)) {
           errors.password = 'Обязательное поле';
@@ -68,7 +70,7 @@ export const SingInBlock = memo<SingInBlockProps>(({ className }) => {
         return errors;
       },
     };
-  }, [dispatch, location.state, navigate, signIn]);
+  }, [dispatch, location.state, navigate]);
 
   const formik = useFormik<AuthFormValues>({
     onSubmit,
@@ -77,11 +79,12 @@ export const SingInBlock = memo<SingInBlockProps>(({ className }) => {
   });
 
   const { submitForm } = formik;
+
   return (
     <div className={cn(styles.root, className)}>
       <AuthForm formManager={formik} />
       <div className={styles.bottom}>
-        <Button className={styles.submit} loading={loading} type="primary" onClick={submitForm}>
+        <Button className={styles.submit} type="primary" onClick={submitForm}>
           {'Войти'}
         </Button>
       </div>

@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Button } from 'antd';
 
 import { Modal } from 'src/shared/modal/Modal';
@@ -8,7 +8,6 @@ import { CreateOrEditOperationForm } from 'src/pages/OperationsPage/CreateOrEdit
 import { IOperationSummary } from 'src/interfaces/operation-summary.interafce';
 import { operationsActions } from 'src/app/store/sagas/operations/operations';
 import { CreateOperationFormValues } from '../forms/OperationForm/types';
-import { profileSelectors } from 'src/app/store/profile';
 
 import './operationSummary.css';
 
@@ -21,8 +20,6 @@ export const OperationSummary: FC<IOperationSummary> = ({ id, amount, category, 
   const dispatch = useDispatch();
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-
-  const isAdmin = useSelector(profileSelectors.isAdmin);
 
   const handleSubmit = (values: CreateOperationFormValues) => {
     dispatch(operationsActions.saveOperation({
@@ -38,7 +35,7 @@ export const OperationSummary: FC<IOperationSummary> = ({ id, amount, category, 
       <div className={'container'}>
         <div className='summaryHeader'>
           <div className={'amount'}>{amount} ₽</div>
-          {isAdmin && <Button onClick={() => setIsModalOpen(true)}> {'Редактировать'}</Button>}
+          <Button onClick={() => setIsModalOpen(true)}> {'Редактировать'}</Button>
         </div>
         <div className={'details'}>
           <div className={'category'}>{category}</div>
@@ -48,7 +45,7 @@ export const OperationSummary: FC<IOperationSummary> = ({ id, amount, category, 
           </div>
         </div>
       </div>
-      {isModalOpen && isAdmin && <Modal onClose={() => setIsModalOpen(false)}>
+      {isModalOpen && <Modal onClose={() => setIsModalOpen(false)}>
         <CreateOrEditOperationForm initialValues={{
           amount: amount,
           category: category,

@@ -95,3 +95,6 @@ export const isNotDefinedString = (string?: string): boolean => !string?.trim();
 
 export const isLongEnough = (word: string, minLength: number = MIN_LENGTH_PASSWORD): boolean =>
   word?.length > minLength;
+
+export const isValidEmail = (email: string): boolean =>
+  /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);

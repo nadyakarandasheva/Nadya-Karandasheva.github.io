@@ -23,6 +23,6 @@ export function* getToken() {
 }
 
 export function* tokenSaga() {
-  yield takeEvery(tokenActions.logout().type, clearToken);
+  yield takeEvery(tokenActions.clear().type, clearToken);
   yield takeLatest(tokenActions.set().type, setToken);
 }
