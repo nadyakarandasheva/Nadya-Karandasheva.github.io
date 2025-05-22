@@ -20,6 +20,9 @@ export type CategoryFieldProps = Pick<CreateOperationFormProps, 'disabled'> & {
   onBlur: FormikHandlers['handleBlur'];
 };
 
+/**
+ * Компонент поля категории.
+ */
 export const CategoryField = memo<CategoryFieldProps>(
   ({ onChange, onBlur, touched, value, errors, disabled, submitCount }) => {
     const dispatch = useDispatch();
@@ -27,7 +30,7 @@ export const CategoryField = memo<CategoryFieldProps>(
     const categories = useSelector((state: RootState) => state.operations.categories);
 
     useEffect(() => {
-      dispatch(operationsActions.fetchCategoriesRequest());
+      dispatch(operationsActions.fetchCategories());
     }, [dispatch]);
 
     const { validateStatus, help } = getValidates(errors, touched, submitCount);

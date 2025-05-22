@@ -13,6 +13,9 @@ export enum AuthMode {
 
 export type Params = { mode: AuthMode; token?: string };
 
+/**
+ * Компонент страницы авторизации.
+ */
 export const AuthScreen: FC = () => {
   const location = useLocation();
 

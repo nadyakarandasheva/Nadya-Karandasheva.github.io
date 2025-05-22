@@ -12,6 +12,11 @@ interface CreateOrEditOperationFormProps {
   onSubmit: (values: CreateOperationFormValues) => void;
 }
 
+/**
+ * Форма создания или редактирования операции.
+ * @param param0 
+ * @returns 
+ */
 export const CreateOrEditOperationForm: FC<CreateOrEditOperationFormProps> = ({ initialValues = {}, onSubmit }) => {
   const formInitialValues: CreateOperationFormValues = {
     name: initialValues.name ?? '',

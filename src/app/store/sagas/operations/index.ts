@@ -1,9 +1,9 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 
 import { PayloadAction } from '@reduxjs/toolkit';
-import { operationsApi } from 'app/client/operation-api';
+import { operationsApi } from 'app/client/api/operation-api';
 import { operationsActions } from './operations';
-import { CategoryFilters, CreateCategoryParams, OperationParams } from 'server.types';
+import { CategoryFilters, CreateOrUpdateCategoryParams, OperationParams } from 'server.types';
 
 function* fetchOperationsSaga(action: PayloadAction<any>): any {
   try {
@@ -62,13 +62,23 @@ function* fetchCategoriesSaga(action: PayloadAction<CategoryFilters | undefined>
   }
 }
 
-function* createCategorySaga(action: ReturnType<typeof operationsActions.createCategoryRequest>): any {
+function* createCategorySaga(action: ReturnType<typeof operationsActions.createCategory>): any {
   try {
     const token = localStorage.getItem('token') || '';
-    const createdCategory = yield call(operationsApi.createCategory, token, action.payload as CreateCategoryParams);
+    const createdCategory = yield call(operationsApi.createCategory, token, action.payload as CreateOrUpdateCategoryParams);
     yield put(operationsActions.createCategorySuccess(createdCategory));
   } catch (error: any) {
     yield put(operationsActions.createCategoryFailure(error.message));
+  }
+}
+
+function* updateCategorySaga(action: PayloadAction<{ id: string; name: string }>): any {
+  try {
+    const token = localStorage.getItem('token') || '';
+    const response = yield call(operationsApi.updateCategory, token, action.payload.id, action.payload);
+    yield put(operationsActions.updateCategorySuccess(response));
+  } catch (error: any) {
+    yield put(operationsActions.updateCategoryFailure(error.message));
   }
 }
 
@@ -77,6 +87,7 @@ export function* operationsSaga() {
   yield takeLatest(operationsActions.fetchOperationById.type, fetchOperationByIdSaga);
   yield takeLatest(operationsActions.updateOperation.type, updateOperationSaga);
   yield takeLatest(operationsActions.createOperation.type, createOperationSaga);
-  yield takeLatest(operationsActions.fetchCategoriesRequest.type, fetchCategoriesSaga);
-  yield takeLatest(operationsActions.createCategoryRequest.type, createCategorySaga);
+  yield takeLatest(operationsActions.fetchCategories.type, fetchCategoriesSaga);
+  yield takeLatest(operationsActions.createCategory.type, createCategorySaga);
+  yield takeLatest(operationsActions.updateCategory.type, updateCategorySaga);
 }

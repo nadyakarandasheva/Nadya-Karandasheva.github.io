@@ -1,7 +1,9 @@
-import { CategoryFilters, CreateCategoryParams, Filters } from 'server.types';
+import { CreateOrUpdateCategoryParams, Filters } from 'server.types';
+import { BASE_URL } from './common';
 
-const BASE_URL = 'http://19429ba06ff2.vps.myjino.ru/api';
-
+/**
+ * Запросы для операций.
+ */
 export const operationsApi = {
   async fetchOperations(token?: string, filters: Filters = {}) {
     const params = new URLSearchParams();
@@ -77,7 +79,7 @@ export const operationsApi = {
     return res.json();
   },
 
-  async createCategory(token: string, params: CreateCategoryParams) {
+  async createCategory(token: string, params: CreateOrUpdateCategoryParams) {
     const res = await fetch(`${BASE_URL}/categories`, {
       method: 'POST',
       headers: {
@@ -90,6 +92,24 @@ export const operationsApi = {
     if (!res.ok) {
       const errorData = await res.json();
       throw new Error(errorData.message || 'Ошибка создания категории');
+    }
+
+    return res.json();
+  },
+
+  async updateCategory(token: string, id: string, params: any) {
+    const res = await fetch(`${BASE_URL}/categories/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(params),
+    });
+
+    if (!res.ok) {
+      const errorData = await res.json();
+      throw new Error(errorData.message || 'Ошибка редактирования категории');
     }
 
     return res.json();

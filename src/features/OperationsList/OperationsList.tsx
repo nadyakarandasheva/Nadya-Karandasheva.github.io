@@ -1,11 +1,11 @@
 import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { OperationSummary } from '../operationSummary/OperationSummary';
+import { OperationSummary } from 'features/OperationSummary/OperationSummary';
 import { operationsActions, operationsSelectors } from 'app/store/sagas/operations/operations';
 import { RootState } from 'app/store';
 
-import './operationsList.css';
+import styles from './OperationsList.module.css';
 
 /**
  * Компонент списка операций.
@@ -22,7 +22,6 @@ export const OperationsList = () => {
 
   const pageSize = 10;
 
-  // Запрос первой страницы
   useEffect(() => {
     dispatch(
       operationsActions.fetchOperations({
@@ -32,7 +31,6 @@ export const OperationsList = () => {
     );
   }, [dispatch]);
 
-  // Подгрузка при скролле
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => {
       const nextPage = (pagination?.pageNumber || 1) + 1;
@@ -56,7 +54,7 @@ export const OperationsList = () => {
   }, [dispatch, pagination, loading, total]);
 
   return (
-    <div className="operationsListContainer">
+    <div className={styles.operationsListContainer}>
       {operations.map((operation, index) => (
         <OperationSummary key={index} {...operation} />
       ))}

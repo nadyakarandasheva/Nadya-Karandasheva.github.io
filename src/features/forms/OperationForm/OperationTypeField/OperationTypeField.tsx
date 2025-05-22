@@ -18,6 +18,9 @@ export type IOperationTypeFieldProps = Pick<CreateOperationFormProps, 'disabled'
   disabled?: boolean;
 };
 
+/**
+ * Компонент поля тип операции.
+ */
 export const OperationTypeField = memo<IOperationTypeFieldProps>(
   ({ value, onChange, onBlur, errors, touched, submitCount, disabled }) => {
     const { validateStatus, help } = getValidates(errors, touched, submitCount);

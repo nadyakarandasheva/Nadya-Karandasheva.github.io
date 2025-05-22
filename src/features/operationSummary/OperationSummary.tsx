@@ -9,7 +9,7 @@ import { operationsActions } from 'app/store/sagas/operations/operations';
 import { CreateOperationFormValues } from '../forms/OperationForm/types';
 import { OperationParams } from 'server.types';
 
-import './operationSummary.css';
+import styles from './OperationSummary.module.css';
 
 /**
  * Компонент краткого отображения операции.
@@ -43,15 +43,15 @@ export const OperationSummary: FC<OperationParams> = ({
 
   return (
     <>
-      <div className={'container'}>
-        <div className="summaryHeader">
-          <div className={'amount'}>{amount} ₽</div>
+      <div className={styles.container}>
+        <div className={styles.summaryHeader}>
+          <div className={styles.amount}>{amount} ₽</div>
           <Button onClick={() => setIsModalOpen(true)}> {'Редактировать'}</Button>
         </div>
-        <div className={'details'}>
-          <div className={'category'}>{category.name}</div>
-          <div className={'title'}>{name}</div>
-          <div className={'description'}>{type}</div>
+        <div className={styles.details}>
+          <div className={styles.category}>{category.name}</div>
+          <div className={styles.title}>{name}</div>
+          <div className={styles.description}>{type}</div>
         </div>
       </div>
       {isModalOpen && (
@@ -72,3 +72,5 @@ export const OperationSummary: FC<OperationParams> = ({
     </>
   );
 };
+
+OperationSummary.displayName = 'OperationSummary'

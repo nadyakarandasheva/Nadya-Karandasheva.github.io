@@ -6,6 +6,9 @@ import { OperationDetail } from 'features/OperationDetail/OperationDetail';
 
 import styles from './OperationsPage.module.css';
 
+/**
+ * Компонент страницы операций.
+ */
 export const OperationsPage: FC = () => {
   const operations = useSelector(operationsSelectors.all);
 

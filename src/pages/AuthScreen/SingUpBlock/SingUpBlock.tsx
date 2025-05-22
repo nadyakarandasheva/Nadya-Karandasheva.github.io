@@ -20,6 +20,9 @@ const initialValues: AuthFormValues = {
   password: undefined,
 };
 
+/**
+ * Компонент формы решистрации.
+ */
 export const SingUpBlock = memo<SingUpBlockProps>(({ className }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();

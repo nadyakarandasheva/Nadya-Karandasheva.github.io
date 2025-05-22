@@ -17,6 +17,9 @@ export type NameFieldProps = Pick<ProfileFormProps, 'className' | 'disabled' | '
   onBlur: FormikHandlers['handleBlur'];
 };
 
+/**
+ * Компонент поля имени.
+ */
 export const NameField = memo<NameFieldProps>(
   ({ className, onChange, onBlur, autoFocusElement, touched, value, errors, disabled, submitCount }) => {
     const { validateStatus, help } = getValidates(errors, touched, submitCount);

@@ -8,6 +8,9 @@ import { ProfileFormProps } from './types';
 
 import style from './ProfileForm.module.css';
 
+/**
+ * Компонент формы профиля.
+ */
 export const ProfileForm = memo<ProfileFormProps>(
   ({ className, formManager, formElement, autoFocusElement, disabled }) => {
     const { values, touched, errors, submitCount, handleBlur, handleSubmit, handleChange } = formManager;

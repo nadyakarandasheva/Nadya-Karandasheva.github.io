@@ -17,6 +17,9 @@ export type AmountFieldProps = Pick<CreateOperationFormProps, 'disabled' | 'auto
   onBlur: FormikHandlers['handleBlur'];
 };
 
+/**
+ * Компонент поля суммы.
+ */
 export const AmountField = memo<AmountFieldProps>(
   ({ onChange, onBlur, onPressEnter, autoFocusElement, touched, value, errors, disabled, submitCount }) => {
     const { validateStatus, help } = getValidates(errors, touched, submitCount);

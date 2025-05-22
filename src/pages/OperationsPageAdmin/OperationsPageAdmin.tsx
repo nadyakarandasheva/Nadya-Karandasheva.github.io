@@ -5,13 +5,18 @@ import { Button } from 'antd';
 import { Title } from 'shared/Title/Title';
 import { Modal } from 'shared/modal/Modal';
 import { OperationsList } from 'features/OperationsList/OperationsList';
+import { CategoriesList } from 'features/CategoriesList/CategoriesList';
 import { CreateOrEditOperationForm } from './CreateOrEditOperationForm/CreateOrEditOperationForm';
 import { CreateOperationFormValues } from 'features/forms/OperationForm/types';
 import { operationsActions } from 'app/store/sagas/operations/operations';
-import { CreateCategoryForm, CreateCategoryFormValues } from './CreateCategoryForm/CreateCategoryForm';
+import { CreateOrEditCategoryForm, CreateOrEditCategoryFormValues } from './CreateOrEditCategoryForm/CreateOrEditCategoryForm';
 
 import styels from './OperationsPageAdmin.module.css';
 
+/**
+ * Компонент админки операций.
+ * @returns 
+ */
 export const OperationsPageAdmin: FC = () => {
   const dispatch = useDispatch();
 
@@ -29,9 +34,9 @@ export const OperationsPageAdmin: FC = () => {
     setTimeout(() => setIsModalOpen(false), 2000);
   };
 
-  const handleCreateCategory = (values: CreateCategoryFormValues) => {
+  const handleCreateCategory = (values: CreateOrEditCategoryFormValues) => {
     dispatch(
-      operationsActions.createCategoryRequest({
+      operationsActions.createCategory({
         ...values,
       })
     );
@@ -42,7 +47,7 @@ export const OperationsPageAdmin: FC = () => {
   return (
     <div className={styels.page}>
       <div className={styels.headerContainer}>
-        <Title>{'Управление операциями'}</Title>
+        <Title>{'Управление операциями и категориями'}</Title>
         <Button
           onClick={() => {
             setIsModalOpen(true);
@@ -58,7 +63,10 @@ export const OperationsPageAdmin: FC = () => {
           {'Создать категорию'}
         </Button>
       </div>
-      <OperationsList />
+      <div className={styels.lists}>
+        <OperationsList />
+        <CategoriesList />
+      </div>
       {isModalOpen && (
         <Modal onClose={() => setIsModalOpen(false)}>
           <CreateOrEditOperationForm onSubmit={handleSubmit} />
@@ -66,7 +74,7 @@ export const OperationsPageAdmin: FC = () => {
       )}
       {isCategoryModalOpen && (
         <Modal onClose={() => setIsCategoryModalOpen(false)}>
-          <CreateCategoryForm onSubmit={handleCreateCategory} />
+          <CreateOrEditCategoryForm onSubmit={handleCreateCategory} />
         </Modal>
       )}
     </div>

@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Category, CreateCategoryParams, OperationParams } from 'server.types';
+import { Category, CreateOrUpdateCategoryParams, OperationParams } from 'server.types';
 import { RootState } from '../..';
 import { CreateOperationFormValues } from 'features/forms/OperationForm/types';
 
@@ -99,7 +99,7 @@ export const operationsSlice = createSlice({
       state.loading = false;
     },
 
-    fetchCategoriesRequest(state) {
+    fetchCategories(state) {
       state.loading = true;
       state.error = undefined;
     },
@@ -112,7 +112,7 @@ export const operationsSlice = createSlice({
       state.error = action.payload;
     },
 
-    createCategoryRequest(state, action: PayloadAction<CreateCategoryParams>) {
+    createCategory(state, action: PayloadAction<CreateOrUpdateCategoryParams>) {
       state.loading = true;
       state.error = undefined;
     },
@@ -121,6 +121,19 @@ export const operationsSlice = createSlice({
       state.categories.push(action.payload);
     },
     createCategoryFailure(state, action: PayloadAction<string>) {
+      state.loading = false;
+      state.error = action.payload;
+    },
+
+    updateCategory(state, _action: PayloadAction<{ id: string; name: string }>) {
+      state.filter.loading = true;
+    },
+    updateCategorySuccess(state, action: PayloadAction<Category>) {
+      state.operationId = action.payload;
+      state.filter.data = state.filter.data.map((ctg) => (ctg.name === action.payload.name ? action.payload : ctg));
+      state.filter.loading = false;
+    },
+    updateCategoryFailure(state, action: PayloadAction<string>) {
       state.loading = false;
       state.error = action.payload;
     },

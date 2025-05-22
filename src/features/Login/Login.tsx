@@ -16,7 +16,7 @@ interface LoginProps {
 
 /**
  * Компонент перехода к авторизации пользователя.
- * @param param0
+ * @param {LoginProps} param0
  * @returns
  */
 export const Login: FC<LoginProps> = ({ className }) => {

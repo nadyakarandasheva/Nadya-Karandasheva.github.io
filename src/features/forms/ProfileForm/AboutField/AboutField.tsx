@@ -16,6 +16,9 @@ export type AboutFieldProps = Pick<ProfileFormProps, 'className' | 'disabled'> &
   onBlur: FormikHandlers['handleBlur'];
 };
 
+/**
+ * Компонент поля о себе.
+ */
 export const AboutField = memo<AboutFieldProps>(
   ({ className, onChange, onBlur, touched, value, errors, disabled, submitCount }) => {
     const { validateStatus, help } = getValidates(errors, touched, submitCount);

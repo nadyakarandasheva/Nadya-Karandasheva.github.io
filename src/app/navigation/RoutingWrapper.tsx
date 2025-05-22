@@ -19,7 +19,7 @@ export const RoutingWrapper: FC = () => {
 
   return (
     <Routes>
-      <Route path="/nadyakarandasheva.github.io/Nadya-Karandasheva.github.io/" element={<InitPage />} />
+      <Route path="/" element={<InitPage />} />
       <Route path="auth" element={<AuthScreen />}>
         <Route path=":mode" element={<AuthScreen />} />
       </Route>

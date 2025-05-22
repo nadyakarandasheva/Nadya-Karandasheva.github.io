@@ -1,0 +1,15 @@
+.categoriesListContainer {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  padding: 20px;
+}
+
+.item {
+  padding: 4px 6px;
+  cursor: pointer;
+  border: 1px solid gainsboro;
+  border-radius: 15px;
+  text-align: center;
+}

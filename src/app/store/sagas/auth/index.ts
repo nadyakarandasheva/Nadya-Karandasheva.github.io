@@ -1,5 +1,5 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
-import { api } from 'app/client/auth-api';
+import { authApi } from 'app/client/api/auth-api';
 import { tokenActions } from '../../token';
 import { Profile } from 'server.types';
 import { profileActions } from '../../profile';
@@ -10,9 +10,9 @@ function* handleAuth(action: {
 }) {
   try {
     const { email, password, mode } = action.payload;
-    const token: string = yield call(mode === 'signup' ? api.signUp : api.signIn, email, password);
+    const token: string = yield call(mode === 'signup' ? authApi.signUp : authApi.signIn, email, password);
     yield put(tokenActions.set(token));
-    const profile: Profile = yield call(api.getProfile, token);
+    const profile: Profile = yield call(authApi.getProfile, token);
     yield put(profileActions.set(profile));
   } catch (error: any) {
     alert(error);

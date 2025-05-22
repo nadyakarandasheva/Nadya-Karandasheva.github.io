@@ -260,7 +260,7 @@ export type CategoryFilters = {
   };
 };
 
-export type CreateCategoryParams = {
+export type CreateOrUpdateCategoryParams = {
   name: string;
-  photo?: string;
+  id?: string;
 };

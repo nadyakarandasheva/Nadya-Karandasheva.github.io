@@ -10,7 +10,7 @@ import { isLongEnough, isNotDefinedString, isValidEmail } from 'utils/validation
 import { createErrorHandlers } from 'utils/createErrorHandlers';
 import { tokenActions } from 'app/store/token';
 import { profileActions } from 'app/store/profile';
-import { api } from 'app/client/auth-api';
+import { authApi } from 'app/client/api/auth-api';
 
 import styles from './SingInBlock.module.css';
 
@@ -23,6 +23,9 @@ const initialValues: AuthFormValues = {
   password: undefined,
 };
 
+/**
+ * Компонент формы входа.
+ */
 export const SingInBlock = memo<SingInBlockProps>(({ className }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -40,10 +43,10 @@ export const SingInBlock = memo<SingInBlockProps>(({ className }) => {
     return {
       onSubmit: async (values, { resetForm }) => {
         try {
-          const token = await api.signIn(values.email, values.password);
+          const token = await authApi.signIn(values.email, values.password);
           dispatch(tokenActions.set(token));
 
-          const profile = await api.getProfile(token);
+          const profile = await authApi.getProfile(token);
           dispatch(profileActions.set(profile));
 
           if (token) {

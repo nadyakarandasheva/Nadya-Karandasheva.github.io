@@ -18,6 +18,9 @@ export type DateFieldProps = Pick<CreateOperationFormProps, 'disabled'> & {
   onBlur: FormikHandlers['handleBlur'];
 };
 
+/**
+ * Компонент поля даты.
+ */
 export const DateField = memo<DateFieldProps>(({ onChange, onBlur, touched, value, errors, disabled, submitCount }) => {
   const { validateStatus, help } = getValidates(errors, touched, submitCount);
 

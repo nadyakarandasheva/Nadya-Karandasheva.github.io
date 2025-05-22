@@ -16,6 +16,9 @@ export type DescriptionFieldProps = Pick<CreateOperationFormProps, 'disabled'> &
   onBlur: FormikHandlers['handleBlur'];
 };
 
+/**
+ * Компонент поля описания.
+ */
 export const DescriptionField = memo<DescriptionFieldProps>(
   ({ onChange, onBlur, touched, value, errors, disabled, submitCount }) => {
     const { validateStatus, help } = getValidates(errors, touched, submitCount);
