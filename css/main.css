@@ -342,6 +342,7 @@
   display: flex;
   gap: 20px;
   padding: 32px;
+  flex-wrap: wrap;
 }
 .UNoQ4LFn8JbBjsHHtMRF {
   display: flex;
