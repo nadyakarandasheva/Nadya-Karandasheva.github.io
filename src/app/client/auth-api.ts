@@ -3,6 +3,11 @@ import { Profile, ServerErrors } from "src/server.types";
 const BASE_URL = 'http://19429ba06ff2.vps.myjino.ru/api';
 const COMMAND_ID = '2ee70484-c6f3-45db-8cda-ac49dfdc6a0d';
 
+/**
+ * Обработка ошибок.
+ * @param {Response} res 
+ * @returns 
+ */
 async function parseError(res: Response): Promise<Error> {
   try {
     const data: ServerErrors = await res.json();
@@ -17,6 +22,9 @@ async function parseError(res: Response): Promise<Error> {
   }
 }
 
+/**
+ * Запросы для аутентификации и авторизации.
+ */
 export const api = {
   async signUp(email: string, password: string): Promise<string> {
     const res = await fetch(`${BASE_URL}/signup`, {

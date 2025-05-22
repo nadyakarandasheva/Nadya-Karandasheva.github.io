@@ -10,13 +10,17 @@ import { InitPage } from 'src/pages/InitialPage/InitPage';
 import { useLoginNavigate } from './useLoginNavigate';
 import { OperationsPage } from 'src/pages/OperationsPage/OperationsPage';
 
+/**
+ * Компонент обертки роутинга.
+ * @returns 
+ */
 export const RoutingWrapper: FC = () => {
 
   useLoginNavigate();
 
   return (
     <Routes>
-      <Route path='/' element={<InitPage />} />
+      <Route path='/nadyakarandasheva.github.io/Nadya-Karandasheva.github.io/' element={<InitPage />} />
       <Route path="auth" element={<AuthScreen />}>
         <Route path=":mode" element={<AuthScreen />} />
       </Route>
