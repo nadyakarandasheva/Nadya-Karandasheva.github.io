@@ -32,7 +32,7 @@ jobs:
 
       # Запускаем тесты и линтер
       - name: Run tests and linter
-        run: npx eslint "src/**/*.{ts,tsx}" --max-warnings=0
+        run: NODE_PATH=src npx eslint "src/**/*.{ts,tsx}" --max-warnings=0
 
       # Собираем приложение
       - name: Build Application
