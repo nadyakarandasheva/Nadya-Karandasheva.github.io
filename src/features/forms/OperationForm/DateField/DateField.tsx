@@ -18,37 +18,35 @@ export type DateFieldProps = Pick<CreateOperationFormProps, 'disabled'> & {
   onBlur: FormikHandlers['handleBlur'];
 };
 
-export const DateField = memo<DateFieldProps>(
-  ({ onChange, onBlur, touched, value, errors, disabled, submitCount }) => {
-    const { validateStatus, help } = getValidates(errors, touched, submitCount);
+export const DateField = memo<DateFieldProps>(({ onChange, onBlur, touched, value, errors, disabled, submitCount }) => {
+  const { validateStatus, help } = getValidates(errors, touched, submitCount);
 
-    return (
-      <FormItem title={'Описание'} validateStatus={validateStatus} help={help}>
-        <DatePicker
-          name="date"
-          disabled={disabled}
-          format="YYYY-MM-DD"
-          value={value ? dayjs(value) : undefined}
-          onChange={(date, dateString) => {
-            onChange({
-              target: {
-                name: 'date',
-                value: dateString,
-              },
-            } as React.ChangeEvent<HTMLInputElement>);
-          }}
-          onBlur={() =>
-            onBlur({
-              target: {
-                name: 'date',
-              },
-            } as React.FocusEvent<HTMLInputElement>)
-          }
-          placeholder="Выберите дату операции"
-        />
-      </FormItem>
-    );
-  }
-);
+  return (
+    <FormItem title={'Описание'} validateStatus={validateStatus} help={help}>
+      <DatePicker
+        name="date"
+        disabled={disabled}
+        format="YYYY-MM-DD"
+        value={value ? dayjs(value) : undefined}
+        onChange={(date, dateString) => {
+          onChange({
+            target: {
+              name: 'date',
+              value: dateString,
+            },
+          } as React.ChangeEvent<HTMLInputElement>);
+        }}
+        onBlur={() =>
+          onBlur({
+            target: {
+              name: 'date',
+            },
+          } as React.FocusEvent<HTMLInputElement>)
+        }
+        placeholder="Выберите дату операции"
+      />
+    </FormItem>
+  );
+});
 
 DateField.displayName = 'DateField';

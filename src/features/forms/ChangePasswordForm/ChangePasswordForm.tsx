@@ -13,7 +13,7 @@ export const ChangePasswordForm = memo<ChangePasswordFormProps>(
     const { values, touched, errors, submitCount, handleBlur, handleSubmit, handleChange, submitForm } = formManager;
 
     return (
-      <form ref={formElement} onSubmit={handleSubmit} >
+      <form ref={formElement} onSubmit={handleSubmit}>
         <PasswordField
           onPressEnter={submitForm}
           autoFocusElement={autoFocusElement}

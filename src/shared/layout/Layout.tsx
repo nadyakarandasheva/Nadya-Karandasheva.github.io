@@ -2,7 +2,7 @@ import React, { FC, ReactNode } from 'react';
 
 import { Header } from 'shared/Header/Header';
 
-import styles from './layout.module.css';
+import styles from './Layout.module.css';
 
 /**
  * Интерфесй компонента разметки страницы.
