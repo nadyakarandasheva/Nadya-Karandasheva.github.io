@@ -1,47 +1,82 @@
-import { put, select, takeEvery } from 'redux-saga/effects';
-import { IOperationDetail } from 'src/interfaces/operation-detail.interface';
-import { operationsActions, operationsSelectors } from './operations';
+import { call, put, takeLatest } from 'redux-saga/effects';
+
 import { PayloadAction } from '@reduxjs/toolkit';
+import { operationsApi } from 'src/app/client/operation-api';
+import { operationsActions } from './operations';
+import { CategoryFilters, CreateCategoryParams, OperationParams } from 'src/server.types';
 
-/** Мок данных */
-const mockOperations: IOperationDetail[] = [
-  {
-    id: 1,
-    title: 'Покупка продуктов',
-    amount: 2500,
-    category: 'Еда',
-    description: 'Супермаркет',
-    date: new Date().toISOString(),
-  },
-  {
-    id: 2,
-    title: 'Интернет',
-    amount: 500,
-    category: 'Связь',
-    description: 'Месячная оплата',
-    date: new Date().toISOString(),
-  },
-];
+function* fetchOperationsSaga(action: PayloadAction<any>): any {
+  try {
+    const token = localStorage.getItem('token') || '';
+    const response = yield call(operationsApi.fetchOperations, token, action.payload);
 
-function* fetchOperationsSaga() {
-  yield put(operationsActions.setOperations(mockOperations));
+    yield put(
+      operationsActions.fetchOperationsSuccess({
+        data: response.data,
+        pagination: response.pagination,
+        sorting: response.sorting,
+      })
+    );
+  } catch (error: any) {
+    yield put(operationsActions.fetchOperationsFailure(error.message));
+  }
 }
 
-function* saveOperationSaga(action: PayloadAction<IOperationDetail>) {
-  const operation: IOperationDetail = action.payload;
+function* fetchOperationByIdSaga(action: PayloadAction<string>): any {
+  try {
+    const token = localStorage.getItem('token') || '';
+    const response = yield call(operationsApi.fetchOperationById, token, action.payload);
+    yield put(operationsActions.fetchOperationByIdSuccess(response));
+  } catch (error: any) {
+    yield put(operationsActions.fetchOperationByIdFailure(error.message));
+  }
+}
 
-  const operations: IOperationDetail[] = yield select(operationsSelectors.all);
+function* updateOperationSaga(action: PayloadAction<{ id: string; data: any }>): any {
+  try {
+    const token = localStorage.getItem('token') || '';
+    const response = yield call(operationsApi.updateOperation, token, action.payload.id, action.payload.data);
+    yield put(operationsActions.updateOperationSuccess(response));
+  } catch (error: any) {
+    yield put(operationsActions.updateOperationFailure(error.message));
+  }
+}
 
-  const exists = operations.some(op => op.id === operation.id);
+function* createOperationSaga(action: ReturnType<typeof operationsActions.createOperation>) {
+  try {
+    const token = localStorage.getItem('token') || '';
+    const result: OperationParams = yield call(operationsApi.createOperation, token, action.payload);
+    yield put(operationsActions.createOperationSuccess(result));
+  } catch (error: any) {
+    yield put(operationsActions.createOperationFailure(error.message));
+  }
+}
 
-  if (exists) {
-    yield put(operationsActions.updateOperation(operation));
-  } else {
-    yield put(operationsActions.addOperation(operation));
+function* fetchCategoriesSaga(action: PayloadAction<CategoryFilters | undefined>): any {
+  try {
+    const token = localStorage.getItem('token') || '';
+    const response = yield call(operationsApi.fetchCategories, token);
+    yield put(operationsActions.fetchCategoriesSuccess(response.data));
+  } catch (error: any) {
+    yield put(operationsActions.fetchCategoriesFailure(error.message));
+  }
+}
+
+function* createCategorySaga(action: ReturnType<typeof operationsActions.createCategoryRequest>): any {
+  try {
+    const token = localStorage.getItem('token') || '';
+    const createdCategory = yield call(operationsApi.createCategory, token, action.payload as CreateCategoryParams);
+    yield put(operationsActions.createCategorySuccess(createdCategory));
+  } catch (error: any) {
+    yield put(operationsActions.createCategoryFailure(error.message));
   }
 }
 
 export function* operationsSaga() {
-  yield takeEvery(operationsActions.fetchOperations.type, fetchOperationsSaga);
-  yield takeEvery(operationsActions.saveOperation.type, saveOperationSaga);
+  yield takeLatest(operationsActions.fetchOperations.type, fetchOperationsSaga);
+  yield takeLatest(operationsActions.fetchOperationById.type, fetchOperationByIdSaga);
+  yield takeLatest(operationsActions.updateOperation.type, updateOperationSaga);
+  yield takeLatest(operationsActions.createOperation.type, createOperationSaga);
+  yield takeLatest(operationsActions.fetchCategoriesRequest.type, fetchCategoriesSaga);
+  yield takeLatest(operationsActions.createCategoryRequest.type, createCategorySaga);
 }

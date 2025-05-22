@@ -7,11 +7,15 @@ import { CategoryField } from './CategoryField/CategoryField';
 import { DateField } from './DateField/DateField';
 import { TitleField } from './TitleField/TitleField';
 import { DescriptionField } from './DescriptionField/DescriptionField';
+import { OperationTypeField } from './OperationTypeField/OperationTypeField';
 
 import { CreateOperationFormProps } from './types';
 
 import styles from './OperationForm.module.css';
 
+/**
+ * Форма создания/редактирования операции.
+ */
 export const OperationForm = memo<CreateOperationFormProps>(
   ({ className, formManager, formElement, autoFocusElement, disabled }) => {
     const { values, touched, errors, submitCount, handleBlur, handleSubmit, handleChange, submitForm } = formManager;
@@ -44,10 +48,10 @@ export const OperationForm = memo<CreateOperationFormProps>(
           autoFocusElement={autoFocusElement}
           onBlur={handleBlur}
           onChange={handleChange}
-          value={values.category}
-          errors={errors.category}
+          value={values.categoryId}
+          errors={errors.categoryId}
           submitCount={submitCount}
-          touched={touched.category}
+          touched={touched.categoryId}
           disabled={disabled}
         />
         <TitleField
@@ -55,21 +59,31 @@ export const OperationForm = memo<CreateOperationFormProps>(
           autoFocusElement={autoFocusElement}
           onBlur={handleBlur}
           onChange={handleChange}
-          value={values.title}
-          errors={errors.title}
+          value={values.name}
+          errors={errors.name}
           submitCount={submitCount}
-          touched={touched.title}
+          touched={touched.name}
           disabled={disabled}
         />
         <DescriptionField
           onBlur={handleBlur}
           onChange={handleChange}
-          value={values.description}
-          errors={errors.description}
+          value={values.desc}
+          errors={errors.desc}
           submitCount={submitCount}
-          touched={touched.description}
+          touched={touched.desc}
+          disabled={disabled}
+        />
+        <OperationTypeField
+          onBlur={handleBlur}
+          onChange={handleChange}
+          value={values.type}
+          errors={errors.type}
+          submitCount={submitCount}
+          touched={touched.type}
           disabled={disabled}
         />
       </form>
     );
-  });
+  }
+);

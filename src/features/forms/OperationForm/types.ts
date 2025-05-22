@@ -1,12 +1,13 @@
 import { FormProps } from 'src/features/forms/types';
+import { Operation } from 'src/server.types';
 
 export type CreateOperationFormValues = {
-  id: number;
-  amount: number;
-  category: string;
-  title: string;
-  description: string;
-  date: string;
+  name?: string;
+  desc?: string;
+  amount?: number;
+  date?: string; // дата в виде строки new Date().toISOString() 2023-09-19T10:37:16.389+00:00
+  type?: Operation;
+  categoryId?: string;
 };
 
 export type CreateOperationFormErrors = Record<keyof CreateOperationFormValues, string>;

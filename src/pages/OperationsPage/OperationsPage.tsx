@@ -1,40 +1,17 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React from "react";
 import { FC } from "react";
-import { Button } from "antd";
+import { useSelector } from "react-redux";
+import { operationsSelectors } from "src/app/store/sagas/operations/operations";
+import { OperationDetail } from "src/features/OperationDetail/OperationDetail";
 
-import { Title } from "src/shared/Title/Title";
-import { Modal } from "src/shared/modal/Modal";
-import { OperationsList } from "src/features/OperationsList/OperationsList";
-import { CreateOrEditOperationForm } from "./CreateOrEditOperationForm/CreateOrEditOperationForm";
-import { CreateOperationFormValues } from "src/features/forms/OperationForm/types";
-import { operationsActions } from "src/app/store/sagas/operations/operations";
-
-import styels from './OperationsPage.module.css';
+import styles from './OperationsPage.module.css'
 
 export const OperationsPage: FC = () => {
-  const dispatch = useDispatch();
+  const operations = useSelector(operationsSelectors.all);
 
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-
-  const handleSubmit = (values: CreateOperationFormValues) => {
-    dispatch(operationsActions.saveOperation({
-      ...values,
-      id: Math.floor(Math.random() * 100000)
-    }));
-
-    setTimeout(() => setIsModalOpen(false), 2000);
-  }
-
-  return (
-    <div className={styels.page}>
-      <div className={styels.headerContainer}>
-        <Title>{'Страница операций'}</Title>
-        <Button onClick={() => { setIsModalOpen(true) }}>{'Добавить операцию'}</Button>
-      </div>
-      <OperationsList />
-      {isModalOpen && <Modal onClose={() => setIsModalOpen(false)}>
-        <CreateOrEditOperationForm onSubmit={handleSubmit} /></Modal>}
-    </div>
-  )
+  return <div className={styles.operationsListContainer}>
+    {operations.map((operation, index) => (
+      <OperationDetail key={index} {...operation} />
+    ))}
+  </div>
 }

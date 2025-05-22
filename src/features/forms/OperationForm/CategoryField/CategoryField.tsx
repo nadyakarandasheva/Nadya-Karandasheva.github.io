@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { memo } from 'react';
-import { Input } from 'antd';
+import { Input, Select } from 'antd';
 import { FormikHandlers } from 'formik';
 
 import { FormItem } from 'src/shared/FormItem/FormItem';
 import { getValidates } from 'src/utils/validation';
 
 import { CreateOperationFormProps } from '../types';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from 'src/app/store';
+import { operationsActions } from 'src/app/store/sagas/operations/operations';
 
 export type CategoryFieldProps = Pick<CreateOperationFormProps, 'className' | 'disabled' | 'autoFocusElement'> & {
   submitCount: number;
@@ -21,7 +24,26 @@ export type CategoryFieldProps = Pick<CreateOperationFormProps, 'className' | 'd
 export const CategoryField = memo<CategoryFieldProps>(
   ({ className, onChange, onBlur, onPressEnter, autoFocusElement, touched, value, errors, disabled, submitCount }) => {
 
+    const dispatch = useDispatch();
+
+    const categories = useSelector((state: RootState) => state.operations.categories);
+
+    useEffect(() => {
+      dispatch(
+        operationsActions.fetchCategoriesRequest()
+      );
+    }, [dispatch]);
+
     const { validateStatus, help } = getValidates(errors, touched, submitCount);
+
+    const handleChange = (categoryId: string) => {
+      onChange({
+        target: {
+          name: 'categoryId',
+          value: categoryId,
+        },
+      } as React.ChangeEvent<HTMLInputElement>);
+    };
 
     return (
       <FormItem
@@ -31,19 +53,25 @@ export const CategoryField = memo<CategoryFieldProps>(
         validateStatus={validateStatus}
         help={help}
       >
-        <Input
+        <Select
+          showSearch
+          placeholder="Выберите категорию"
+          optionFilterProp="children"
           disabled={disabled}
-          ref={autoFocusElement}
-          onPressEnter={onPressEnter}
-          data-cy="input"
-          autoFocus
-          type="text"
-          name="category"
-          onChange={onChange}
+          value={value || undefined}
+          onChange={handleChange}
           onBlur={onBlur}
-          value={value}
-          placeholder={'Укажите категорию'}
-        />
+          filterOption={(input, option) =>
+            (option?.children as unknown as string).toLowerCase().includes(input.toLowerCase())
+          }
+          style={{ width: '100%' }}
+        >
+          {categories.map((category) => (
+            <Select.Option key={category.id} value={category.id}>
+              {category.name}
+            </Select.Option>
+          ))}
+        </Select>
       </FormItem>
     );
   }

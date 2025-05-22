@@ -26,7 +26,7 @@ export const AmountField = memo<AmountFieldProps>(
     return (
       <FormItem
         className={className}
-        title="Количество"
+        title="Сумма"
         required
         validateStatus={validateStatus}
         help={help}
@@ -43,7 +43,7 @@ export const AmountField = memo<AmountFieldProps>(
           onChange={onChange}
           onBlur={onBlur}
           value={value}
-          placeholder={'Укажите количество'}
+          placeholder={'Укажите сумму'}
         />
       </FormItem>
     );

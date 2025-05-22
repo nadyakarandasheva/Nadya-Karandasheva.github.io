@@ -2,12 +2,13 @@ import React, { FC } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import { ProtectedRoute } from './ProtectedRoute';
-import { HomeWorksPage } from 'src/pages/HomeWorksPage/HomeWorksPage';
 import { ProfileCompletedForm } from 'src/pages/ProfileForm/ProfileForm';
 import { AuthScreen } from 'src/pages/AuthScreen/AuthScreen';
-import { OperationsPage } from 'src/pages/OperationsPage/OperationsPage';
+import { OperationsPageAdmin } from 'src/pages/OperationsPageAdmin/OperationsPageAdmin';
+import { InitPage } from 'src/pages/InitialPage/InitPage';
 
 import { useLoginNavigate } from './useLoginNavigate';
+import { OperationsPage } from 'src/pages/OperationsPage/OperationsPage';
 
 export const RoutingWrapper: FC = () => {
 
@@ -15,12 +16,13 @@ export const RoutingWrapper: FC = () => {
 
   return (
     <Routes>
-      <Route path='/' element={<HomeWorksPage />} />
+      <Route path='/' element={<InitPage />} />
       <Route path="auth" element={<AuthScreen />}>
         <Route path=":mode" element={<AuthScreen />} />
       </Route>
       <Route path="profile" element={<ProtectedRoute><ProfileCompletedForm /></ProtectedRoute>} />
-      <Route path="operations" element={<ProtectedRoute><OperationsPage /></ProtectedRoute>} />
+      <Route path="operations" element={<OperationsPage />} />
+      <Route path="operations-admin" element={<ProtectedRoute><OperationsPageAdmin /></ProtectedRoute>} />
     </Routes>
   );
 };

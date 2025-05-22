@@ -3,8 +3,9 @@ import React, { useMemo } from "react";
 import { FC } from "react";
 import { Button } from "antd";
 
-import { CreateOperationFormErrors, CreateOperationFormValues } from "src/features/forms/OperationForm/types";
+import { CreateOperationFormValues } from "src/features/forms/OperationForm/types";
 import { OperationForm } from "src/features/forms/OperationForm/OperationForm";
+import { Operation } from "src/server.types";
 
 interface CreateOrEditOperationFormProps {
   initialValues?: Partial<CreateOperationFormValues>;
@@ -17,34 +18,38 @@ export const CreateOrEditOperationForm: FC<CreateOrEditOperationFormProps> = ({
   onSubmit,
 }) => {
   const formInitialValues: CreateOperationFormValues = {
-    id: initialValues.id ?? 0,
+    name: initialValues.name ?? '',
+    desc: initialValues.desc ?? '',
     amount: initialValues.amount ?? 0,
-    category: initialValues.category ?? '',
-    title: initialValues.title ?? '',
-    description: initialValues.description ?? '',
     date: initialValues.date ?? '',
+    type: initialValues.type ?? 'Cost' as unknown as Operation,
+    categoryId: initialValues.categoryId ?? '',
   };
 
   const validate = useMemo(() => {
     return (values: CreateOperationFormValues) => {
-      const errors = {} as CreateOperationFormErrors;
+      const errors: Partial<Record<keyof CreateOperationFormValues, string>> = {};
 
-      if (!values.amount) {
+      if (!values.amount && values.amount !== 0) {
         errors.amount = 'Обязательное поле';
       } else if (isNaN(Number(values.amount))) {
         errors.amount = 'Должно быть числом';
       }
 
-      if (!values.category) {
-        errors.category = 'Обязательное поле';
+      if (!values.categoryId) {
+        errors.categoryId = 'Обязательное поле';
       }
 
-      if (!values.title) {
-        errors.title = 'Обязательное поле';
+      if (!values.name) {
+        errors.name = 'Обязательное поле';
       }
 
       if (!values.date) {
         errors.date = 'Обязательное поле';
+      }
+
+      if (!values.type) {
+        errors.type = 'Обязательное поле';
       }
 
       return errors;

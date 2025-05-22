@@ -190,3 +190,102 @@ export type ServerErrorItem = {
 export type ServerErrors = {
   errors: ServerErrorItem[];
 };
+
+export type Filters = {
+  ids?: string[];
+  name?: string;
+  categoryIds?: string[];
+  type?: 'Cost' | 'Profit';
+  pagination?: {
+    pageSize?: number;
+    pageNumber?: number;
+  };
+  date?: {
+    gte?: string; // от - дата в виде строки new Date().toISOString() 2023-09-19T10:37:16.389+00:00
+    lte?: string; // до - дата в виде строки new Date().toISOString() 2023-09-19T10:37:16.389+00:00
+  }
+  createdAt?: {
+    gte?: string; // от - дата в виде строки new Date().toISOString() 2023-09-19T10:37:16.389+00:00
+    lte?: string; // до - дата в виде строки new Date().toISOString() 2023-09-19T10:37:16.389+00:00
+  }
+  updatedAt?: {
+    gte?: string; // от - дата в виде строки new Date().toISOString() 2023-09-19T10:37:16.389+00:00
+    lte?: string; // до - дата в виде строки new Date().toISOString() 2023-09-19T10:37:16.389+00:00
+  }
+  sorting?: {
+    type: 'ASC' | 'DESC';
+    field: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'date';
+  };
+};
+
+export type Category = {
+  id: string;
+  name: string;
+  photo?: string;
+  createdAt: Date;
+  updatedAt: Date;
+  commandId: string;
+};
+
+type Cost = {
+  id: string;
+  name: string;
+  desc?: string;
+  createdAt: Date;
+  updatedAt: Date;
+  amount: number;
+  category: Category;
+  commandId: string;
+  type: 'Cost';
+};
+
+type Profit = {
+  id: string;
+  name: string;
+  desc?: string;
+  createdAt: Date;
+  updatedAt: Date;
+  amount: number;
+  category: Category;
+  commandId: string;
+  type: 'Profit';
+};
+
+export type Operation = 'Profit' | 'Cost'
+
+export type OperationParams = {
+  id?: string;
+  name?: string;
+  desc?: string;
+  amount?: number;
+  date?: string; // дата в виде строки new Date().toISOString() 2023-09-19T10:37:16.389+00:00
+  type?: Operation;
+  category?: Category;
+};
+
+
+export type CategoryFilters = {
+  name?: string;
+  ids?: string[];
+  pagination?: {
+    pageSize?: number;
+    pageNumber?: number;
+  };
+  createdAt?: {
+    gte?: string;
+    lte?: string;
+  };
+  updatedAt?: {
+    gte?: string;
+    lte?: string;
+  };
+  sorting?: {
+    type: 'ASC' | 'DESC';
+    field: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'date';
+  };
+};
+
+export type CreateCategoryParams = {
+  name: string;
+  photo?: string;
+};

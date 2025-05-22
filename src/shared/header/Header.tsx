@@ -1,12 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { ThemeToggle } from '../themeToggle/ThemeToggle';
 import { Login } from 'src/features/Login/Login';
 import { Logo } from '../logo/Logo';
-
-import { useTheme } from 'src/context/ThemeProvider';
-import { LanguageToggle } from '../LanguageToggle/LanguageToggle';
 
 import './header.css';
 
@@ -16,18 +12,13 @@ import './header.css';
  */
 export const Header = (): JSX.Element => {
 
-  const { theme, toggleTheme } = useTheme();
-
   return (
     <header className={"header"}>
       <Logo />
-      <Link to="/profile">Профиль пользователя</Link>
+      <Link to="/operations-admin">Операции (Админ)</Link>
       <Link to="/operations">Операции</Link>
-      <div className={"switchersContainer"}>
-        <ThemeToggle theme={theme} onClick={toggleTheme} />
-        <LanguageToggle />
-        <Login />
-      </div>
+      <Link to="/profile">Профиль пользователя</Link>
+      <Login />
     </header>
   )
 };

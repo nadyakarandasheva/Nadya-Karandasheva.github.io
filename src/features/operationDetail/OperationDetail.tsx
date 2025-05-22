@@ -1,27 +1,30 @@
 import React, { FC } from 'react';
 
-import { Button } from 'src/shared/button/Button';
-
-import { IOperationDetail } from 'src/interfaces/operation-detail.interface';
+import { OperationParams } from 'src/server.types';
 
 import './operationDetail.css';
 
 /**
  * Компонент полного отображения операции.
- * @params {IOperationDetail} params - Входные параметры компонента.
+ * @params {OperationParams} params - Входные параметры компонента.
  * @returns {JSX.Element}
  */
-export const OperationDetail: FC<IOperationDetail> = ({ amount, category, title, description, date, onEdit, isDisabled = true }): JSX.Element => {
+export const OperationDetail: FC<OperationParams> = ({ amount, category, name, desc, date }): JSX.Element => {
+  const formattedDate = new Date(date).toLocaleDateString("ru-RU", {
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+  });
+
   return (
     <div className={'container'}>
       <div className={'amount'}>{amount} ₽</div>
       <div className={'details'}>
-        <div className={'category'}>{category}</div>
-        <div className={'title'}>{title}</div>
-        <div className={'description'}>{description}</div>
-        <div className={'date'}>{date}</div>
+        <div className={'category'}>{category.name}</div>
+        <div className={'title'}>{name}</div>
+        <div className={'description'}>{desc}</div>
+        <div className={'date'}>{formattedDate}</div>
       </div>
-      <Button label='edit' onClick={onEdit} isDisabled={isDisabled} />
     </div>
   );
 };

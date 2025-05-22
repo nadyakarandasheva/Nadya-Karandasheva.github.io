@@ -30,7 +30,7 @@ export const DescriptionField = memo<DescriptionFieldProps>(
       >
         <Input.TextArea
           disabled={disabled}
-          name="description"
+          name="desc"
           onChange={onChange}
           onBlur={onBlur}
           value={value}

@@ -3,11 +3,11 @@ import { useDispatch } from 'react-redux';
 import { Button } from 'antd';
 
 import { Modal } from 'src/shared/modal/Modal';
-import { CreateOrEditOperationForm } from 'src/pages/OperationsPage/CreateOrEditOperationForm/CreateOrEditOperationForm';
+import { CreateOrEditOperationForm } from 'src/pages/OperationsPageAdmin/CreateOrEditOperationForm/CreateOrEditOperationForm';
 
-import { IOperationSummary } from 'src/interfaces/operation-summary.interafce';
 import { operationsActions } from 'src/app/store/sagas/operations/operations';
 import { CreateOperationFormValues } from '../forms/OperationForm/types';
+import { OperationParams } from 'src/server.types';
 
 import './operationSummary.css';
 
@@ -16,15 +16,16 @@ import './operationSummary.css';
  * @params {IOperationSummary} params - Входные параметры компонента.
  * @returns {JSX.Element}
  */
-export const OperationSummary: FC<IOperationSummary> = ({ id, amount, category, title, description, date }): JSX.Element => {
+export const OperationSummary: FC<OperationParams> = ({ id, amount, category, name, type, date, desc }): JSX.Element => {
   const dispatch = useDispatch();
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const handleSubmit = (values: CreateOperationFormValues) => {
-    dispatch(operationsActions.saveOperation({
+    dispatch(operationsActions.updateOperation({
       ...values,
-      id: id
+      id: id,
+      data: values
     }));
 
     setTimeout(() => setIsModalOpen(false), 2000);
@@ -38,20 +39,19 @@ export const OperationSummary: FC<IOperationSummary> = ({ id, amount, category, 
           <Button onClick={() => setIsModalOpen(true)}> {'Редактировать'}</Button>
         </div>
         <div className={'details'}>
-          <div className={'category'}>{category}</div>
-          <div className={'title'}>{title}</div>
-          <div className={'description'}>
-            {description.length > 50 ? `${description.substring(0, 50)}...` : description}
-          </div>
+          <div className={'category'}>{category.name}</div>
+          <div className={'title'}>{name}</div>
+          <div className={'description'}>{type}</div>
         </div>
       </div>
       {isModalOpen && <Modal onClose={() => setIsModalOpen(false)}>
         <CreateOrEditOperationForm initialValues={{
           amount: amount,
-          category: category,
-          title: title,
-          description: description,
+          categoryId: category.id,
+          name: name,
+          type: type,
           date: date,
+          desc: desc
         }}
           onSubmit={handleSubmit} />
       </Modal>}

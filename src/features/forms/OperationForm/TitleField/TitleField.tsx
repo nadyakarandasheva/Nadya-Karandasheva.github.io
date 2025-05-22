@@ -38,7 +38,7 @@ export const TitleField = memo<TitleFieldProps>(
           data-cy="input"
           autoFocus
           type="text"
-          name="title"
+          name="name"
           onChange={onChange}
           onBlur={onBlur}
           value={value}
