@@ -44,7 +44,6 @@ export const OperationForm = memo<CreateOperationFormProps>(
         />
         <CategoryField
           onPressEnter={submitForm}
-          autoFocusElement={autoFocusElement}
           onBlur={handleBlur}
           onChange={handleChange}
           value={values.categoryId}
