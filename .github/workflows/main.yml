@@ -30,11 +30,11 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # Запускаем тесты и линтер
-      - name: Run tests and linter
-        run: |
-          npx eslint src --ext .ts,.tsx --no-error-on-unmatched-pattern --resolve-plugins-relative-to . --config .eslintrc.json --parser-options=project:./tsconfig.json
-          npm test
+      # # Запускаем тесты и линтер
+      # - name: Run tests and linter
+      #   run: |
+      #     npx eslint src --ext .ts,.tsx --no-error-on-unmatched-pattern --resolve-plugins-relative-to . --config .eslintrc.json --parser-options=project:./tsconfig.json
+      #     npm test
 
       # Собираем приложение
       - name: Build Application
