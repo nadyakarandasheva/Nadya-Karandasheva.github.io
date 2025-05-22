@@ -8,11 +8,16 @@ const savedToken = localStorage.getItem('token');
 
 export const tokenSlice = createSlice({
   name: 'token',
-  initialState: savedToken ?? (null as string | null),
+  initialState: savedToken,
   reducers: {
-    set: (_, action: PayloadAction<string>) => {
-      localStorage.setItem('token', action.payload);
-      return action.payload;
+    set: (_, action: PayloadAction<string | null>) => {
+      if (action.payload) {
+        localStorage.setItem('token', action.payload);
+        return action.payload;
+      } else {
+        localStorage.removeItem('token');
+        return null;
+      }
     },
     clear: () => {
       localStorage.removeItem('token');
