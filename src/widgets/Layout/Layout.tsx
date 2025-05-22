@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
-import { Header } from '../../shared/Header/Header';
+import { Header } from 'shared/Header/Header';
+
 import style from './Layout.module.css';
 
 export type LayoutProps = {

@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 
 import { OperationParams } from './../../server.types';
 
-import './OperationDetail.css';
+import styles from './OperationDetail.module.css';
 
 /**
  * Компонент полного отображения операции.
@@ -17,13 +17,13 @@ export const OperationDetail: FC<OperationParams> = ({ amount, category, name, d
   });
 
   return (
-    <div className={'container'}>
-      <div className={'amount'}>{amount} ₽</div>
-      <div className={'details'}>
-        <div className={'category'}>{category.name}</div>
-        <div className={'title'}>{name}</div>
-        <div className={'description'}>{desc}</div>
-        <div className={'date'}>{formattedDate}</div>
+    <div className={styles.container}>
+      <div className={styles.amount}>{amount} ₽</div>
+      <div className={styles.details}>
+        <div className={styles.category}>{category.name}</div>
+        <div className={styles.title}>{name}</div>
+        <div className={styles.description}>{desc}</div>
+        <div className={styles.date}>{formattedDate}</div>
       </div>
     </div>
   );

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Login } from 'features/Login/Login';
 import { Logo } from '../logo/Logo';
 
-import './header.css';
+import styles from './Header.module.css';
 
 /**
  * Компонент шапки страницы.
@@ -12,7 +12,7 @@ import './header.css';
  */
 export const Header = (): JSX.Element => {
   return (
-    <header className={'header'}>
+    <header className={styles.header}>
       <Logo />
       <Link to="/operations-admin">Операции (Админ)</Link>
       <Link to="/operations">Операции</Link>

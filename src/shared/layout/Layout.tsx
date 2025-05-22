@@ -1,6 +1,6 @@
 import React, { FC, ReactNode } from 'react';
 
-import { Header } from '../Header/Header';
+import { Header } from 'shared/Header/Header';
 
 import styles from './layout.module.css';
 
