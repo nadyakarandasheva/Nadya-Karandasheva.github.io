@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { Layout } from 'shared/Layout/Layout';
 import { RoutingWrapper } from './navigation/RoutingWrapper';
+import { Layout } from 'widgets/Layout/Layout';
 
 import { useTokenSync } from './store/useTokenSync';
 

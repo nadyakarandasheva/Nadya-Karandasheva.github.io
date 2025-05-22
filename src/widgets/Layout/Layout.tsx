@@ -1,15 +1,25 @@
-import React, { FC } from 'react';
+import React, { FC, ReactNode } from 'react';
+
 import { Header } from 'shared/Header/Header';
 
-import style from './Layout.module.css';
+import styles from './Layout.module.css';
 
-export type LayoutProps = {
-  children: React.ReactNode;
-};
+/**
+ * Интерфесй компонента разметки страницы.
+ * @prop {ReactNode} children - Дочерние элементы.
+ */
+interface LayoutProps {
+  children: ReactNode;
+}
 
-export const Layout: FC<LayoutProps> = ({ children }) => (
-  <div className={style.root}>
+/**
+ * Компонент разметки страницы.
+ * @params {LayoutProps} params - Входные параметры компонента.
+ * @returns {JSX.Element}
+ */
+export const Layout: FC<LayoutProps> = ({ children }): JSX.Element => (
+  <div className={styles.container}>
     <Header />
-    {children}
+    <main>{children}</main>
   </div>
 );
