@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 
 import { useSelector } from 'react-redux';
 import { operationsSelectors } from './../../app/store/sagas/operations/operations';
-import { OperationDetail } from './../../features/OperationDetail/OperationDetail';
+import { OperationDetail } from 'features/OperationDetail/OperationDetail';
 
 import styles from './OperationsPage.module.css';
 
