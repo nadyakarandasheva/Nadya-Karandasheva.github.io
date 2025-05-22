@@ -33,7 +33,7 @@ jobs:
       # Запускаем тесты и линтер
       - name: Run tests and linter
         run: |
-          npx eslint src --ext .ts,.tsx --no-error-on-unmatched-pattern --resolve-plugins-relative-to . --config .eslintrc.json --parser-options=project:./tsconfig.json
+          npx eslint src --ext .ts,.tsx --config .eslintrc.ci.js
           npm test
 
       # Собираем приложение
