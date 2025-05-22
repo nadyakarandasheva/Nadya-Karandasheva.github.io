@@ -2,10 +2,10 @@ import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { OperationSummary } from '../operationSummary/OperationSummary';
-import { operationsActions, operationsSelectors } from 'src/app/store/sagas/operations/operations';
+import { operationsActions, operationsSelectors } from 'app/store/sagas/operations/operations';
+import { RootState } from 'app/store';
 
 import './operationsList.css';
-import { RootState } from 'src/app/store';
 
 /**
  * Компонент списка операций.

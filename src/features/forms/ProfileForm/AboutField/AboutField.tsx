@@ -4,7 +4,7 @@ import { FormikHandlers } from 'formik/dist/types';
 
 import { FormItem } from '../../../../shared/FormItem/FormItem';
 
-import { getValidates } from 'src/utils/validation';
+import { getValidates } from 'utils/validation';
 import { ProfileFormProps } from '../types';
 
 export type AboutFieldProps = Pick<ProfileFormProps, 'className' | 'disabled'> & {

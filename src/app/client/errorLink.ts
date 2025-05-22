@@ -1,7 +1,7 @@
 import { ErrorResponse, onError } from '@apollo/client/link/error';
 import { GraphQLError } from 'graphql';
-import { store } from 'src/app/store';
-import { tokenActions } from 'src/app/store/token';
+import { store } from 'app/store';
+import { tokenActions } from 'app/store/token';
 import { NOT_AUTHORIZED_CODE } from './config';
 
 export type Extensions = {

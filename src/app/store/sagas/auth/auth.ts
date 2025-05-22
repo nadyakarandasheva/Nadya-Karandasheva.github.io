@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Profile } from 'src/server.types';
+import { Profile } from 'server.types';
 
 interface AuthState {
   loading: boolean;

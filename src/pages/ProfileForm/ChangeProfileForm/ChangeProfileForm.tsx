@@ -4,15 +4,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useMutation } from '@apollo/client';
 import { FormikConfig, useFormik } from 'formik';
 
-import { profileActions, profileSelectors } from 'src/app/store/profile';
-import { ProfileForm } from 'src/features/forms/ProfileForm/ProfileForm';
-import { Title } from 'src/shared/Title/Title';
+import { profileActions, profileSelectors } from 'app/store/profile';
+import { ProfileForm } from 'features/forms/ProfileForm/ProfileForm';
+import { Title } from 'shared/Title/Title';
 import { UPDATE_PROFILE, UpdateProfileResponse, UpdateProfileVars } from './connection';
-import { ProfileFormErrors, ProfileFormValues } from 'src/features/forms/ProfileForm/types';
-import { isNotDefinedString } from 'src/utils/validation';
+import { ProfileFormErrors, ProfileFormValues } from 'features/forms/ProfileForm/types';
+import { isNotDefinedString } from 'utils/validation';
+import { tokenSelectors } from 'app/store/token';
 
 import styles from './ChangeProfileForm.module.css';
-import { tokenSelectors } from 'src/app/store/token';
 
 /**
  * Компонент формы изменения провиля.

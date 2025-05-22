@@ -4,10 +4,10 @@ import { FormikHandlers } from 'formik/dist/types';
 
 import { FormItem } from '../../../../shared/FormItem/FormItem';
 
-import { getValidates } from 'src/utils/validation';
+import { getValidates } from 'utils/validation';
 import { CreateOperationFormProps } from '../types';
 
-export type DescriptionFieldProps = Pick<CreateOperationFormProps, 'className' | 'disabled'> & {
+export type DescriptionFieldProps = Pick<CreateOperationFormProps, 'disabled'> & {
   submitCount: number;
   touched: boolean;
   errors: string;
@@ -17,11 +17,11 @@ export type DescriptionFieldProps = Pick<CreateOperationFormProps, 'className' |
 };
 
 export const DescriptionField = memo<DescriptionFieldProps>(
-  ({ className, onChange, onBlur, touched, value, errors, disabled, submitCount }) => {
+  ({ onChange, onBlur, touched, value, errors, disabled, submitCount }) => {
     const { validateStatus, help } = getValidates(errors, touched, submitCount);
 
     return (
-      <FormItem className={className} title={'Описание'} validateStatus={validateStatus} help={help}>
+      <FormItem title={'Описание'} validateStatus={validateStatus} help={help}>
         <Input.TextArea
           disabled={disabled}
           name="desc"

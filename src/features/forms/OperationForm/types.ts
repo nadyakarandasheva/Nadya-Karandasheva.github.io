@@ -1,5 +1,5 @@
-import { FormProps } from 'src/features/forms/types';
-import { Operation } from 'src/server.types';
+import { FormProps } from 'features/forms/types';
+import { Operation } from 'server.types';
 
 export type CreateOperationFormValues = {
   name?: string;

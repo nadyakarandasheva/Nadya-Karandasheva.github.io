@@ -2,12 +2,12 @@ import React, { memo } from 'react';
 import { Input } from 'antd';
 import { FormikHandlers } from 'formik';
 
-import { FormItem } from 'src/shared/FormItem/FormItem';
-import { getValidates } from 'src/utils/validation';
+import { FormItem } from 'shared/FormItem/FormItem';
+import { getValidates } from 'utils/validation';
 
 import { CreateOperationFormProps } from '../types';
 
-export type TitleFieldProps = Pick<CreateOperationFormProps, 'className' | 'disabled' | 'autoFocusElement'> & {
+export type TitleFieldProps = Pick<CreateOperationFormProps, 'disabled' | 'autoFocusElement'> & {
   submitCount: number;
   touched: boolean;
   errors: string;
@@ -18,11 +18,11 @@ export type TitleFieldProps = Pick<CreateOperationFormProps, 'className' | 'disa
 };
 
 export const TitleField = memo<TitleFieldProps>(
-  ({ className, onChange, onBlur, onPressEnter, autoFocusElement, touched, value, errors, disabled, submitCount }) => {
+  ({ onChange, onBlur, onPressEnter, autoFocusElement, touched, value, errors, disabled, submitCount }) => {
     const { validateStatus, help } = getValidates(errors, touched, submitCount);
 
     return (
-      <FormItem className={className} title="Название" required validateStatus={validateStatus} help={help}>
+      <FormItem title="Название" required validateStatus={validateStatus} help={help}>
         <Input
           disabled={disabled}
           ref={autoFocusElement}

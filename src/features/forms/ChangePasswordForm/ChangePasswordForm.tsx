@@ -9,11 +9,11 @@ import { NewPasswordField } from './NewPasswordField';
  * Компонент формы смены пароля.
  */
 export const ChangePasswordForm = memo<ChangePasswordFormProps>(
-  ({ className, formManager, formElement, autoFocusElement, disabled }) => {
+  ({ formManager, formElement, autoFocusElement, disabled }: ChangePasswordFormProps) => {
     const { values, touched, errors, submitCount, handleBlur, handleSubmit, handleChange, submitForm } = formManager;
 
     return (
-      <form ref={formElement} onSubmit={handleSubmit} className={className}>
+      <form ref={formElement} onSubmit={handleSubmit} >
         <PasswordField
           onPressEnter={submitForm}
           autoFocusElement={autoFocusElement}

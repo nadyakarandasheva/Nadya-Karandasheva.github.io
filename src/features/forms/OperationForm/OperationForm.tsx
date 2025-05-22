@@ -16,7 +16,7 @@ import styles from './OperationForm.module.css';
  * Форма создания/редактирования операции.
  */
 export const OperationForm = memo<CreateOperationFormProps>(
-  ({ className, formManager, formElement, autoFocusElement, disabled }) => {
+  ({ className, formManager, formElement, autoFocusElement, disabled }: CreateOperationFormProps) => {
     const { values, touched, errors, submitCount, handleBlur, handleSubmit, handleChange, submitForm } = formManager;
 
     return (

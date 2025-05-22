@@ -2,12 +2,12 @@ import React, { useState, FC } from 'react';
 import { useDispatch } from 'react-redux';
 import { Button } from 'antd';
 
-import { Title } from 'src/shared/Title/Title';
-import { Modal } from 'src/shared/modal/Modal';
-import { OperationsList } from 'src/features/OperationsList/OperationsList';
+import { Title } from 'shared/Title/Title';
+import { Modal } from 'shared/modal/Modal';
+import { OperationsList } from 'features/OperationsList/OperationsList';
 import { CreateOrEditOperationForm } from './CreateOrEditOperationForm/CreateOrEditOperationForm';
-import { CreateOperationFormValues } from 'src/features/forms/OperationForm/types';
-import { operationsActions } from 'src/app/store/sagas/operations/operations';
+import { CreateOperationFormValues } from 'features/forms/OperationForm/types';
+import { operationsActions } from 'app/store/sagas/operations/operations';
 import { CreateCategoryForm, CreateCategoryFormValues } from './CreateCategoryForm/CreateCategoryForm';
 
 import styels from './OperationsPageAdmin.module.css';

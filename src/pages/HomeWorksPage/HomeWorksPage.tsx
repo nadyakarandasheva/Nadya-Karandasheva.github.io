@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { RangeSlider } from 'src/shared/rangeSlider/RangeSlider';
-import { Collapse } from 'src/shared/Collapse/Collapse';
-import { Resizer } from 'src/shared/resizer/Resizer';
-import { Tip } from 'src/shared/tip/Tip';
+import { RangeSlider } from 'shared/rangeSlider/RangeSlider';
+import { Collapse } from 'shared/Collapse/Collapse';
+import { Resizer } from 'shared/resizer/Resizer';
+import { Tip } from 'shared/tip/Tip';
 import logo from '../../app/logo.svg';
 
 export const HomeWorksPage = () => {

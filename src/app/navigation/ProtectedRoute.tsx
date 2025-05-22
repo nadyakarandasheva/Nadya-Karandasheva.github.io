@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { useSelector } from 'react-redux';
 import { Navigate, useLocation } from 'react-router-dom';
-import { tokenSelectors } from 'src/app/store/token';
+import { tokenSelectors } from './../../app/store/token';
 import { RootState } from '../store';
 import { NavigationState } from './types';
 

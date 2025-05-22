@@ -5,7 +5,7 @@ import { UserOutlined } from '@ant-design/icons';
 
 import { FormItem } from '../../../../shared/FormItem/FormItem';
 
-import { getValidates } from 'src/utils/validation';
+import { getValidates } from 'utils/validation';
 import { ProfileFormProps } from '../types';
 
 export type NameFieldProps = Pick<ProfileFormProps, 'className' | 'disabled' | 'autoFocusElement'> & {

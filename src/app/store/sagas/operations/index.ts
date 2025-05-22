@@ -1,9 +1,9 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 
 import { PayloadAction } from '@reduxjs/toolkit';
-import { operationsApi } from 'src/app/client/operation-api';
+import { operationsApi } from 'app/client/operation-api';
 import { operationsActions } from './operations';
-import { CategoryFilters, CreateCategoryParams, OperationParams } from 'src/server.types';
+import { CategoryFilters, CreateCategoryParams, OperationParams } from 'server.types';
 
 function* fetchOperationsSaga(action: PayloadAction<any>): any {
   try {

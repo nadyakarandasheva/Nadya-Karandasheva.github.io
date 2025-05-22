@@ -1,4 +1,4 @@
-import { CategoryFilters, CreateCategoryParams, Filters } from 'src/server.types';
+import { CategoryFilters, CreateCategoryParams, Filters } from 'server.types';
 
 const BASE_URL = 'http://19429ba06ff2.vps.myjino.ru/api';
 

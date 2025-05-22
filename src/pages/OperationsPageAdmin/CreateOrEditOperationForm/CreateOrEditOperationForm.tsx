@@ -2,9 +2,9 @@ import { useFormik } from 'formik';
 import React, { useMemo, FC } from 'react';
 import { Button } from 'antd';
 
-import { CreateOperationFormValues } from 'src/features/forms/OperationForm/types';
-import { OperationForm } from 'src/features/forms/OperationForm/OperationForm';
-import { Operation } from 'src/server.types';
+import { CreateOperationFormValues } from 'features/forms/OperationForm/types';
+import { OperationForm } from 'features/forms/OperationForm/OperationForm';
+import { Operation } from 'server.types';
 
 interface CreateOrEditOperationFormProps {
   initialValues?: Partial<CreateOperationFormValues>;

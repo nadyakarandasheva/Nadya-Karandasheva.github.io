@@ -1,8 +1,8 @@
 import React, { FC, useMemo } from 'react';
 import { Routes, Route, Navigate, useLocation, Link } from 'react-router-dom';
-import { SingInBlock } from 'src/pages/AuthScreen/SingInBlock';
-import { SingUpBlock } from 'src/pages/AuthScreen/SingUpBlock';
-import { Title } from 'src/shared/Title/Title';
+import { SingInBlock } from 'pages/AuthScreen/SingInBlock';
+import { SingUpBlock } from 'pages/AuthScreen/SingUpBlock';
+import { Title } from 'shared/Title/Title';
 
 import styles from './AuthScreen.module.css';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { Login } from 'src/features/Login/Login';
+import { Login } from 'features/Login/Login';
 import { Logo } from '../logo/Logo';
 
 import './header.css';

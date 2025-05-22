@@ -4,11 +4,11 @@ import { FormikHandlers } from 'formik/dist/types';
 
 import { FormItem } from '../../../../shared/FormItem/FormItem';
 
-import { getValidates } from 'src/utils/validation';
+import { getValidates } from 'utils/validation';
 import { CreateOperationFormProps } from '../types';
-import { Operation } from 'src/server.types';
+import { Operation } from 'server.types';
 
-export type IOperationTypeFieldProps = Pick<CreateOperationFormProps, 'className' | 'disabled'> & {
+export type IOperationTypeFieldProps = Pick<CreateOperationFormProps, 'disabled'> & {
   value: Operation;
   onChange: FormikHandlers['handleChange'];
   onBlur: FormikHandlers['handleBlur'];

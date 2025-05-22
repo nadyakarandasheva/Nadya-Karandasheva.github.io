@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
-import { Mutation, ProfilePasswordMutationsChangeArgs } from 'src/server.types';
-import { get } from 'src/utils/unchanged';
+import { Mutation, ProfilePasswordMutationsChangeArgs } from 'server.types';
+import { get } from 'utils/unchanged';
 
 export type ChangePasswordVars = ProfilePasswordMutationsChangeArgs;
 export type ChangePasswordResponse = Pick<Mutation, 'profile'>;

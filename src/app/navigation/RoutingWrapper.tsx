@@ -2,13 +2,13 @@ import React, { FC } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import { ProtectedRoute } from './ProtectedRoute';
-import { ProfileCompletedForm } from 'src/pages/ProfileForm/ProfileForm';
-import { AuthScreen } from 'src/pages/AuthScreen/AuthScreen';
-import { OperationsPageAdmin } from 'src/pages/OperationsPageAdmin/OperationsPageAdmin';
-import { InitPage } from 'src/pages/InitialPage/InitPage';
+import { ProfileCompletedForm } from 'pages/ProfileForm/ProfileForm';
+import { AuthScreen } from 'pages/AuthScreen/AuthScreen';
+import { OperationsPageAdmin } from 'pages/OperationsPageAdmin/OperationsPageAdmin';
+import { InitPage } from 'pages/InitialPage/InitPage';
+import { OperationsPage } from 'pages/OperationsPage/OperationsPage';
 
 import { useLoginNavigate } from './useLoginNavigate';
-import { OperationsPage } from 'src/pages/OperationsPage/OperationsPage';
 
 /**
  * Компонент обертки роутинга.

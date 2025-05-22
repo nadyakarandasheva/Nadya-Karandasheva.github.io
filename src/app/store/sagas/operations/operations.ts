@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Category, CreateCategoryParams, OperationParams } from 'src/server.types';
+import { Category, CreateCategoryParams, OperationParams } from 'server.types';
 import { RootState } from '../..';
-import { CreateOperationFormValues } from 'src/features/forms/OperationForm/types';
+import { CreateOperationFormValues } from 'features/forms/OperationForm/types';
 
 interface OperationsState {
   operationId?: OperationParams | null;

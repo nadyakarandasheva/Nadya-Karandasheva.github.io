@@ -1,16 +1,16 @@
 import React, { memo } from 'react';
-import { AuthFormProps } from './types';
 import { PasswordField } from './PasswordField';
 import { EmailField } from './EmailField';
+import { AuthFormProps } from './types';
 
 /**
  * Компонент формы авторизации.
  */
-export const AuthForm = memo<AuthFormProps>(({ className, formManager, formElement, autoFocusElement, disabled }) => {
+export const AuthForm = memo<AuthFormProps>(({ formManager, formElement, autoFocusElement, disabled }: AuthFormProps) => {
   const { values, touched, errors, submitCount, handleBlur, handleSubmit, handleChange, submitForm } = formManager;
 
   return (
-    <form ref={formElement} onSubmit={handleSubmit} className={className}>
+    <form ref={formElement} onSubmit={handleSubmit} >
       <EmailField
         onPressEnter={submitForm}
         autoFocusElement={autoFocusElement}
@@ -30,8 +30,7 @@ export const AuthForm = memo<AuthFormProps>(({ className, formManager, formEleme
         errors={errors.password}
         submitCount={submitCount}
         touched={touched.password}
-        disabled={disabled}
-      />
+        disabled={disabled} />
     </form>
   );
 });

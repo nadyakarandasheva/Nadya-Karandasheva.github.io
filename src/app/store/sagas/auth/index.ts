@@ -1,7 +1,7 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
-import { api } from 'src/app/client/auth-api';
+import { api } from 'app/client/auth-api';
 import { tokenActions } from '../../token';
-import { Profile } from 'src/server.types';
+import { Profile } from 'server.types';
 import { profileActions } from '../../profile';
 
 function* handleAuth(action: {

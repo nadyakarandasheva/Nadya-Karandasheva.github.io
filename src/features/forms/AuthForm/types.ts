@@ -1,4 +1,4 @@
-import { FormProps } from 'src/features/forms/types';
+import { FormProps } from 'features/forms/types';
 
 export type AuthFormValues = {
   email: string;

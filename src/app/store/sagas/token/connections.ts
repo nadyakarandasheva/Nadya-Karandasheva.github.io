@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
-import { Query } from 'src/server.types';
-import { get } from 'src/utils/unchanged';
+import { Query } from 'server.types';
+import { get } from 'utils/unchanged';
 
 export type GetProfileResponse = Pick<Query, 'profile'>;
 export const GET_PROFILE = gql`

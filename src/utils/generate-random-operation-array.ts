@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import { IOperationSummary } from 'src/interfaces/operation-summary.interafce';
+import { IOperationSummary } from 'interfaces/operation-summary.interafce';
 
 export const generateRandomOperationArray = (count: number): IOperationSummary[] => {
   const data: IOperationSummary[] = [];

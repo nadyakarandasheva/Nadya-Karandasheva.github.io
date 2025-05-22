@@ -3,11 +3,11 @@ import { FormikConfig, useFormik } from 'formik';
 import { useMutation } from '@apollo/client';
 import { Button } from 'antd';
 
-import { ChangePasswordFormErrors, ChangePasswordFormValues } from 'src/features/forms/ChangePasswordForm/types';
-import { ChangePasswordForm } from 'src/features/forms/ChangePasswordForm';
-import { Title } from 'src/shared/Title/Title';
+import { ChangePasswordFormErrors, ChangePasswordFormValues } from 'features/forms/ChangePasswordForm/types';
+import { ChangePasswordForm } from 'features/forms/ChangePasswordForm';
+import { Title } from 'shared/Title/Title';
 
-import { isNotDefinedString } from 'src/utils/validation';
+import { isNotDefinedString } from 'utils/validation';
 import { CHANGE_PASSWORD, ChangePasswordResponse, ChangePasswordVars } from './connection';
 
 import styles from './ChangePasswordCompletedForm.module.css';

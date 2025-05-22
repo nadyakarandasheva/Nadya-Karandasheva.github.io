@@ -2,12 +2,12 @@ import React, { FC, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Button } from 'antd';
 
-import { Modal } from 'src/shared/modal/Modal';
-import { CreateOrEditOperationForm } from 'src/pages/OperationsPageAdmin/CreateOrEditOperationForm/CreateOrEditOperationForm';
+import { Modal } from 'shared/modal/Modal';
+import { CreateOrEditOperationForm } from 'pages/OperationsPageAdmin/CreateOrEditOperationForm/CreateOrEditOperationForm';
 
-import { operationsActions } from 'src/app/store/sagas/operations/operations';
+import { operationsActions } from 'app/store/sagas/operations/operations';
 import { CreateOperationFormValues } from '../forms/OperationForm/types';
-import { OperationParams } from 'src/server.types';
+import { OperationParams } from 'server.types';
 
 import './operationSummary.css';
 

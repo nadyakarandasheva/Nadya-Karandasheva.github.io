@@ -5,10 +5,10 @@ import dayjs from 'dayjs';
 
 import { FormItem } from '../../../../shared/FormItem/FormItem';
 
-import { getValidates } from 'src/utils/validation';
+import { getValidates } from 'utils/validation';
 import { CreateOperationFormProps } from '../types';
 
-export type DateFieldProps = Pick<CreateOperationFormProps, 'className' | 'disabled'> & {
+export type DateFieldProps = Pick<CreateOperationFormProps, 'disabled'> & {
   submitCount: number;
   touched: boolean;
   errors: string;
@@ -19,11 +19,11 @@ export type DateFieldProps = Pick<CreateOperationFormProps, 'className' | 'disab
 };
 
 export const DateField = memo<DateFieldProps>(
-  ({ className, onChange, onBlur, touched, value, errors, disabled, submitCount }) => {
+  ({ onChange, onBlur, touched, value, errors, disabled, submitCount }) => {
     const { validateStatus, help } = getValidates(errors, touched, submitCount);
 
     return (
-      <FormItem className={className} title={'Описание'} validateStatus={validateStatus} help={help}>
+      <FormItem title={'Описание'} validateStatus={validateStatus} help={help}>
         <DatePicker
           name="date"
           disabled={disabled}

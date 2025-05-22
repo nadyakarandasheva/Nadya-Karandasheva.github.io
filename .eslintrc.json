@@ -38,7 +38,9 @@
             "version": "detect"
         },
         "import/resolver": {
-            "typescript": {},
+            "typescript": {
+                "project": "./tsconfig.json"
+            },
             "node": {
                 "paths": [
                     "."

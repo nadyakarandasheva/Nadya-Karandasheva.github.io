@@ -7,8 +7,8 @@ import './i18n';
 import App from './app/App';
 import { ClientProvider } from './app/client/ClientProvider';
 import { Initializer } from './app/store/Initializer';
-import { LanguageProvider } from 'src/context/LanguageProvider';
-import { ThemeProvider } from 'src/context/ThemeProvider';
+import { LanguageProvider } from './context/LanguageProvider';
+import { ThemeProvider } from './context/ThemeProvider';
 import { store } from './app/store';
 
 import './app/index.css';

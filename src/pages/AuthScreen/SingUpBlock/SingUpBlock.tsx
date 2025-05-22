@@ -5,9 +5,9 @@ import { Button, message } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
 
-import { AuthForm, AuthFormErrors, AuthFormValues } from 'src/features/forms/AuthForm';
-import { isLongEnough, isNotDefinedString, isValidEmail } from 'src/utils/validation';
-import { tokenSelectors } from 'src/app/store/token';
+import { AuthForm, AuthFormErrors, AuthFormValues } from 'features/forms/AuthForm';
+import { isLongEnough, isNotDefinedString, isValidEmail } from 'utils/validation';
+import { tokenSelectors } from 'app/store/token';
 
 import style from './SingUpBlock.module.css';
 

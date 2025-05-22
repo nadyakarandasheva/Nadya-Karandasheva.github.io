@@ -2,8 +2,8 @@ import React, { memo } from 'react';
 import { Input } from 'antd';
 import { FormikHandlers } from 'formik/dist/types';
 import { LockOutlined } from '@ant-design/icons';
-import { FormItem } from 'src/shared/FormItem/FormItem';
-import { getValidates } from 'src/utils/validation';
+import { FormItem } from 'shared/FormItem/FormItem';
+import { getValidates } from 'utils/validation';
 import { ChangePasswordFormProps } from '../types';
 
 export type PasswordFieldProps = Pick<ChangePasswordFormProps, 'className' | 'disabled' | 'autoFocusElement'> & {

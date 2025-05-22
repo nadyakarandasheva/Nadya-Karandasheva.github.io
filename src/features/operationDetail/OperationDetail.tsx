@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import { OperationParams } from 'src/server.types';
+import { OperationParams } from './../../server.types';
 
 import './OperationDetail.css';
 

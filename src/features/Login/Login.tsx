@@ -5,7 +5,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { tokenSelectors, tokenActions } from 'src/app/store/token';
+import { tokenSelectors, tokenActions } from './../../app/store/token';
 import { RootState } from '../../app/store';
 
 import s from './Login.module.css';

@@ -5,12 +5,12 @@ import { Button, message } from 'antd';
 import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import { AuthForm, AuthFormErrors, AuthFormValues } from 'src/features/forms/AuthForm';
-import { isLongEnough, isNotDefinedString, isValidEmail } from 'src/utils/validation';
-import { createErrorHandlers } from 'src/utils/createErrorHandlers';
-import { tokenActions } from 'src/app/store/token';
-import { profileActions } from 'src/app/store/profile';
-import { api } from 'src/app/client/auth-api';
+import { AuthForm, AuthFormErrors, AuthFormValues } from 'features/forms/AuthForm';
+import { isLongEnough, isNotDefinedString, isValidEmail } from 'utils/validation';
+import { createErrorHandlers } from 'utils/createErrorHandlers';
+import { tokenActions } from 'app/store/token';
+import { profileActions } from 'app/store/profile';
+import { api } from 'app/client/auth-api';
 
 import styles from './SingInBlock.module.css';
 

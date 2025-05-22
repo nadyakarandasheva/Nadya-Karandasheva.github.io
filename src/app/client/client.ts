@@ -1,9 +1,9 @@
 import { ApolloClient, createHttpLink, InMemoryCache, from } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-import { errorLink } from 'src/app/client/errorLink';
-import { storage } from 'src/utils/storage';
-import { URL } from 'src/app/client/config';
-import { TOKEN_KEY } from 'src/app/store/token';
+import { errorLink } from './../../app/client/errorLink';
+import { storage } from './../../utils/storage';
+import { URL } from './../../app/client/config';
+import { TOKEN_KEY } from './../../app/store/token';
 import possibleTypes from './possibleTypes.json';
 
 const httpLink = createHttpLink({

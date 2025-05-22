@@ -1,4 +1,4 @@
-import { URL } from 'src/app/client/config';
+import { URL } from './../../app/client/config';
 
 export const myCustomFetch = <T = Response>(input: string, init?: RequestInit): Promise<T> =>
   fetch(`${URL}${input}`, init).then(async (res) => {

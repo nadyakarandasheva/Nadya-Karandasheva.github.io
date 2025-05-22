@@ -3,11 +3,11 @@ import Input from 'antd/lib/input';
 import { FormikHandlers } from 'formik/dist/types';
 import { LockOutlined } from '@ant-design/icons';
 
-import { AuthFormProps } from 'src/features/forms/AuthForm';
-import { FormItem } from 'src/shared/FormItem/FormItem';
-import { getValidates } from 'src/utils/validation';
+import { AuthFormProps } from 'features/forms/AuthForm';
+import { FormItem } from 'shared/FormItem/FormItem';
+import { getValidates } from 'utils/validation';
 
-export type PasswordFieldProps = Pick<AuthFormProps, 'className' | 'disabled'> & {
+export type PasswordFieldProps = Pick<AuthFormProps, 'disabled'> & {
   submitCount: number;
   touched: boolean;
   errors: string;
@@ -21,11 +21,11 @@ export type PasswordFieldProps = Pick<AuthFormProps, 'className' | 'disabled'> &
  * Компонент поля ввода пароля.
  */
 export const PasswordField = memo<PasswordFieldProps>(
-  ({ className, onChange, onBlur, onPressEnter, touched, value, errors, disabled, submitCount }) => {
+  ({ onChange, onBlur, onPressEnter, touched, value, errors, disabled, submitCount }) => {
     const { validateStatus, help } = getValidates(errors, touched, submitCount);
 
     return (
-      <FormItem className={className} title={'Пароль'} required validateStatus={validateStatus} help={help}>
+      <FormItem title={'Пароль'} required validateStatus={validateStatus} help={help}>
         <Input.Password
           prefix={<LockOutlined />}
           onPressEnter={onPressEnter}
