@@ -28,3 +28,5 @@ export const OperationDetail: FC<OperationParams> = ({ amount, category, name, d
     </div>
   );
 };
+
+OperationDetail.displayName = 'OperationDetail'
