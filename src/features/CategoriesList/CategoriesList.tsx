@@ -6,6 +6,7 @@ import { CreateOrEditCategoryForm, CreateOrEditCategoryFormValues } from 'pages/
 import { operationsActions } from 'app/store/sagas/operations/operations';
 import { Modal } from 'shared/modal/Modal';
 import { RootState } from 'app/store';
+import { Category } from 'server.types';
 
 import styles from './CategoriesList.module.css';
 
@@ -14,7 +15,7 @@ import styles from './CategoriesList.module.css';
  * @returns
  */
 export const CategoriesList = () => {
-  const [categoryId, setCategoryId] = useState<string>(null);
+  const [categoryData, setCategoryData] = useState<Category>(null);
 
   const dispatch = useDispatch();
 
@@ -28,24 +29,24 @@ export const CategoriesList = () => {
     dispatch(
       operationsActions.updateCategory({
         ...values,
-        id: categoryId
+        id: categoryData.id
       })
     );
 
-    setTimeout(() => setCategoryId(null), 2000);
+    setTimeout(() => setCategoryData(null), 2000);
   };
 
 
   return (
-    <div className={styles.categoriesListContainer}>
-      {categories.map((category) => <>
-        <Button type="text" onClick={() => setCategoryId(category?.id)}>{category.name}</Button>
-        {categoryId && (
-          <Modal onClose={() => setCategoryId(null)}>
-            <CreateOrEditCategoryForm onSubmit={handleCreateCategory} id={category.id} initialValues={category} />
-          </Modal>
-        )}
-      </>)}
-    </div>
+    <>
+      <div className={styles.categoriesListContainer}>
+        {categories.map((category) => <Button type="text" onClick={() => setCategoryData(category)}>{category.name}</Button>)}
+      </div>
+      {categoryData && (
+        <Modal onClose={() => setCategoryData(null)}>
+          <CreateOrEditCategoryForm onSubmit={handleCreateCategory} id={categoryData.id} initialValues={categoryData} />
+        </Modal>
+      )}
+    </>
   );
 };
