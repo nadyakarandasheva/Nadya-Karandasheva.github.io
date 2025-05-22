@@ -1,15 +1,14 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { FC } from "react";
-import { Button } from "antd";
+import React, { useState, FC } from 'react';
+import { useDispatch } from 'react-redux';
+import { Button } from 'antd';
 
-import { Title } from "src/shared/Title/Title";
-import { Modal } from "src/shared/modal/Modal";
-import { OperationsList } from "src/features/OperationsList/OperationsList";
-import { CreateOrEditOperationForm } from "./CreateOrEditOperationForm/CreateOrEditOperationForm";
-import { CreateOperationFormValues } from "src/features/forms/OperationForm/types";
-import { operationsActions } from "src/app/store/sagas/operations/operations";
-import { CreateCategoryForm, CreateCategoryFormValues } from "./CreateCategoryForm/CreateCategoryForm";
+import { Title } from 'src/shared/Title/Title';
+import { Modal } from 'src/shared/modal/Modal';
+import { OperationsList } from 'src/features/OperationsList/OperationsList';
+import { CreateOrEditOperationForm } from './CreateOrEditOperationForm/CreateOrEditOperationForm';
+import { CreateOperationFormValues } from 'src/features/forms/OperationForm/types';
+import { operationsActions } from 'src/app/store/sagas/operations/operations';
+import { CreateCategoryForm, CreateCategoryFormValues } from './CreateCategoryForm/CreateCategoryForm';
 
 import styels from './OperationsPageAdmin.module.css';
 
@@ -28,31 +27,48 @@ export const OperationsPageAdmin: FC = () => {
     );
 
     setTimeout(() => setIsModalOpen(false), 2000);
-  }
+  };
 
   const handleCreateCategory = (values: CreateCategoryFormValues) => {
     dispatch(
       operationsActions.createCategoryRequest({
-        ...values
+        ...values,
       })
     );
 
     setTimeout(() => setIsCategoryModalOpen(false), 2000);
   };
 
-
   return (
     <div className={styels.page}>
       <div className={styels.headerContainer}>
         <Title>{'Управление операциями'}</Title>
-        <Button onClick={() => { setIsModalOpen(true) }}>{'Добавить операцию'}</Button>
-        <Button onClick={() => { setIsCategoryModalOpen(true) }}>{'Создать категорию'}</Button>
+        <Button
+          onClick={() => {
+            setIsModalOpen(true);
+          }}
+        >
+          {'Добавить операцию'}
+        </Button>
+        <Button
+          onClick={() => {
+            setIsCategoryModalOpen(true);
+          }}
+        >
+          {'Создать категорию'}
+        </Button>
       </div>
       <OperationsList />
-      {isModalOpen && <Modal onClose={() => setIsModalOpen(false)}>
-        <CreateOrEditOperationForm onSubmit={handleSubmit} /></Modal>}
-      {isCategoryModalOpen && <Modal onClose={() => setIsCategoryModalOpen(false)}>
-        <CreateCategoryForm onSubmit={handleCreateCategory} /></Modal>}
+      {isModalOpen && (
+        <Modal onClose={() => setIsModalOpen(false)}>
+          <CreateOrEditOperationForm onSubmit={handleSubmit} />
+        </Modal>
+      )}
+      {isCategoryModalOpen && (
+        <Modal onClose={() => setIsCategoryModalOpen(false)}>
+          <CreateCategoryForm onSubmit={handleCreateCategory} />
+        </Modal>
+      )}
     </div>
-  )
-}
+  );
+};

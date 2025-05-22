@@ -22,17 +22,10 @@ export type PasswordFieldProps = Pick<AuthFormProps, 'className' | 'disabled'> &
  */
 export const PasswordField = memo<PasswordFieldProps>(
   ({ className, onChange, onBlur, onPressEnter, touched, value, errors, disabled, submitCount }) => {
-
     const { validateStatus, help } = getValidates(errors, touched, submitCount);
 
     return (
-      <FormItem
-        className={className}
-        title={'Пароль'}
-        required
-        validateStatus={validateStatus}
-        help={help}
-      >
+      <FormItem className={className} title={'Пароль'} required validateStatus={validateStatus} help={help}>
         <Input.Password
           prefix={<LockOutlined />}
           onPressEnter={onPressEnter}
@@ -48,3 +41,5 @@ export const PasswordField = memo<PasswordFieldProps>(
     );
   }
 );
+
+PasswordField.displayName = 'PasswordField';

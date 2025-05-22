@@ -203,15 +203,15 @@ export type Filters = {
   date?: {
     gte?: string; // от - дата в виде строки new Date().toISOString() 2023-09-19T10:37:16.389+00:00
     lte?: string; // до - дата в виде строки new Date().toISOString() 2023-09-19T10:37:16.389+00:00
-  }
+  };
   createdAt?: {
     gte?: string; // от - дата в виде строки new Date().toISOString() 2023-09-19T10:37:16.389+00:00
     lte?: string; // до - дата в виде строки new Date().toISOString() 2023-09-19T10:37:16.389+00:00
-  }
+  };
   updatedAt?: {
     gte?: string; // от - дата в виде строки new Date().toISOString() 2023-09-19T10:37:16.389+00:00
     lte?: string; // до - дата в виде строки new Date().toISOString() 2023-09-19T10:37:16.389+00:00
-  }
+  };
   sorting?: {
     type: 'ASC' | 'DESC';
     field: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'date';
@@ -227,31 +227,7 @@ export type Category = {
   commandId: string;
 };
 
-type Cost = {
-  id: string;
-  name: string;
-  desc?: string;
-  createdAt: Date;
-  updatedAt: Date;
-  amount: number;
-  category: Category;
-  commandId: string;
-  type: 'Cost';
-};
-
-type Profit = {
-  id: string;
-  name: string;
-  desc?: string;
-  createdAt: Date;
-  updatedAt: Date;
-  amount: number;
-  category: Category;
-  commandId: string;
-  type: 'Profit';
-};
-
-export type Operation = 'Profit' | 'Cost'
+export type Operation = 'Profit' | 'Cost';
 
 export type OperationParams = {
   id?: string;
@@ -262,7 +238,6 @@ export type OperationParams = {
   type?: Operation;
   category?: Category;
 };
-
 
 export type CategoryFilters = {
   name?: string;

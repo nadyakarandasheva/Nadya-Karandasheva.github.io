@@ -22,17 +22,10 @@ export type PasswordFieldProps = Pick<ChangePasswordFormProps, 'className' | 'di
  */
 export const RepeatPasswordField = memo<PasswordFieldProps>(
   ({ className, onChange, onBlur, onPressEnter, touched, value, errors, disabled, submitCount }) => {
-
     const { validateStatus, help } = getValidates(errors, touched, submitCount);
 
     return (
-      <FormItem
-        className={className}
-        title={'Повторите пароль'}
-        required
-        validateStatus={validateStatus}
-        help={help}
-      >
+      <FormItem className={className} title={'Повторите пароль'} required validateStatus={validateStatus} help={help}>
         <Input.Password
           prefix={<LockOutlined />}
           onPressEnter={onPressEnter}

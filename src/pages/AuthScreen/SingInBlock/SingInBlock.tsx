@@ -91,3 +91,5 @@ export const SingInBlock = memo<SingInBlockProps>(({ className }) => {
     </div>
   );
 });
+
+SingInBlock.displayName = 'SingInBlock';

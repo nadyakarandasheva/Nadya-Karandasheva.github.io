@@ -8,17 +8,16 @@ import './header.css';
 
 /**
  * Компонент шапки страницы.
- * @returns {JSX.Element} 
+ * @returns {JSX.Element}
  */
 export const Header = (): JSX.Element => {
-
   return (
-    <header className={"header"}>
+    <header className={'header'}>
       <Logo />
       <Link to="/operations-admin">Операции (Админ)</Link>
       <Link to="/operations">Операции</Link>
       <Link to="/profile">Профиль пользователя</Link>
       <Login />
     </header>
-  )
+  );
 };

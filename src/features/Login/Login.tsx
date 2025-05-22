@@ -12,12 +12,12 @@ import s from './Login.module.css';
 
 interface LoginProps {
   className?: string;
-};
+}
 
 /**
  * Компонент перехода к авторизации пользователя.
- * @param param0 
- * @returns 
+ * @param param0
+ * @returns
  */
 export const Login: FC<LoginProps> = ({ className }) => {
   const dispatch = useDispatch();

@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
-import { memo } from 'react';
-import { Input, Select } from 'antd';
+import React, { useEffect, memo } from 'react';
+import { Select } from 'antd';
 import { FormikHandlers } from 'formik';
 
 import { FormItem } from 'src/shared/FormItem/FormItem';
@@ -11,7 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'src/app/store';
 import { operationsActions } from 'src/app/store/sagas/operations/operations';
 
-export type CategoryFieldProps = Pick<CreateOperationFormProps, 'className' | 'disabled' | 'autoFocusElement'> & {
+export type CategoryFieldProps = Pick<CreateOperationFormProps, 'className' | 'disabled'> & {
   submitCount: number;
   touched: boolean;
   errors: string;
@@ -22,16 +21,13 @@ export type CategoryFieldProps = Pick<CreateOperationFormProps, 'className' | 'd
 };
 
 export const CategoryField = memo<CategoryFieldProps>(
-  ({ className, onChange, onBlur, onPressEnter, autoFocusElement, touched, value, errors, disabled, submitCount }) => {
-
+  ({ className, onChange, onBlur, touched, value, errors, disabled, submitCount }) => {
     const dispatch = useDispatch();
 
     const categories = useSelector((state: RootState) => state.operations.categories);
 
     useEffect(() => {
-      dispatch(
-        operationsActions.fetchCategoriesRequest()
-      );
+      dispatch(operationsActions.fetchCategoriesRequest());
     }, [dispatch]);
 
     const { validateStatus, help } = getValidates(errors, touched, submitCount);
@@ -46,13 +42,7 @@ export const CategoryField = memo<CategoryFieldProps>(
     };
 
     return (
-      <FormItem
-        className={className}
-        title="Категория"
-        required
-        validateStatus={validateStatus}
-        help={help}
-      >
+      <FormItem className={className} title="Категория" required validateStatus={validateStatus} help={help}>
         <Select
           showSearch
           placeholder="Выберите категорию"
@@ -76,3 +66,5 @@ export const CategoryField = memo<CategoryFieldProps>(
     );
   }
 );
+
+CategoryField.displayName = 'CategoryField';

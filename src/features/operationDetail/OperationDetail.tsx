@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 
 import { OperationParams } from 'src/server.types';
 
-import './operationDetail.css';
+import './OperationDetail.css';
 
 /**
  * Компонент полного отображения операции.
@@ -10,10 +10,10 @@ import './operationDetail.css';
  * @returns {JSX.Element}
  */
 export const OperationDetail: FC<OperationParams> = ({ amount, category, name, desc, date }): JSX.Element => {
-  const formattedDate = new Date(date).toLocaleDateString("ru-RU", {
-    day: "2-digit",
-    month: "long",
-    year: "numeric",
+  const formattedDate = new Date(date).toLocaleDateString('ru-RU', {
+    day: '2-digit',
+    month: 'long',
+    year: 'numeric',
   });
 
   return (

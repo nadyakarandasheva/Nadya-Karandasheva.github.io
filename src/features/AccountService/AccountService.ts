@@ -6,8 +6,8 @@ export class AccountService {
 
   /**
    * Установка глобальной скидки для типа пользователя.
-   * @param userType 
-   * @param discount 
+   * @param userType
+   * @param discount
    */
   setGlobalDiscount(userType: UserType, discount: number): void {
     this.globalDiscounts.set(userType, discount);
@@ -15,9 +15,9 @@ export class AccountService {
 
   /**
    * Установка скидки на конкретный товар для типа пользователя.
-   * @param userType 
-   * @param productType 
-   * @param discount 
+   * @param userType
+   * @param productType
+   * @param discount
    */
   setProductDiscount(userType: UserType, productType: ProductType, discount: number): void {
     if (!this.productDiscounts.has(userType)) {
@@ -29,8 +29,8 @@ export class AccountService {
 
   /**
    * Получение глобальной скидки пользователя.
-   * @param userType 
-   * @returns 
+   * @param userType
+   * @returns
    */
   getGlobalDiscount(userType: UserType): number {
     return this.globalDiscounts.get(userType) ?? 0;
@@ -38,9 +38,9 @@ export class AccountService {
 
   /**
    * Получение скидки на товар для пользователя.
-   * @param userType 
-   * @param productType 
-   * @returns 
+   * @param userType
+   * @param productType
+   * @returns
    */
   getProductDiscount(userType: UserType, productType: ProductType): number {
     return this.productDiscounts.get(userType)?.get(productType) ?? 0;
@@ -48,9 +48,9 @@ export class AccountService {
 
   /**
    * Получение полной скидки с учетом пользовательской и товарной.
-   * @param userType 
-   * @param productType 
-   * @returns 
+   * @param userType
+   * @param productType
+   * @returns
    */
   getTotalDiscount(userType: UserType, productType: ProductType): number {
     return this.getGlobalDiscount(userType) + this.getProductDiscount(userType, productType);

@@ -4,10 +4,6 @@ import './logo.css';
 
 /**
  * Компонент логотипа.
- * @returns 
+ * @returns
  */
-export const Logo = () => (
-  <div className="logo">
-    Logo
-  </div>
-);
+export const Logo = () => <div className="logo">Logo</div>;

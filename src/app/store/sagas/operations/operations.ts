@@ -9,9 +9,9 @@ interface OperationsState {
     data: OperationParams[];
     loading: boolean;
     error: string | null;
-    pagination: { pageSize: number, pageNumber: number, total: number },
-    sorting: { type: string, field: string }
-  },
+    pagination: { pageSize: number; pageNumber: number; total: number };
+    sorting: { type: string; field: string };
+  };
   loading: boolean;
   error: string | null;
   categories: Category[];
@@ -28,7 +28,7 @@ const initialState: OperationsState = {
   },
   loading: false,
   error: null,
-  categories: []
+  categories: [],
 };
 
 export const operationsSlice = createSlice({
@@ -74,12 +74,12 @@ export const operationsSlice = createSlice({
       state.filter.error = action.payload;
       state.filter.loading = false;
     },
-    updateOperation: (state, _action: PayloadAction<{ id: string, data: any }>) => {
+    updateOperation: (state, _action: PayloadAction<{ id: string; data: any }>) => {
       state.filter.loading = true;
     },
     updateOperationSuccess: (state, action: PayloadAction<OperationParams>) => {
       state.operationId = action.payload;
-      state.filter.data = state.filter.data.map(op => op.name === action.payload.name ? action.payload : op);
+      state.filter.data = state.filter.data.map((op) => (op.name === action.payload.name ? action.payload : op));
       state.filter.loading = false;
     },
     updateOperationFailure: (state, action: PayloadAction<string>) => {

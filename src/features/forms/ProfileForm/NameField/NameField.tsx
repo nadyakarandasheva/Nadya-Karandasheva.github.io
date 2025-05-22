@@ -19,17 +19,10 @@ export type NameFieldProps = Pick<ProfileFormProps, 'className' | 'disabled' | '
 
 export const NameField = memo<NameFieldProps>(
   ({ className, onChange, onBlur, autoFocusElement, touched, value, errors, disabled, submitCount }) => {
-
     const { validateStatus, help } = getValidates(errors, touched, submitCount);
 
     return (
-      <FormItem
-        className={className}
-        title={'Псевдоним'}
-        required
-        validateStatus={validateStatus}
-        help={help}
-      >
+      <FormItem className={className} title={'Псевдоним'} required validateStatus={validateStatus} help={help}>
         <Input
           prefix={<UserOutlined />}
           disabled={disabled}
@@ -46,3 +39,5 @@ export const NameField = memo<NameFieldProps>(
     );
   }
 );
+
+NameField.displayName = 'NameField';

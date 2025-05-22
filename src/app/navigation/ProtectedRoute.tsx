@@ -7,8 +7,8 @@ import { NavigationState } from './types';
 
 /**
  * Компонент защищенного роута.
- * @param param0 
- * @returns 
+ * @param param0
+ * @returns
  */
 export const ProtectedRoute: FC<{ children: React.ReactNode }> = ({ children }) => {
   const token = useSelector<RootState, RootState['token']>(tokenSelectors.get);

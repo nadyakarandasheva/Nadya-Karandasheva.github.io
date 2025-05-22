@@ -66,3 +66,5 @@ export const ChangePasswordCompletedForm = memo(() => {
     </div>
   );
 });
+
+ChangePasswordCompletedForm.displayName = 'ChangePasswordCompletedForm';

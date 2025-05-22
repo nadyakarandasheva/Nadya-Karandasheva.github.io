@@ -25,10 +25,18 @@ interface IButtonProps {
 
 /**
  * Компонент кнопки.
- * @prop {IButtonProps} param - Входные параметры компонента. 
- * @returns {JSX.Element} 
+ * @prop {IButtonProps} param - Входные параметры компонента.
+ * @returns {JSX.Element}
  */
-export const Button: FC<IButtonProps> = ({ label, isPrimary, backgroundColor, size, isDisabled = false, onClick, ...props }): JSX.Element => {
+export const Button: FC<IButtonProps> = ({
+  label,
+  isPrimary,
+  backgroundColor,
+  size,
+  isDisabled = false,
+  onClick,
+  ...props
+}): JSX.Element => {
   const mode = isPrimary ? 'storybook-button--primary' : 'storybook-button--secondary';
 
   /**

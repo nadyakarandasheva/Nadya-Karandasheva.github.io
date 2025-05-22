@@ -19,7 +19,7 @@ const root = createRoot(container);
 root.render(
   <BrowserRouter>
     <ClientProvider>
-      <Provider store={store} >
+      <Provider store={store}>
         <Initializer />
         <LanguageProvider>
           <ThemeProvider>
@@ -29,7 +29,4 @@ root.render(
       </Provider>
     </ClientProvider>
   </BrowserRouter>
-
 );
-
-

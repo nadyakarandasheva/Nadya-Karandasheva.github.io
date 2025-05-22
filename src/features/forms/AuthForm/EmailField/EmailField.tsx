@@ -22,17 +22,10 @@ export type EmailFieldProps = Pick<AuthFormProps, 'className' | 'disabled' | 'au
  */
 export const EmailField = memo<EmailFieldProps>(
   ({ className, onChange, onBlur, onPressEnter, autoFocusElement, touched, value, errors, disabled, submitCount }) => {
-
     const { validateStatus, help } = getValidates(errors, touched, submitCount);
 
     return (
-      <FormItem
-        className={className}
-        title={'Email'}
-        required
-        validateStatus={validateStatus}
-        help={help}
-      >
+      <FormItem className={className} title={'Email'} required validateStatus={validateStatus} help={help}>
         <Input
           prefix={<UserOutlined />}
           disabled={disabled}
@@ -51,3 +44,5 @@ export const EmailField = memo<EmailFieldProps>(
     );
   }
 );
+
+EmailField.displayName = 'EmailField';

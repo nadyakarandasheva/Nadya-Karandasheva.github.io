@@ -1,5 +1,4 @@
-import React from 'react';
-import { memo } from 'react';
+import React, { memo } from 'react';
 import { Input } from 'antd';
 import { FormikHandlers } from 'formik';
 
@@ -20,17 +19,10 @@ export type TitleFieldProps = Pick<CreateOperationFormProps, 'className' | 'disa
 
 export const TitleField = memo<TitleFieldProps>(
   ({ className, onChange, onBlur, onPressEnter, autoFocusElement, touched, value, errors, disabled, submitCount }) => {
-
     const { validateStatus, help } = getValidates(errors, touched, submitCount);
 
     return (
-      <FormItem
-        className={className}
-        title="Название"
-        required
-        validateStatus={validateStatus}
-        help={help}
-      >
+      <FormItem className={className} title="Название" required validateStatus={validateStatus} help={help}>
         <Input
           disabled={disabled}
           ref={autoFocusElement}
@@ -48,3 +40,5 @@ export const TitleField = memo<TitleFieldProps>(
     );
   }
 );
+
+TitleField.displayName = 'TitleField';

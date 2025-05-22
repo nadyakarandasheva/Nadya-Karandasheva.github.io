@@ -8,7 +8,7 @@ const savedToken = localStorage.getItem('token');
 
 export const tokenSlice = createSlice({
   name: 'token',
-  initialState: savedToken ?? null as string | null,
+  initialState: savedToken ?? (null as string | null),
   reducers: {
     set: (_, action: PayloadAction<string>) => {
       localStorage.setItem('token', action.payload);

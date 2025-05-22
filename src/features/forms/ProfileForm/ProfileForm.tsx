@@ -37,3 +37,5 @@ export const ProfileForm = memo<ProfileFormProps>(
     );
   }
 );
+
+ProfileForm.displayName = 'ProfileForm';

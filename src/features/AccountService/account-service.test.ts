@@ -21,8 +21,8 @@ describe('AccountService', () => {
   });
 
   describe('Скидки на товары', () => {
-    const cases: [UserType, ProductType][] = Object.values(UserType).flatMap(userType =>
-      Object.values(ProductType).map(productType => [userType, productType] as [UserType, ProductType])
+    const cases: [UserType, ProductType][] = Object.values(UserType).flatMap((userType) =>
+      Object.values(ProductType).map((productType) => [userType, productType] as [UserType, ProductType])
     );
 
     it.each(cases)('устанавливает и получает скидку для пользователя %s на товар %s', (userType, productType) => {

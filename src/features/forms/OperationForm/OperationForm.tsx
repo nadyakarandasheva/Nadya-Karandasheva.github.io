@@ -1,5 +1,4 @@
-import React from 'react';
-import { memo } from 'react';
+import React, { memo } from 'react';
 import cn from 'clsx';
 
 import { AmountField } from './AmountField/AmountField';
@@ -87,3 +86,5 @@ export const OperationForm = memo<CreateOperationFormProps>(
     );
   }
 );
+
+OperationForm.displayName = 'OperationForm';

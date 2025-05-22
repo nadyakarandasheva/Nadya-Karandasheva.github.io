@@ -20,16 +20,10 @@ export type DateFieldProps = Pick<CreateOperationFormProps, 'className' | 'disab
 
 export const DateField = memo<DateFieldProps>(
   ({ className, onChange, onBlur, touched, value, errors, disabled, submitCount }) => {
-
     const { validateStatus, help } = getValidates(errors, touched, submitCount);
 
     return (
-      <FormItem
-        className={className}
-        title={'Описание'}
-        validateStatus={validateStatus}
-        help={help}
-      >
+      <FormItem className={className} title={'Описание'} validateStatus={validateStatus} help={help}>
         <DatePicker
           name="date"
           disabled={disabled}
@@ -43,7 +37,7 @@ export const DateField = memo<DateFieldProps>(
               },
             } as React.ChangeEvent<HTMLInputElement>);
           }}
-          onBlur={(e) =>
+          onBlur={() =>
             onBlur({
               target: {
                 name: 'date',
@@ -56,3 +50,5 @@ export const DateField = memo<DateFieldProps>(
     );
   }
 );
+
+DateField.displayName = 'DateField';

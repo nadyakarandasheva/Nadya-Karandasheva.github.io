@@ -18,16 +18,10 @@ export type DescriptionFieldProps = Pick<CreateOperationFormProps, 'className' |
 
 export const DescriptionField = memo<DescriptionFieldProps>(
   ({ className, onChange, onBlur, touched, value, errors, disabled, submitCount }) => {
-
     const { validateStatus, help } = getValidates(errors, touched, submitCount);
 
     return (
-      <FormItem
-        className={className}
-        title={'Описание'}
-        validateStatus={validateStatus}
-        help={help}
-      >
+      <FormItem className={className} title={'Описание'} validateStatus={validateStatus} help={help}>
         <Input.TextArea
           disabled={disabled}
           name="desc"
@@ -40,3 +34,5 @@ export const DescriptionField = memo<DescriptionFieldProps>(
     );
   }
 );
+
+DescriptionField.displayName = 'DescriptionField';

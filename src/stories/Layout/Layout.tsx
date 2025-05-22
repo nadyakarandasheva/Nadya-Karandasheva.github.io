@@ -1,5 +1,4 @@
-import React from 'react';
-import { FC, ReactNode } from 'react';
+import React, { FC, ReactNode } from 'react';
 
 import { CustomHeader } from '../CustomHeader/CustomHeader';
 
@@ -16,7 +15,7 @@ interface LayoutProps {
 /**
  * Компонент разметки страницы.
  * @params {LayoutProps} params - Входные параметры компонента.
- * @returns 
+ * @returns
  */
 export const Layout: FC<LayoutProps> = ({ children }) => (
   <div className="container">

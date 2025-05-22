@@ -1,23 +1,22 @@
-import React, { useEffect, useMemo } from "react";
-import { FC } from "react";
-import { Button } from "antd";
-import { useDispatch, useSelector } from "react-redux";
-import { useMutation } from "@apollo/client";
-import { FormikConfig, useFormik } from "formik";
+import React, { useEffect, useMemo, FC } from 'react';
+import { Button } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
+import { useMutation } from '@apollo/client';
+import { FormikConfig, useFormik } from 'formik';
 
-import { profileActions, profileSelectors } from "src/app/store/profile";
-import { ProfileForm } from "src/features/forms/ProfileForm/ProfileForm";
-import { Title } from "src/shared/Title/Title";
-import { UPDATE_PROFILE, UpdateProfileResponse, UpdateProfileVars } from "./connection";
-import { ProfileFormErrors, ProfileFormValues } from "src/features/forms/ProfileForm/types";
-import { isNotDefinedString } from "src/utils/validation";
+import { profileActions, profileSelectors } from 'src/app/store/profile';
+import { ProfileForm } from 'src/features/forms/ProfileForm/ProfileForm';
+import { Title } from 'src/shared/Title/Title';
+import { UPDATE_PROFILE, UpdateProfileResponse, UpdateProfileVars } from './connection';
+import { ProfileFormErrors, ProfileFormValues } from 'src/features/forms/ProfileForm/types';
+import { isNotDefinedString } from 'src/utils/validation';
 
 import styles from './ChangeProfileForm.module.css';
-import { tokenSelectors } from "src/app/store/token";
+import { tokenSelectors } from 'src/app/store/token';
 
 /**
  * Компонент формы изменения провиля.
- * @returns 
+ * @returns
  */
 export const ChangeProfileForm: FC = () => {
   const token = useSelector(tokenSelectors.get);
@@ -26,13 +25,15 @@ export const ChangeProfileForm: FC = () => {
   useEffect(() => {
     if (token) {
       /** моковые данные профиля */
-      dispatch(profileActions.set({
-        name: 'Надежда',
-        about: 'Что-то о себе',
-        id: "1",
-        signUpDate: "",
-        email: "test_nadya@mail.ru",
-      }));
+      dispatch(
+        profileActions.set({
+          name: 'Надежда',
+          about: 'Что-то о себе',
+          id: '1',
+          signUpDate: '',
+          email: 'test_nadya@mail.ru',
+        })
+      );
     } else {
       dispatch(profileActions.clear());
     }
@@ -51,7 +52,7 @@ export const ChangeProfileForm: FC = () => {
         about: profile?.about,
       },
       onSubmit: (values) => {
-        console.log('Изменение профиля', values)
+        console.log('Изменение профиля', values);
       },
       validate: (values) => {
         const errors = {} as ProfileFormErrors;
@@ -83,5 +84,5 @@ export const ChangeProfileForm: FC = () => {
         {'Сохранить'}
       </Button>
     </div>
-  )
-}
+  );
+};

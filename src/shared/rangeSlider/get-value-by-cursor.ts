@@ -1,4 +1,4 @@
-import { getValueInRange } from "./get-value-in-range";
+import { getValueInRange } from './get-value-in-range';
 
 export const getValueByCursor = ({
   min,

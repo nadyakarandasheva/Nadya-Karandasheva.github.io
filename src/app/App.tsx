@@ -14,8 +14,7 @@ function App() {
     <Layout>
       <RoutingWrapper />
     </Layout>
-
-  )
+  );
 }
 
 export default App;

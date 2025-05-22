@@ -1,4 +1,4 @@
-import { IOperationSummary } from "./operation-summary.interafce";
+import { IOperationSummary } from './operation-summary.interafce';
 
 /**
  * Интерфейс деталей операции.

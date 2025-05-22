@@ -12,21 +12,34 @@ import { OperationsPage } from 'src/pages/OperationsPage/OperationsPage';
 
 /**
  * Компонент обертки роутинга.
- * @returns 
+ * @returns
  */
 export const RoutingWrapper: FC = () => {
-
   useLoginNavigate();
 
   return (
     <Routes>
-      <Route path='/nadyakarandasheva.github.io/Nadya-Karandasheva.github.io/' element={<InitPage />} />
+      <Route path="/nadyakarandasheva.github.io/Nadya-Karandasheva.github.io/" element={<InitPage />} />
       <Route path="auth" element={<AuthScreen />}>
         <Route path=":mode" element={<AuthScreen />} />
       </Route>
-      <Route path="profile" element={<ProtectedRoute><ProfileCompletedForm /></ProtectedRoute>} />
+      <Route
+        path="profile"
+        element={
+          <ProtectedRoute>
+            <ProfileCompletedForm />
+          </ProtectedRoute>
+        }
+      />
       <Route path="operations" element={<OperationsPage />} />
-      <Route path="operations-admin" element={<ProtectedRoute><OperationsPageAdmin /></ProtectedRoute>} />
+      <Route
+        path="operations-admin"
+        element={
+          <ProtectedRoute>
+            <OperationsPageAdmin />
+          </ProtectedRoute>
+        }
+      />
     </Routes>
   );
 };

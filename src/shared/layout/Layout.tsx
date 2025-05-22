@@ -1,5 +1,4 @@
-import React from 'react';
-import { FC, ReactNode } from 'react';
+import React, { FC, ReactNode } from 'react';
 
 import { Header } from '../Header/Header';
 
@@ -16,7 +15,7 @@ interface LayoutProps {
 /**
  * Компонент разметки страницы.
  * @params {LayoutProps} params - Входные параметры компонента.
- * @returns {JSX.Element} 
+ * @returns {JSX.Element}
  */
 export const Layout: FC<LayoutProps> = ({ children }): JSX.Element => (
   <div className={styles.container}>

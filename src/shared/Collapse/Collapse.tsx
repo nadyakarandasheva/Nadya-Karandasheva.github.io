@@ -11,7 +11,7 @@ export type CollapseProps = {
   className?: string;
   children: React.ReactNode;
   opened: boolean;
-  onClick: () => void
+  onClick: () => void;
 };
 
 export type CollapseState = {
@@ -29,7 +29,7 @@ export enum CollapseActionType {
 /**
  * Компонент сворачаевого элемента.
  * @param {CollapseProps} param - Входные параметры компонента.
- * @returns 
+ * @returns
  */
 export const Collapse: FC<CollapseProps> = forwardRef<HTMLDivElement, CollapseProps>(
   ({ className, opened, children, onClick }, ref) => {
@@ -71,15 +71,14 @@ export const Collapse: FC<CollapseProps> = forwardRef<HTMLDivElement, CollapsePr
         <Button label={'Collapse button'} onClick={onClick} />
         <div ref={root} className={cn('root', className)}>
           {state.mounted && (
-            <div
-              ref={wrapper}
-              onTransitionEnd={onTransitionEnd}
-              className={cn('wrapper', state.opened && 'opened')}
-            >
+            <div ref={wrapper} onTransitionEnd={onTransitionEnd} className={cn('wrapper', state.opened && 'opened')}>
               {children}
             </div>
           )}
         </div>
       </div>
     );
-  });
+  }
+);
+
+Collapse.displayName = 'Collapse';

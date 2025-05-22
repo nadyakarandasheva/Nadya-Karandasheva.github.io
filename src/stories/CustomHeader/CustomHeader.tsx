@@ -6,7 +6,7 @@ import './CustomHeader.css';
 
 /**
  * Компонент шапки страницы.
- * @returns 
+ * @returns
  */
 export const CustomHeader = () => (
   <header className="header">

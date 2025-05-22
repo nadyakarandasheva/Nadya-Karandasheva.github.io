@@ -1,4 +1,4 @@
-import { CategoryFilters, CreateCategoryParams, Filters } from "src/server.types";
+import { CategoryFilters, CreateCategoryParams, Filters } from 'src/server.types';
 
 const BASE_URL = 'http://19429ba06ff2.vps.myjino.ru/api';
 
@@ -17,9 +17,7 @@ export const operationsApi = {
     }
 
     const res = await fetch(`${BASE_URL}/operations?${params.toString()}`, {
-      headers: token
-        ? { Authorization: `Bearer ${token}` }
-        : {},
+      headers: token ? { Authorization: `Bearer ${token}` } : {},
     });
 
     if (!res.ok) {
@@ -31,9 +29,7 @@ export const operationsApi = {
 
   async fetchOperationById(id: string, token?: string) {
     const res = await fetch(`${BASE_URL}/operations/${id}`, {
-      headers: token
-        ? { Authorization: `Bearer ${token}` }
-        : {},
+      headers: token ? { Authorization: `Bearer ${token}` } : {},
     });
 
     if (!res.ok) {
@@ -70,7 +66,6 @@ export const operationsApi = {
   },
 
   async fetchCategories(token: string) {
-
     const res = await fetch(`${BASE_URL}/categories`, {
       headers: {
         Authorization: token ? `Bearer ${token}` : '',
@@ -98,5 +93,5 @@ export const operationsApi = {
     }
 
     return res.json();
-  }
+  },
 };

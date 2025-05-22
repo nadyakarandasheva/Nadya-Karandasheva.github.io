@@ -5,10 +5,10 @@ import './logo.css';
 
 /**
  * Компонент логотипа.
- * @returns {JSX.Element} 
+ * @returns {JSX.Element}
  */
 export const Logo = (): JSX.Element => (
-  <Link to='/' className={"logo"}>
+  <Link to="/" className={'logo'}>
     Logo
   </Link>
 );

@@ -35,3 +35,5 @@ export const AuthForm = memo<AuthFormProps>(({ className, formManager, formEleme
     </form>
   );
 });
+
+AuthForm.displayName = 'AuthForm';

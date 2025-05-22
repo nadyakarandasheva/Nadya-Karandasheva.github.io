@@ -17,7 +17,7 @@ export const CreateCategoryForm: React.FC<Props> = ({ onSubmit, initialValues })
       name: initialValues?.name || '',
       photo: initialValues?.photo || '',
     },
-    validate: values => {
+    validate: (values) => {
       const errors: Partial<Record<keyof CreateCategoryFormValues, string>> = {};
       if (!values.name.trim()) {
         errors.name = 'Введите название категории';
@@ -33,7 +33,8 @@ export const CreateCategoryForm: React.FC<Props> = ({ onSubmit, initialValues })
   return (
     <form onSubmit={formik.handleSubmit}>
       <div>
-        <label htmlFor="name">Название категории</label><br />
+        <label htmlFor="name">Название категории</label>
+        <br />
         <input
           id="name"
           name="name"
@@ -43,13 +44,12 @@ export const CreateCategoryForm: React.FC<Props> = ({ onSubmit, initialValues })
           onBlur={formik.handleBlur}
           placeholder="Введите название"
         />
-        {formik.touched.name && formik.errors.name && (
-          <div style={{ color: 'red' }}>{formik.errors.name}</div>
-        )}
+        {formik.touched.name && formik.errors.name && <div style={{ color: 'red' }}>{formik.errors.name}</div>}
       </div>
 
       <div>
-        <label htmlFor="photo">Фото (URL)</label><br />
+        <label htmlFor="photo">Фото (URL)</label>
+        <br />
         <input
           id="photo"
           name="photo"

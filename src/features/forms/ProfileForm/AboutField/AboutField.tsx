@@ -18,16 +18,10 @@ export type AboutFieldProps = Pick<ProfileFormProps, 'className' | 'disabled'> &
 
 export const AboutField = memo<AboutFieldProps>(
   ({ className, onChange, onBlur, touched, value, errors, disabled, submitCount }) => {
-
     const { validateStatus, help } = getValidates(errors, touched, submitCount);
 
     return (
-      <FormItem
-        className={className}
-        title={'О себе'}
-        validateStatus={validateStatus}
-        help={help}
-      >
+      <FormItem className={className} title={'О себе'} validateStatus={validateStatus} help={help}>
         <Input.TextArea
           disabled={disabled}
           name="about"

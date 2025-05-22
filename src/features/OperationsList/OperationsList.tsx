@@ -1,15 +1,15 @@
-import React, { useEffect, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { OperationSummary } from "../operationSummary/OperationSummary";
-import { operationsActions, operationsSelectors } from "src/app/store/sagas/operations/operations";
+import { OperationSummary } from '../operationSummary/OperationSummary';
+import { operationsActions, operationsSelectors } from 'src/app/store/sagas/operations/operations';
 
 import './operationsList.css';
-import { RootState } from "src/app/store";
+import { RootState } from 'src/app/store';
 
 /**
  * Компонент списка операций.
- * @returns 
+ * @returns
  */
 export const OperationsList = () => {
   const dispatch = useDispatch();
@@ -24,10 +24,12 @@ export const OperationsList = () => {
 
   // Запрос первой страницы
   useEffect(() => {
-    dispatch(operationsActions.fetchOperations({
-      pagination: { pageSize, pageNumber: 1 },
-      sorting: { type: 'DESC', field: 'createdAt' }
-    }));
+    dispatch(
+      operationsActions.fetchOperations({
+        pagination: { pageSize, pageNumber: 1 },
+        sorting: { type: 'DESC', field: 'createdAt' },
+      })
+    );
   }, [dispatch]);
 
   // Подгрузка при скролле
@@ -37,10 +39,12 @@ export const OperationsList = () => {
       const hasMore = (pagination?.pageSize || 0) * (pagination?.pageNumber || 1) < (total || 0);
 
       if (entry.isIntersecting && !loading && hasMore) {
-        dispatch(operationsActions.fetchOperations({
-          pagination: { pageSize, pageNumber: nextPage },
-          sorting: { type: 'DESC', field: 'createdAt' }
-        }));
+        dispatch(
+          operationsActions.fetchOperations({
+            pagination: { pageSize, pageNumber: nextPage },
+            sorting: { type: 'DESC', field: 'createdAt' },
+          })
+        );
       }
     });
 

@@ -27,9 +27,7 @@ export const SingUpBlock = memo<SingUpBlockProps>(({ className }) => {
 
   const token = useSelector(tokenSelectors.get);
 
-  const { onSubmit, validate } = useMemo<
-    Pick<FormikConfig<AuthFormValues>, 'onSubmit' | 'validate'>
-  >(() => {
+  const { onSubmit, validate } = useMemo<Pick<FormikConfig<AuthFormValues>, 'onSubmit' | 'validate'>>(() => {
     return {
       onSubmit: async (values, { resetForm }) => {
         try {
@@ -87,3 +85,5 @@ export const SingUpBlock = memo<SingUpBlockProps>(({ className }) => {
     </div>
   );
 });
+
+SingUpBlock.displayName = 'SingUpBlock';

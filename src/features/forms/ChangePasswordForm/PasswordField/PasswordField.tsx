@@ -6,7 +6,6 @@ import { FormItem } from 'src/shared/FormItem/FormItem';
 import { getValidates } from 'src/utils/validation';
 import { ChangePasswordFormProps } from '../types';
 
-
 export type PasswordFieldProps = Pick<ChangePasswordFormProps, 'className' | 'disabled' | 'autoFocusElement'> & {
   submitCount: number;
   touched: boolean;
@@ -22,17 +21,10 @@ export type PasswordFieldProps = Pick<ChangePasswordFormProps, 'className' | 'di
  */
 export const PasswordField = memo<PasswordFieldProps>(
   ({ className, onChange, onBlur, onPressEnter, touched, value, errors, disabled, submitCount, autoFocusElement }) => {
-
     const { validateStatus, help } = getValidates(errors, touched, submitCount);
 
     return (
-      <FormItem
-        className={className}
-        title={'Пароль'}
-        required
-        validateStatus={validateStatus}
-        help={help}
-      >
+      <FormItem className={className} title={'Пароль'} required validateStatus={validateStatus} help={help}>
         <Input.Password
           ref={autoFocusElement}
           prefix={<LockOutlined />}

@@ -1,9 +1,14 @@
 import React, { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 import i18n from 'i18next';
 
-export const LanguageContext = createContext({
+type LanguageContextType = {
+  currentLang: string;
+  switchLanguage: (lang: string) => void;
+};
+
+export const LanguageContext = createContext<LanguageContextType>({
   currentLang: 'ru',
-  switchLanguage: (lang: string) => { },
+  switchLanguage: (lang: string) => undefined,
 });
 
 /**
@@ -37,9 +42,5 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
     }
   };
 
-  return (
-    <LanguageContext.Provider value={{ currentLang, switchLanguage }}>
-      {children}
-    </LanguageContext.Provider>
-  );
+  return <LanguageContext.Provider value={{ currentLang, switchLanguage }}>{children}</LanguageContext.Provider>;
 };

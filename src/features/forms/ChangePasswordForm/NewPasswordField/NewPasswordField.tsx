@@ -21,17 +21,10 @@ export type NewPasswordFieldProps = Pick<ChangePasswordFormProps, 'className' | 
  */
 export const NewPasswordField = memo<NewPasswordFieldProps>(
   ({ className, onChange, onBlur, onPressEnter, touched, value, errors, disabled, submitCount }) => {
-
     const { validateStatus, help } = getValidates(errors, touched, submitCount);
 
     return (
-      <FormItem
-        className={className}
-        title={'Новый пароль'}
-        required
-        validateStatus={validateStatus}
-        help={help}
-      >
+      <FormItem className={className} title={'Новый пароль'} required validateStatus={validateStatus} help={help}>
         <Input.Password
           prefix={<LockOutlined />}
           onPressEnter={onPressEnter}
@@ -48,3 +41,4 @@ export const NewPasswordField = memo<NewPasswordFieldProps>(
   }
 );
 
+NewPasswordField.displayName = 'NewPasswordField';
