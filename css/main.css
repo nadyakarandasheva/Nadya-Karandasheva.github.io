@@ -225,6 +225,38 @@
   align-content: center;
   align-items: center;
 }
+
+._388e3XqrrtcukvZ3eZk4 {
+  width: 800px;
+}
+
+.kl_Kfgf8KAsjP1JuwqsQ {
+  list-style: none;
+  padding: 1.5rem;
+  border-radius: 12px;
+  background: #f9fafb;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  font-family: 'Segoe UI', sans-serif;
+  line-height: 1.6;
+  font-size: 1rem;
+  color: #333;
+  margin: 2rem 0;
+}
+
+.kl_Kfgf8KAsjP1JuwqsQ li {
+  position: relative;
+  padding-left: 1.75rem;
+  margin-bottom: 0.8rem;
+}
+
+.kl_Kfgf8KAsjP1JuwqsQ li::before {
+  content: '✔';
+  position: absolute;
+  left: 0;
+  top: 0.1rem;
+  color: #10b981;
+  font-weight: bold;
+}
 .i4qCGV6jBlWlGXeDjn9y {
   border: 1px solid #ddd;
   padding: 20px;
