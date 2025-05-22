@@ -29,4 +29,4 @@ export const OperationDetail: FC<OperationParams> = ({ amount, category, name, d
   );
 };
 
-OperationDetail.displayName = 'OperationDetail'
+OperationDetail.displayName = 'OperationDetail';
