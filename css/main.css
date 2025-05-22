@@ -145,7 +145,7 @@
   width: 100%;
   max-width: 500px;
 }
-.container {
+.fwYo1Fi9RBEVUgBomoxZ {
   width: 100%;
   max-width: 600px;
   display: flex;
@@ -160,46 +160,61 @@
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
-.summaryHeader {
+.NDv9Oc0BFusxVMF1Gbde {
   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 
-.amount {
+.e4DqM9evnpxijrmeua2w {
   font-size: 18px;
   font-weight: bold;
   margin-right: 10px;
   color: #007bff;
 }
 
-.details {
+.SQI_lp1jj8Pmw9oUA3ij {
   flex: 1;
 }
 
-.category {
+.SgHQfLRYsMdWJqBySaqI {
   font-size: 14px;
   color: #888;
 }
 
-.title {
+.e4Djg_FEacf6lFuAbBzg {
   font-size: 16px;
   font-weight: bold;
   margin-top: 4px;
 }
 
-.description {
+.ssjc7zOvR4qmIDqzJO3T {
   font-size: 14px;
   color: #555;
   margin-top: 2px;
 }
-.operationsListContainer {
+.GPcNXeaxsraXKdGDHGsJ {
   width: fit-content;
   display: flex;
   flex-direction: column;
   row-gap: 20px;
   padding: 20px;
+}
+.CIV988vBpwuArm1gRkf3 {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  padding: 20px;
+}
+
+.dLVk16zBY2cJmnH_R4Ke {
+  padding: 4px 6px;
+  cursor: pointer;
+  border: 1px solid gainsboro;
+  border-radius: 15px;
+  text-align: center;
 }
 .v4WVk5tKJuBSyVXlC5JA {
   width: 100%;
@@ -216,6 +231,11 @@
   flex-direction: row;
   column-gap: 32px;
   justify-content: space-between;
+}
+
+.fFqWzv14lTWvVxQw4scC {
+  display: flex;
+  column-gap: 48px;
 }
 .OBXj84xsy68tyLWGzSb4 {
   width: 100%;
