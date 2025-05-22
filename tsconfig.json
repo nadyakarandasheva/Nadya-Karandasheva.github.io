@@ -3,8 +3,20 @@
 		"outDir": "./dist",
 		"baseUrl": "src",
 		"paths": {
-			"src/*": [
-				"src/*"
+			"shared/*": [
+				"shared/*"
+			],
+			"widgets/*": [
+				"widgets/*"
+			],
+			"features/*": [
+				"features/*"
+			],
+			"entities/*": [
+				"entities/*"
+			],
+			"pages/*": [
+				"pages/*"
 			]
 		},
 		"lib": [
