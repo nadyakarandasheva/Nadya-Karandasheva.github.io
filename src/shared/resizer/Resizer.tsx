@@ -1,7 +1,7 @@
 import React, { FC, useMemo, useRef, useState } from 'react';
 import cn from 'clsx';
 
-import './resizer.css'
+import './resizer.css';
 
 export type Size = { width: number; height: number };
 
@@ -16,8 +16,8 @@ const MIN_SIZE = 32;
 
 /**
  * Компонент контейнера изменяющего размер.
- * @param {ResizerProps} param - Входные параметры компонента. 
- * @returns 
+ * @param {ResizerProps} param - Входные параметры компонента.
+ * @returns
  */
 export const Resizer: FC<ResizerProps> = ({ className, children, initialWidth, initialHeight }) => {
   const root = useRef<HTMLDivElement>();

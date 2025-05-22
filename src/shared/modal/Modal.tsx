@@ -14,8 +14,8 @@ export interface IModalProps {
 
 /**
  * Компонент модального окна.
- * @param {IModalProps} param - Входные параметры компонента. 
- * @returns {JSX.Element} 
+ * @param {IModalProps} param - Входные параметры компонента.
+ * @returns {JSX.Element}
  */
 export const Modal: FC<IModalProps> = ({ children, onClose }): JSX.Element => {
   return (

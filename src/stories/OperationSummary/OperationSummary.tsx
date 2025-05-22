@@ -19,7 +19,7 @@ interface IOperationSummaryProps {
 /**
  * Компонент краткого отображения операции.
  * @params {IOperationSummaryProps} params - Входные параметры компонента.
- * @returns 
+ * @returns
  */
 export const OperationSummary: FC<IOperationSummaryProps> = ({ amount, category, title, description }) => {
   return (

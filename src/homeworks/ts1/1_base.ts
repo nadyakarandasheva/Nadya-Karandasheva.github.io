@@ -4,38 +4,38 @@
  * @prop {number} y - Значение y.
  */
 interface ICoordinate {
-  x: number,
-  y: number
+  x: number;
+  y: number;
 }
 
 /**
  * Удаляет знак плюса.
- * @param {string} value - Текст, где необходимо удалить знак плюса. 
- * @returns {string} - Текст без знака плюс. 
+ * @param {string} value - Текст, где необходимо удалить знак плюса.
+ * @returns {string} - Текст без знака плюс.
  */
 export const removePlus = (value: string): string => value.replace(/^\+/, '');
 
 /**
  * Добавляет знак плюса.
- * @param {string} value - Текст, где необходимо добавить знак плюса. 
- * @returns {string} - Текст со знаком плюс. 
+ * @param {string} value - Текст, где необходимо добавить знак плюса.
+ * @returns {string} - Текст со знаком плюс.
  */
 export const addPlus = (value: string): string => `+${value}`;
 
 /**
  * Удаляет нули вначале строчки.
- * @param {string} value - Текст, где необходимо удалить нули. 
- * @returns {string} - Текст без нулей вначале. 
+ * @param {string} value - Текст, где необходимо удалить нули.
+ * @returns {string} - Текст без нулей вначале.
  */
 export const removeFirstZeros = (value: string): string => value.replace(/^(-)?[0]+(-?\d+.*)$/, '$1$2');
 
 /**
  * Форматирует строку числа, добавляя разделитель.
- * @param {string | number} value - Значение, которое нужно отформатировать. 
+ * @param {string | number} value - Значение, которое нужно отформатировать.
  * @param {string | undefined} separator - Разделитель.
  * @returns {string} - Строчка с разделителем.
  */
-export const getBeautifulNumber = (value: string | number, separator: string = ' '): string =>
+export const getBeautifulNumber = (value: string | number, separator = ' '): string =>
   value?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, separator);
 
 /**
@@ -79,7 +79,7 @@ export const getColorContrastValue = ([red, green, blue]: [number, number, numbe
 /**
  * Тип контраста.
  */
-type ContrastType = "black" | "white"
+type ContrastType = 'black' | 'white';
 
 /**
  * Получает тип контраста.
@@ -128,8 +128,8 @@ export const hex2rgb = (color: string): [number, number, number] => {
  * @prop {number} number - Число.
  */
 interface INumberedArrayObject {
-  value: number,
-  number: number
+  value: number;
+  number: number;
 }
 
 /**
@@ -137,7 +137,8 @@ interface INumberedArrayObject {
  * @param {number[]} arr - Массив.
  * @returns {INumberedArrayObject[]} - Пронумерованный массив.
  */
-export const getNumberedArray = (arr: number[]): INumberedArrayObject[] => arr.map((value, number) => ({ value, number }));
+export const getNumberedArray = (arr: number[]): INumberedArrayObject[] =>
+  arr.map((value, number) => ({ value, number }));
 
 /**
  * Возвращает массив значений приведенных к строчке.
@@ -146,11 +147,8 @@ export const getNumberedArray = (arr: number[]): INumberedArrayObject[] => arr.m
  * @param key2 - Второй ключ для формирования строки.
  * @returns {string[]} - Массив значений приведенных к строчке.
  */
-export const toStringArray = <T extends Record<string, any>>(
-  arr: T[],
-  key1: keyof T,
-  key2: keyof T
-) => arr.map((item) => `${item[key1]}_${item[key2]}`);
+export const toStringArray = <T extends Record<string, any>>(arr: T[], key1: keyof T, key2: keyof T) =>
+  arr.map((item) => `${item[key1]}_${item[key2]}`);
 
 /**
  * Интерфейс клиента.
@@ -179,8 +177,8 @@ interface TransformedCustomers {
 
 /**
  * Изменение клиента.
- * @param {Customer[]} customers -  клиенты. 
- * @returns 
+ * @param {Customer[]} customers -  клиенты.
+ * @returns
  */
 export const transformCustomers = (customers: Customer[]): TransformedCustomers => {
   return customers.reduce((acc: TransformedCustomers, customer) => {

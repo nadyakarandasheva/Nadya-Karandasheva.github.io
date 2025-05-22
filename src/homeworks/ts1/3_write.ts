@@ -12,10 +12,10 @@
  * @prop {string | undefined} photo - Фотография.
  */
 export type Category = {
-  id: string,
-  name: string,
-  photo?: string
-}
+  id: string;
+  name: string;
+  photo?: string;
+};
 
 /**
  * Тип продукта.
@@ -29,15 +29,15 @@ export type Category = {
  * @prop {string | undefined} desc - Скидка.
  */
 export type Product = {
-  id: string,
-  name: string,
-  photo: string,
-  createdAt: string,
-  price: number,
-  category: Category,
-  oldPrice?: number,
-  desc?: string
-}
+  id: string;
+  name: string;
+  photo: string;
+  createdAt: string;
+  price: number;
+  category: Category;
+  oldPrice?: number;
+  desc?: string;
+};
 
 /**
  * Тип операции - Трата.
@@ -88,7 +88,6 @@ export type Operation = Cost | Profit;
  * @returns {Product} - Продукт.
  *  */
 export const createRandomProduct = (createdAt: string): Product => {
-
   const categoryNames = ['category1', 'category2', 'category3'];
 
   const categoryName = categoryNames[Math.floor(Math.random() * categoryNames.length)];
@@ -117,14 +116,12 @@ export const createRandomProduct = (createdAt: string): Product => {
   };
 };
 
-
 /**
  * Создает случайную операцию (Operation).
  * @param {string} createdAt - Дата создания.
  * @returns {Operation} - Операция.
  * */
 export const createRandomOperation = (createdAt: string): Operation => {
-
   const categoryNames = ['category1', 'category2', 'category3'];
 
   const categoryName = categoryNames[Math.floor(Math.random() * categoryNames.length)];

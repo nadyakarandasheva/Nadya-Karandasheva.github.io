@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { Collapse } from '../shared/Collapse/Collapse';
 
-
 const meta: Meta<typeof Collapse> = {
   title: 'Example/Collapse',
   component: Collapse,

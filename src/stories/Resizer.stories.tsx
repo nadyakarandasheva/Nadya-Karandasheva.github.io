@@ -14,10 +14,6 @@ export const Default: Story = {
   args: {
     initialHeight: 100,
     initialWidth: 200,
-    children: () => (
-      <div>
-        This is resizer content
-      </div>
-    ),
+    children: () => <div>This is resizer content</div>,
   },
 };

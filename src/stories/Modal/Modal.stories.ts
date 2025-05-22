@@ -18,7 +18,8 @@ export const Visible = {
   args: {
     isVisible: true,
     children: 'This is a modal',
-    onClose: () => { },
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    onClose: () => {},
   },
 };
 
@@ -26,6 +27,7 @@ export const Hidden = {
   args: {
     isVisible: false,
     children: 'This is a modal',
-    onClose: () => { },
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    onClose: () => {},
   },
 };

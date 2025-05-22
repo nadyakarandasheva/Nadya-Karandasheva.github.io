@@ -1,29 +1,29 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
-import { ThemeToggle } from '../themeToggle/ThemeToggle';
+import { Login } from 'features/Login/Login';
 import { Logo } from '../logo/Logo';
 
-import { useTheme } from 'src/context/ThemeProvider';
-import { LanguageToggle } from '../LanguageToggle/LanguageToggle';
+import { RootState } from 'app/store';
+import { tokenSelectors } from 'app/store/token';
 
-import './header.css';
+import styles from './Header.module.css';
+
 
 /**
  * Компонент шапки страницы.
- * @returns {JSX.Element} 
+ * @returns {JSX.Element}
  */
 export const Header = (): JSX.Element => {
-
-  const { theme, toggleTheme } = useTheme();
-
+  const token = useSelector<RootState, RootState['token']>(tokenSelectors.get);
   return (
-    <header className={"header"}>
+    <header className={styles.header}>
       <Logo />
-      <div className={"switchersContainer"}>
-        <ThemeToggle theme={theme} onClick={toggleTheme} />
-        <LanguageToggle />
-      </div>
+      {token && <Link to="/operations-admin">Операции (Админ)</Link>}
+      <Link to="/operations">Операции</Link>
+      <Link to="/profile">Профиль пользователя</Link>
+      <Login />
     </header>
-  )
+  );
 };

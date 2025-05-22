@@ -1,11 +1,10 @@
-import React, { useMemo } from "react"
-import { FC } from "react"
+import React, { useMemo, FC } from 'react';
 import cn from 'clsx';
 
-import { getValueByCursor } from "./get-value-by-cursor";
-import { getValueInRange } from "./get-value-in-range";
+import { getValueByCursor } from './get-value-by-cursor';
+import { getValueInRange } from './get-value-in-range';
 
-import './rangeSlider.css'
+import './rangeSlider.css';
 
 export interface IRangeSliderProps {
   className?: string;
@@ -17,8 +16,8 @@ export interface IRangeSliderProps {
 
 /**
  * Компонент слайдера с диапазоном.
- * @param {IRangeSliderProps} params  - Входные параметры компонента. 
- * @returns 
+ * @param {IRangeSliderProps} params  - Входные параметры компонента.
+ * @returns
  */
 export const RangeSlider: FC<IRangeSliderProps> = ({ className, value, onChange, min, max }) => {
   const range = max - min;
@@ -76,7 +75,14 @@ export const RangeSlider: FC<IRangeSliderProps> = ({ className, value, onChange,
       <div onMouseDown={onStart} onTouchStart={onStart} className={'field'} onClick={onClick}>
         <div className={'runner'} style={{ left: ((VALUE_IN_RANGE - min) / range) * 100 + '%' }}></div>
       </div>
-      <input type="number" min={min} max={max} className={cn('rangeSliderInput', className)} value={value} onChange={handleChange} />
+      <input
+        type="number"
+        min={min}
+        max={max}
+        className={cn('rangeSliderInput', className)}
+        value={value}
+        onChange={handleChange}
+      />
     </div>
   );
-}
+};

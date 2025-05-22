@@ -1,7 +1,7 @@
-import React from "react";
-import { useTranslation } from "react-i18next";
+import React from 'react';
+import { useTranslation } from 'react-i18next';
 
-import { Button } from "../button/Button";
+import { Button } from '../button/Button';
 
 /**
  * Интерфейс компонента переключателя тем.
@@ -14,15 +14,20 @@ export interface IToggleProps {
 /**
  * Компонент переключателя тем.
  * @param {IToggleProps} param - Входные параметры компонента.
- * @returns 
+ * @returns
  */
 export const ThemeToggle: React.FC<IToggleProps> = ({ theme, onClick }) => {
-
   const { t } = useTranslation();
 
   const handleClick = () => {
-    onClick()
+    onClick();
   };
 
-  return <Button label={`${theme === 'light' ? t('switshThemeToDark') : t('switshThemeToLight')}`} onClick={handleClick} isPrimary={true} />;
+  return (
+    <Button
+      label={`${theme === 'light' ? t('switshThemeToDark') : t('switshThemeToLight')}`}
+      onClick={handleClick}
+      isPrimary={true}
+    />
+  );
 };

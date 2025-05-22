@@ -27,7 +27,7 @@ export const Default: Story = {
     title: 'Title 1',
     description: 'Some description for category 1.',
     date: '2024-02-05',
-    isDisabled: true
+    isDisabled: true,
   },
 };
 

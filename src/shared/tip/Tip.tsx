@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useLayoutEffect, useReducer, useRef, useState } from 'react';
+import React, { Children, cloneElement, FC, useEffect, useLayoutEffect, useReducer, useRef, useState } from 'react';
 import cn from 'clsx';
 import { createPortal } from 'react-dom';
 
@@ -84,10 +84,10 @@ export const Tip: FC<TipProps> = ({ className, children, title, container = docu
 
   const holder = useRef<HTMLDivElement>();
 
-  const child = React.Children.only(children);
+  const child = Children.only(children);
   const { style, className: classN } = child.props;
 
-  const clonedChild = React.cloneElement(React.Children.only(children), {
+  const clonedChild = cloneElement(Children.only(children), {
     ...child.props,
     style: null,
     className: null,

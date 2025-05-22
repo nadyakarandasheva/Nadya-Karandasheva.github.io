@@ -1,37 +1,76 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { Button } from 'antd';
 
-import './operationSummary.css';
+import { Modal } from 'shared/modal/Modal';
+import { CreateOrEditOperationForm } from 'pages/OperationsPageAdmin/CreateOrEditOperationForm/CreateOrEditOperationForm';
 
-/**
- * Компонент краткого отображения операции.
- * @prop {number} amount - Сумма операции.
- * @prop {string} category - Категория.
- * @prop {string} title - Название.
- * @prop {string} description - Описание.
- */
-export interface IOperationSummaryProps {
-  amount: number;
-  category: string;
-  title: string;
-  description: string;
-}
+import { operationsActions } from 'app/store/sagas/operations/operations';
+import { CreateOperationFormValues } from '../forms/OperationForm/types';
+import { OperationParams } from 'server.types';
+
+import styles from './OperationSummary.module.css';
 
 /**
  * Компонент краткого отображения операции.
- * @params {IOperationSummaryProps} params - Входные параметры компонента.
+ * @params {IOperationSummary} params - Входные параметры компонента.
  * @returns {JSX.Element}
  */
-export const OperationSummary: FC<IOperationSummaryProps> = ({ amount, category, title, description }): JSX.Element => {
+export const OperationSummary: FC<OperationParams> = ({
+  id,
+  amount,
+  category,
+  name,
+  type,
+  date,
+  desc,
+}): JSX.Element => {
+  const dispatch = useDispatch();
+
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+
+  const handleSubmit = (values: CreateOperationFormValues) => {
+    dispatch(
+      operationsActions.updateOperation({
+        ...values,
+        id: id,
+        data: values,
+      })
+    );
+
+    setTimeout(() => setIsModalOpen(false), 2000);
+  };
+
   return (
-    <div className={'container'}>
-      <div className={'amount'}>{amount} ₽</div>
-      <div className={'details'}>
-        <div className={'category'}>{category}</div>
-        <div className={'title'}>{title}</div>
-        <div className={'description'}>
-          {description.length > 50 ? `${description.substring(0, 50)}...` : description}
+    <>
+      <div className={styles.container}>
+        <div className={styles.summaryHeader}>
+          <div className={styles.amount}>{amount} ₽</div>
+          <Button onClick={() => setIsModalOpen(true)}> {'Редактировать'}</Button>
+        </div>
+        <div className={styles.details}>
+          <div className={styles.category}>{category.name}</div>
+          <div className={styles.title}>{name}</div>
+          <div className={styles.description}>{type}</div>
         </div>
       </div>
-    </div>
+      {isModalOpen && (
+        <Modal onClose={() => setIsModalOpen(false)}>
+          <CreateOrEditOperationForm
+            initialValues={{
+              amount: amount,
+              categoryId: category.id,
+              name: name,
+              type: type,
+              date: date,
+              desc: desc,
+            }}
+            onSubmit={handleSubmit}
+          />
+        </Modal>
+      )}
+    </>
   );
 };
+
+OperationSummary.displayName = 'OperationSummary'

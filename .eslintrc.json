@@ -6,16 +6,18 @@
         "es2021": true
     },
     "extends": [
-        "plugin:react/jsx-runtime", // позволяет не импортировать реакт
-        "plugin:react-hooks/recommended", //поддержка хуков
-        "plugin:import/recommended", // подсказки при импорте
-        // "airbnb",
-        "prettier", // отключает конфликты с prettier
+        "plugin:react/jsx-runtime",
+        "plugin:react-hooks/recommended",
+        "plugin:import/recommended",
+        "prettier",
         "plugin:prettier/recommended",
         "plugin:jest/recommended",
         "eslint:recommended",
         "plugin:react/recommended",
-        "plugin:@typescript-eslint/recommended"
+        "plugin:@typescript-eslint/recommended",
+        "plugin:import/errors",
+        "plugin:import/warnings",
+        "plugin:import/typescript"
     ],
     "overrides": [],
     "parser": "@typescript-eslint/parser",
@@ -24,21 +26,28 @@
     },
     "plugins": [
         "react",
-        "@typescript-eslint"
+        "@typescript-eslint",
+        "import"
     ],
     "rules": {
         "@typescript-eslint/no-var-requires": 0,
         "@typescript-eslint/triple-slash-reference": "error",
         "react/jsx-uses-vars": "error",
-        "react/jsx-uses-react": "error"
+        "react/jsx-uses-react": "error",
+        "react/prop-types": "off"
     },
     "settings": {
         "react": {
             "version": "detect"
         },
         "import/resolver": {
+            "typescript": {
+                "project": "./tsconfig.json"
+            },
             "node": {
-                "paths": ["."],
+                "paths": [
+                    "src"
+                ],
                 "extensions": [
                     ".js",
                     ".jsx",

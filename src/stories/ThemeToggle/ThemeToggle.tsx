@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import { Button } from "../../shared/button/Button";
+import { Button } from '../../shared/button/Button';
 
 export interface ToggleProps {
   theme: string;
@@ -8,10 +8,11 @@ export interface ToggleProps {
 }
 
 export const ThemeToggle: React.FC<ToggleProps> = ({ theme, onClick }) => {
-
   const handleClick = () => {
-    onClick()
+    onClick();
   };
 
-  return <Button label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`} onClick={handleClick} isPrimary={true} />;
+  return (
+    <Button label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`} onClick={handleClick} isPrimary={true} />
+  );
 };

@@ -25,9 +25,17 @@ interface IOperationDetailProps {
 /**
  * Компонент полного отображения операции.
  * @params {IOperationDetailProps} params - Входные параметры компонента.
- * @returns 
+ * @returns
  */
-export const OperationDetail: FC<IOperationDetailProps> = ({ amount, category, title, description, date, onEdit, isDisabled = true }) => {
+export const OperationDetail: FC<IOperationDetailProps> = ({
+  amount,
+  category,
+  title,
+  description,
+  date,
+  onEdit,
+  isDisabled = true,
+}) => {
   return (
     <div className="container">
       <div className="amount">{amount} ₽</div>

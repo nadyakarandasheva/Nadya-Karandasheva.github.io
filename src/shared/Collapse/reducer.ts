@@ -1,4 +1,4 @@
-import { CollapseActionType, CollapseState } from "./Collapse";
+import { CollapseActionType, CollapseState } from './Collapse';
 
 export const reducer = (state: CollapseState, action: CollapseActionType) => {
   switch (action) {
